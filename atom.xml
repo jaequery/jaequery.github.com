@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery's Octopress]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-02T09:55:01-08:00</updated>
+  <updated>2013-02-02T10:49:45-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[Jae Lee]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Keeping up with the times]]></title>
-    <link href="http://jaequery.github.com/blog/2013/02/02/keeping-up-with-the-times/"/>
-    <updated>2013-02-02T09:05:00-08:00</updated>
-    <id>http://jaequery.github.com/blog/2013/02/02/keeping-up-with-the-times</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[switching from PHP to RoR]]></title>
