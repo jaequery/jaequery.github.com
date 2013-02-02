@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery's Octopress]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-01T19:08:48-08:00</updated>
+  <updated>2013-02-02T08:52:03-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[Jae Lee]]></name>
@@ -18,7 +18,12 @@
     <link href="http://jaequery.github.com/blog/2013/02/01/switching-from-php-to-ror/"/>
     <updated>2013-02-01T19:07:00-08:00</updated>
     <id>http://jaequery.github.com/blog/2013/02/01/switching-from-php-to-ror</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>In one unlikely evening, I was bored and just felt like doing something new, I did something I probably never thought I&#8217;d do. Jump into RoR.
+I say unlikely because those that knows me, knows how much of a PHP advocate I am. Afterall, I didn&#8217;t spend 10+ years on it for nothing.</p>
+
+<p>I must give credit due to the fact that I did switch to mac recently. Funny how a mac can change the views of the world, like how a true hipster would say.</p>
+
+<p>Anyhow this is just a test for octopress. My main blog is still at http://www.jaequery.com, who knows, perhaps I&#8217;ll move it all over to this one.</p>
 ]]></content>
   </entry>
   
