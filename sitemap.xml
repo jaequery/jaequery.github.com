@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://jaequery.github.com/blog/2013/02/01/switching-from-php-to-ror/</loc>
+        <lastmod>2013-02-01T19:07:16-08:00</lastmod>
+    </url>
+    <url>
         <loc>http://jaequery.github.com/blog/archives/</loc>
-        <lastmod>2013-02-01T18:46:45-08:00</lastmod>
+        <lastmod>2013-02-01T19:07:16-08:00</lastmod>
     </url>
     <url>
         <loc>http://jaequery.github.com/</loc>
-        <lastmod>2013-02-01T18:46:45-08:00</lastmod>
+        <lastmod>2013-02-01T19:07:16-08:00</lastmod>
     </url>
     <url>
         <loc>http://jaequery.github.com/robots.txt</loc>
