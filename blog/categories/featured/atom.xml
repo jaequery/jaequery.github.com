@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Featured | Jaequery]]></title>
+  <link href="http://jaequery.github.com/blog/categories/featured/atom.xml" rel="self"/>
+  <link href="http://jaequery.github.com/"/>
+  <updated>2013-02-04T11:41:56-08:00</updated>
+  <id>http://jaequery.github.com/</id>
+  <author>
+    <name><![CDATA[jaequery]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[the ultimate LAMP elisp for LAMP development]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development/"/>
+    <updated>2012-09-21T13:39:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development</id>
+    <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor.
+So here are what you need to get it good.</p>
+
+<p>First, let’s create the elisp folder that stores all your elisps:</p>
+
+<p>mkdir ~/elisp
+cd ~/elsip</p>
+
+<h1>now download “php-mode”</h1>
+
+<p>wget <a href="http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el">http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</a></p>
+
+<h1>now download “multi-web-mode” for html/js/css</h1>
+
+<p>wget <a href="https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el">https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</a></p>
+
+<h1>now add/update this line to your ~/.emacs file</h1>
+
+<p>(add-to-list ‘load-path “~/elisp”)</p>
+
+<p>(require ‘php-mode)</p>
+
+<p>(require ‘multi-web-mode)</p>
+
+<p>(setq mweb-default-major-mode ‘html-mode)</p>
+
+<p>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)</p>
+
+<p>(js-mode “<script +\(type="text/javascript"\|language="javascript"\)[^>]*>” “</script>”)</p>
+
+<p>(css-mode “<style +type="text/css"[^>]*>” “</style>”)))</p>
+
+<p>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))</p>
+
+<p>(multi-web-global-mode 1)</p>
+]]></content>
+  </entry>
+  
+</feed>

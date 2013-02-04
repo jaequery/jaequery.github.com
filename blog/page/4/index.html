@@ -1,0 +1,995 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jaequery</title>
+	<meta name="author" content="jaequery">
+
+	
+	<meta name="description" content="So i been using openvpn to connect to our internal servers.
+I noticed that some of my other co-workers had issue connecting to the VPN, they would &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Jaequery" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://jaequery.github.com/blog/page/4/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+	
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">	
+	<img src="https://twimg0-a.akamaihd.net/profile_images/1553518100/276361_588421810_1000318656_n.jpg" alt="Profile Picture" style="width: 160px;">
+</div>
+<h1><a href="/">Jaequery</a></h1>
+<p class="subtitle">The untold adventures of a 13+ years PHP developer making the jump from PHP to Ruby.</p>
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/jaequery" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/jaequery" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/jaequery">jaequery</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('jaequery', 4, false);
+	})(jQuery);
+</script>
+
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-09T09:27:59-07:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/09/openvpn-stuck-on-obtaining-configuration-for-windows-2/">Openvpn Stuck on Obtaining Configuration for Windows</a></h1>
+	<div class="entry-content">
+		<p>So i been using openvpn to connect to our internal servers.<br/>
+I noticed that some of my other co-workers had issue connecting to the VPN, they would get stuck on the screen saying:</p>
+
+<p>&#8220;Obtaining configuration&#8221;</p>
+
+<p>This was odd to me and I couldn&#8217;t reproduce this so I thought something was wrong with their PC.</p>
+
+<p>But just today, I too had this same behaviour and I was locked out. I decided to wonder if this was a VPN client issue and I tested on my Mac via TunnelBlick, and it was able to connect fine.</p>
+
+<p>So I knew the problem was with the openVPN client software and decided to look for an alternative, I wish there was a TunnelBlick for Windows but Mac only.</p>
+
+<p>I stumbled across <a href="http://www.viscosity.com">www.viscosity.com</a>. I installed via free trial and I was able to connect!</p>
+
+<p>I hate to pay for it but it seems at the moment, I don&#8217;t have a choice.</p>
+
+<p>Anyhow, problem solved.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T19:44:23-07:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/30/ssh-tunnel-multiple-servers/">Ssh Tunnel Multiple Servers</a></h1>
+	<div class="entry-content">
+		<p>i have a bastion server i need to connect to access other servers.<br/>
+this pose some problems when i require a need to access a web-gui within the internal servers, such as ASL admin gui or other control panels, etc …</p>
+
+<p>here is a simple way to forward a port from my target server to my localhost specified port:</p>
+
+<p>ssh -t -t -L8081:localhost:10000 mvriel@a.server.example.com &#8216;ssh -L10000:localhost:80 mvriel@b.server.example.com&#8217; </p>
+
+<p>now when i point my browser to http://localhost:8081, i am viewing the port 80 from server b.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-09T21:56:17-07:00" pubdate data-updated="true">Jul 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/09/ssh-tunnel-how-to-condensed/">SSH Tunnel How to (Condensed)</a></h1>
+	<div class="entry-content">
+		<p>I have a Private Cloud under firewall and I needed to run Nessus on our internal network.</p>
+
+<p>Problem is, I&#8217;d have no way to access the web-gui unless I explicitly expose the port on the firewall, something I&#8217;d not want to do.</p>
+
+<p>It appeared SSH Tunneling is what I needed. It sounded simple enough, but in practice, I just couldn&#8217;t get my head around it.</p>
+
+<p>Why? Mainly because I was on Windows w/ Linux on Virtualbox. So the whole concept of me opening a tunnel didn&#8217;t make sense to me as Windows box won&#8217;t have access to the tunnel.</p>
+
+<p>I read there are some ways you can do it through Putty but that in itself was quite an exercise. Randomly, I was on a mac, googling for SSH tunnel and all of a sudden it all made sense. </p>
+
+<p>From terminal:</p>
+
+<p>ssh -N -L 2080:internalserver1:80 root@publicserver</p>
+
+<p>It&#8217;ll appear as if nothing happened, as you&#8217;ll get no response output.</p>
+
+<p>But now, point your browser to http://localhost:2080</p>
+
+<p>And you&#8217;ll see that it&#8217;s loading the website from internalserver. Voila.</p>
+
+<p>I hope this made far clearer sense than other pages that teaches you about SSH tunneling.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T09:26:00-07:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/02/remote-system-logging-to-mysql-with-rsyslog-in-centos/">Remote System Logging to Mysql With Rsyslog in Centos 5.8</a></h1>
+	<div class="entry-content">
+		<p>Gathering information message is important on Data Center, in some situations you’ll want to store all entries of logfiles on another server. If a server crashes or gets hacked it will be able to trace through  logfiles from your machine. this is can be accomplished by using centralized log server that receive messages from another hosts.  A syslog facility can receive messages from Unix/Linux hosts but also network devices and windows hosts.</p>
+
+<p>In this post, I want to explain step installation of Rsyslog, and Centralized log using MySQL Database. And using LogAnalyzer web interface, for graphical view and administrative.</p>
+
+<p>Step Installation:</p>
+
+<p><strong>1. First we need to install the following packages:</strong></p>
+
+<p><code># yum install rsyslog rsyslog-mysql mysql-server php-mysql php-gd httpd mod_ssl</code></p>
+
+<p><strong>2. Configure rsyslog, mysqld, and httpd to run on startup:</strong></p>
+
+<p>`#  chkconfig &#8211;add rsyslog</p>
+
+<h1>  chkconfig &#8211;add mysqld</h1>
+
+<h1>  chkconfig &#8211;add httpd</h1>
+
+<h1>  chkconfig rsyslog on</h1>
+
+<h1>  chkconfig httpd on</h1>
+
+<h1>  chkconfig mysqld on</h1>
+
+<h1>  service rsyslog start</h1>
+
+<h1>  service mysqld start</h1>
+
+<h1>  service httpd start`</h1>
+
+<p><strong>3.  Configure RSyslog with MySQL Database Connection
+</strong></p>
+
+<p>Assuming for example:
+user: root
+password: sql password
+host: localhost
+db to create: Rsyslogdb
+RSyslog-mysql database installation path: /usr/share/doc/rsyslog-mysql-2.0.0/createDB.sql</p>
+
+<p>Create database:
+<code># mysql –u root –psqlpassword
+mysql&gt; CREATE DATABASE Rsyslogdb;</code></p>
+
+<p>Export rsyslog database table:
+<code># mysql –u root –psqlpassword Rsyslogdb &lt; /usr/share/doc/rsyslog-mysql-2.0.0/createDB.sql</code></p>
+
+<p>Setup MySQL permission (must be same with /etc/rsyslog.conf and /path/to/loganalyzer/config.php)
+<code># mysql –u root –psqlpassword
+mysql&gt; GRANT ALL ON Rsyslogdb.* TO ‘root’@’localhost’ IDENTIFIED BY 'sqlpassword';</code></p>
+
+<p><strong>4. Configure RSyslog</strong></p>
+
+<p>edit rsyslog configuration file
+<code>vi /etc/rsyslog.conf</code></p>
+
+<p>add this line below:
+`$ModLoad ommysql
+$ModLoad imuxsock
+$ModLoad imklog
+$Modload imudp
+$UDPServerRun 514
+$Modload imtcp
+$InputTCPServerRun 514</p>
+
+<h2>Optional</h2>
+
+<h1>$UDPServerAddress 0.0.0.0</h1>
+
+<h2>Optional</h2>
+
+<h1>$RepeatedMsgReduction ()</h1>
+
+<p>$template dbFormat,&#8221;insert into SystemEvents (Message, Facility,FromHost, Priority, DeviceReportedTime, ReceivedAt, InfoUnitID, SysLogTag) values (&#8216;%msg%&#8217;, %syslogfacility%, &#8216;%HOSTNAME%&#8217;,%syslogpriority%, &#8216;%timereported:::date-mysql%&#8217;, &#8216;%timegenerated:::date-mysql%&#8217;, %iut%, &#8216;%syslogtag%&#8217;)&#8221;,sql
+<em>.</em>       : ommysql:localhost,Ryslog,root,sqlpassword
+<em>.info;mail.none;authpriv.none;cron.none            /var/log/messages
+authpriv.</em>                                          /var/log/secure
+mail.<em>                                              /var/log/maillog
+cron.</em>                                              /var/log/cron
+<em>.emerg                                             *
+uucp,news.crit                                      /var/log/spooler
+local7.</em>                                             /var/log/boot.log`</p>
+
+<p><strong>5. Restarting rsyslog service:</strong>
+<code># service rsyslog restart</code></p>
+
+<p><strong>6. Centralized Syslog Server</strong>
+Edit file:  /etc/sysconfig/rsyslog  (add this line)
+<code># vi /etc/sysconfig/rsyslog
+SYSLOGD_OPTIONS="-c3"</code></p>
+
+<p><strong>7. Log Analyzer Installation</strong>
+Download the latest installation :
+<a href="http://loganalyzer.adiscon.com/downloads">http://loganalyzer.adiscon.com/downloads</a></p>
+
+<p>`# cd /tmp</p>
+
+<h1>wget <a href="http://download.adiscon.com/loganalyzer/loganalyzer-3.0.6.tar.gz">http://download.adiscon.com/loganalyzer/loganalyzer-3.0.6.tar.gz</a></h1>
+
+<h1>tar -zxvf loganalyzer-3.0.6.tar.gz</h1>
+
+<h1>cd loganalyzer-3.0.6/src/</h1>
+
+<h1>mkdir /var/www/html/Rsyslog</h1>
+
+<h1>cp –R * /var/www/html/Rsyslog</h1>
+
+<h1>cp ../contrib/configure.sh /var/www/html/</h1>
+
+<h1>chmod +x configure.sh</h1>
+
+<h1>./configure.sh`</h1>
+
+<p>After you execute configuration.sh files, it will create an empty config.php that used for Log Analyzer Configuration.</p>
+
+<p>Open your favorite web browser and navigate into your homepage (i.e: <a href="http://localhost/">http://localhost</a>), then fill in and follow the Log Analyzer configuration steps to complete. From here RSyslog can be displayed on Show Events tab, choose MySQL Native to load your syslog messages on this machine into your RSyslog database on MySQL.</p>
+
+<p><a href="http://gembuls.files.wordpress.com/2011/02/rsyslog1.jpg">
+</a>Done!</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-29T16:25:00-07:00" pubdate data-updated="true">Jun 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/29/disable-emacs-backup-file/">Disable Emacs Backup File</a></h1>
+	<div class="entry-content">
+		<p>Edit/create a ~/.emacs file in your home directory.</p>
+
+<p>(1). prevent the creation of backup files:</p>
+
+<pre><code>&lt;code&gt;(setq make-backup-files nil) &lt;/code&gt;
+</code></pre>
+
+<p>or</p>
+
+<p>(2). Have it save the backup files in some other directory, where they won&#8217;t bother you unless you go looking for them. I have the following in my .emacs:</p>
+
+<pre><code>&lt;code&gt;(setq backup-directory-alist '(("." . "~/.emacs.d/backup")) backup-by-copying t ; Don't delink hardlinks version-control t ; Use version numbers on backups delete-old-versions t ; Automatically delete excess backups kept-new-versions 20 ; how many of the newest versions to keep kept-old-versions 5 ; and how many of the old )&lt;/code&gt;
+</code></pre>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-26T09:26:08-07:00" pubdate data-updated="true">Jun 26<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/26/changing-the-default-bash-color-scheme/">Changing the Default Bash Color Scheme</a></h1>
+	<div class="entry-content">
+		<p>edit .bashrc</p>
+
+<p>paste this:</p>
+
+<p>LS_COLORS=&#8217;di=35:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=32:*.rpm=90&#8217;<br/>
+export LS_COLORS</p>
+
+<p>it will show magenta for dir and green for files</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-20T15:51:23-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/20/change-document-root-in-cpanel-for-primary-domains/">Change Document Root in Cpanel for Primary Domains</a></h1>
+	<div class="entry-content">
+		<p>So I needed to change document root of one of my accounts in cpanel.</p>
+
+<p>I know I can do this for add-on and subdomains but I couldn&#8217;t find out how for account&#8217;s primary domain.</p>
+
+<p>So here&#8217;s what I found:<br/>
+ </p>
+
+<p>Changing Primary domains</p>
+
+<p>For changing the main/primary domain, you will need to have root SSH access and be able to locate and edit the following file (replacing your user &amp; domain info):</p>
+
+<p>/var/cpanel/userdata/USERNAME/DOMAIN.COM</p>
+
+<ol>
+<li>Once you have opened the file, look for the following line:</li>
+</ol>
+
+
+<p>documentroot: /home/USERNAME/public_html</p>
+
+<ol>
+<li><p>Modify the location according to your needs. Save it and exit.</p></li>
+<li><p>Rebuild the Apache conf and restart Apache:</p></li>
+</ol>
+
+
+<p>/scripts/rebuildhttpd.conf<br/>
+service httpd restart</p>
+
+<p>The change will be immediate. Simply clear your browser cache and force refresh the page!</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T11:50:21-07:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/08/install-python-2-6-centos-5-8/">Install Python 2.6 Centos 5.8</a></h1>
+	<div class="entry-content">
+		<p><a href="http://agilesysadmin.net/recent-python-on-rhel-or-centos">[http://agilesysadmin.net/recent-python-on-rhel-or-centos](http://agilesysadmin.net/recent-python-on-rhel-or-centos)</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-15T16:23:00-07:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/05/15/running-tungsten-to-do-a-mysql-ha-multi-master-setup-w/">Running Tungsten to Do a Mysql HA Multi-master Setup W/ HAProxy</a></h1>
+	<div class="entry-content">
+		<h3>setup of tungsten on centos 5.8</h3>
+
+<p>1) copy private key of root to other mysql servers</p>
+
+<p>sudo su -</p>
+
+<p>ssh-keygen</p>
+
+<p>cd ~/.ssh</p>
+
+<p>ssh-copy-id -i id_rsa.pub root@procdb1<br/>
+ </p>
+
+<p>2) install libraries</p>
+
+<p>yum install ruby ruby-libs <br/>
+ </p>
+
+<p>3) install java</p>
+
+<p>download and install the rpm <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html">http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html</a></p>
+
+<p>4) add this to my.cnf and restart mysql</p>
+
+<h3>tungsten ###</h3>
+
+<p>server-id                               =       1 #set to 2 on other<br/>
+log-bin                                 =       mysql-bin<br/>
+innodb_flush_log_at_trx_commit          =       2<br/>
+sync_binlog                             =       0<br/>
+max_allowed_packet                      =       48m</p>
+
+<h1>number of servers</h1>
+
+<p>auto_increment_increment                =       2</p>
+
+<h1>set this to 1, set to 2 on other</h1>
+
+<p>auto_increment_offset                   =       1<br/>
+ </p>
+
+<p>5) create super account &#8216;tungsten&#8217; on all mysql servers</p>
+
+<p>grant all privileges on <em>.</em> to tungsten IDENTIFIED BY &#8216;xxx&#8217; with grant option;</p>
+
+<p>6) download tungsten replicator</p>
+
+<p>wget <a href="http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz">http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz</a></p>
+
+<p>7) create setup-multimaster.sh and run it</p>
+
+<h1>! /bin/bash</h1>
+
+<p>TUNGSTEN_HOME=/opt/replication</p>
+
+<p>TUNGSTEN_TOOLS=tools</p>
+
+<p>MASTER_USER=tungsten</p>
+
+<p>MASTER_PW=xxxx</p>
+
+<p>MASTER1=procdb0 #change to the hostname of your db</p>
+
+<p>SERVICE1=$MASTER1</p>
+
+<p>MASTER2=procdb1 #change to the hostname of your db</p>
+
+<p>SERVICE2=$MASTER2</p>
+
+<p>echo &#8216;setting up installer for &#8216;$MASTER1</p>
+
+<p>./tools/tungsten-installer</p>
+
+<p>    &#8211;master-slave</p>
+
+<p>    &#8211;master-host=$MASTER1</p>
+
+<p>    &#8211;datasource-user=$MASTER_USER</p>
+
+<p>    &#8211;datasource-password=$MASTER_PW</p>
+
+<p>    &#8211;service-name=$SERVICE1</p>
+
+<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
+
+<p>    &#8211;cluster-hosts=$MASTER1</p>
+
+<p>    &#8211;start-and-report</p>
+
+<p>echo &#8216;setting up installer for &#8216;$MASTER2</p>
+
+<p>./tools/tungsten-installer</p>
+
+<p>    &#8211;master-slave</p>
+
+<p>    &#8211;master-host=$MASTER2</p>
+
+<p>    &#8211;datasource-user=$MASTER_USER</p>
+
+<p>    &#8211;datasource-password=$MASTER_PW</p>
+
+<p>    &#8211;service-name=$SERVICE2</p>
+
+<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
+
+<p>    &#8211;cluster-hosts=$MASTER2</p>
+
+<p>    &#8211;start-and-report</p>
+
+<p>8) create configure-multimaster.sh and run it</p>
+
+<h1>! /bin/bash</h1>
+
+<p>TUNGSTEN_HOME=/opt/replication</p>
+
+<p>TUNGSTEN_TOOLS=/opt/replication/tungsten/tools</p>
+
+<p>MASTER1=procdb0 #change to the hostname of your db</p>
+
+<p>SERVICE1=$MASTER1</p>
+
+<p>MASTER2=procdb1 #change to the hostname of your db</p>
+
+<p>SERVICE2=$MASTER2</p>
+
+<p>echo &#8216;configure services for &#8216;$MASTER1</p>
+
+<p>$TUNGSTEN_TOOLS/configure-service</p>
+
+<p>   &#8211;host $MASTER1</p>
+
+<p>   -C -q</p>
+
+<p>   &#8211;local-service-name=$SERVICE1</p>
+
+<p>   &#8211;role=slave</p>
+
+<p>   &#8211;service-type=remote</p>
+
+<p>   &#8211;datasource=$MASTER1</p>
+
+<p>   &#8211;master-thl-host=$MASTER2</p>
+
+<p>   &#8211;svc-start $SERVICE2</p>
+
+<p>echo &#8216;configure services for &#8216;$MASTER2</p>
+
+<p>$TUNGSTEN_TOOLS/configure-service</p>
+
+<p>  &#8211;host $MASTER2</p>
+
+<p>  -C -q</p>
+
+<p>  &#8211;local-service-name=$SERVICE2</p>
+
+<p>  &#8211;role=slave</p>
+
+<p>  &#8211;service-type=remote</p>
+
+<p>  &#8211;datasource=$MASTER2</p>
+
+<p>  &#8211;master-thl-host=$MASTER1</p>
+
+<p>  &#8211;svc-start $SERVICE1</p>
+
+<p>9) All done, check if they are running</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/trepctl services<br/>
+this should list two blocks of texts if everything is working correctly    </p>
+
+<p>11) to stop or start replication, do:</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator stop</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator start</p>
+
+<p>when server goes down or is rebooted, make sure to start the replicator as it&#8217;s not turned on automatically like mysql daemon. this to ensure you can just double check your data.</p>
+
+<h3>configure haproxy for mysql multi-master</h3>
+
+<p>12) setup haproxy</p>
+
+<p>have heartbeat installed and make sure you&#8217;ve got a virtual ip for your db servers.</p>
+
+<p>add these to the end of your /etc/haproxy/haproxy.cfg:</p>
+
+<p>listen mysql-cluster</p>
+
+<p>        bind x.x.y.y:3306 #virtual ip</p>
+
+<p>        mode tcp</p>
+
+<p>        balance roundrobin</p>
+
+<p>        option tcpka</p>
+
+<p>        option httpchk</p>
+
+<p>        option mysql-check user root</p>
+
+<p>        server procdb0 x.x.x.x:3306 check #db ip</p>
+
+<p>        server procdb1 x.x.x.y:3306 check #db ip2</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T16:40:38-07:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/05/10/the-real-mysql-5-5-master-slave-replication-how-to/">The REAL Mysql 5.5 Master Slave Replication How-to</a></h1>
+	<div class="entry-content">
+		<p>so i spent about half a day trying to get a simple mysql 5.5 master to slave replication going. mainly because 5.5 seems to have changed in how replication works, compared to the previous versions, so all the tutorials on google, didn&#8217;t work for me.</p>
+
+<p>after trying out literally 5 different tutorials with no luck, i went to the trusted mysql&#8217;s documentation (i should do that more often), and i was able to follow their directions and finish replication in under 3 mins. o_O</p>
+
+<p>so here&#8217;s the deal:</p>
+
+<p>first go here <a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html">[http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)</a> , follow exactly what they tell you to do step by step.</p>
+
+<p>but since you are here, i&#8217;ll go ahead and list out the steps below:</p>
+
+<h3>1) Setup the Master</h3>
+
+<p>1) edit my.cnf (from a default my.cnf) and make sure you have these</p>
+
+<p>[mysqld]<br/>
+log-bin=mysql-bin<br/>
+server-id=1</p>
+
+<p>and now restart mysql</p>
+
+<p>2) from mysql console</p>
+
+<ul>
+<li>add slave user:<br/>
+grant replication slave ON <em>.</em> TO &#8216;slave&#8217;@&#8217;%&#8217; IDENTIFIED BY &#8216;test&#8217;;</li>
+</ul>
+
+
+<p>flush privileges; (not sure if it&#8217;s needed anymore but do it anyway for good measures)</p>
+
+<ul>
+<li>lock writes</li>
+</ul>
+
+
+<p>flush tables with read lock ;</p>
+
+<ul>
+<li>get your log file and log position (save these since you&#8217;ll need it later for slave setup)</li>
+</ul>
+
+
+<p>show master status;</p>
+
+<h3>2) Setup the Slave</h3>
+
+<p>1) edit my.cnf</p>
+
+<p>[mysqld]<br/>
+server-id=2</p>
+
+<p>that&#8217;s all you need. restart mysql</p>
+
+<p>2) load master&#8217;s database dump (optional), apparently you need to use mysql cli to load data, you can&#8217;t do &#8220;load data from master&#8221; anymore as it&#8217;s deprecated.</p>
+
+<p>3) put in your master server and log details:</p>
+
+<p>CHANGE MASTER TO MASTER_HOST=&#8217;ServerIP/FQDN&#8217;, MASTER_USER=&#8217;slave&#8217;, MASTER_PASSWORD=&#8217;test&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000001&#8217;, MASTER_LOG_POS=98;</p>
+
+<p>*Replace mysql-bin.0000001 and master_log_pos with what you got from &#8220;show master status&#8221; from Master server</p>
+
+<p>4) start slave;</p>
+
+<p>5) check if everything is cool by doing:</p>
+
+<p>show slave statusG;</p>
+
+<p>You should see stuffs like:</p>
+
+<p>mysql> show slave statusG;</p>
+
+<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em> 1. row </em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+
+<p>               Slave_IO_State: Waiting for master to send event</p>
+
+<p>                  Master_Host: mysql1</p>
+
+<p>                  Master_User: slave_user</p>
+
+<p>                  Master_Port: 3306</p>
+
+<p>                Connect_Retry: 60</p>
+
+<p>              Master_Log_File: mysql-bin.000005</p>
+
+<p>          Read_Master_Log_Pos: 10383</p>
+
+<p>if not something went wrong</p>
+
+<h3>Almost done</h3>
+
+<p>1) go back to master server mysql console and unlock the tables</p>
+
+<p>unlock tables;</p>
+
+<h3>Done</h3>
+
+		
+		
+	</div>
+
+</article>
+
+<nav id="pagenavi">
+    
+        <a href="/blog/page/3/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/5/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2013 - jaequery
+  <!-- - <span class="credit">Powered by Jesus</span>-->
+</p>
+
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'jaequery';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
