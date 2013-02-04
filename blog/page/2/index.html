@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content=" mysqladmin ext -i1 | grep Threads_running ">
+	<meta name="description" content="If you are getting the error: WARNING: rsyslogd is running in compatibility mode. Automatically generated config directives may interfer with your &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,7 +105,7 @@
   
 
 
-<time datetime="2012-10-06T00:05:36-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2012</time></div>
+<time datetime="2012-08-16T08:41:06-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -115,9 +115,19 @@
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql/">Check How Many Threads Are Currently Running in Mysql</a></h1>
+	<h1 class="title"><a href="/blog/2012/08/16/warning-rsyslogd-is-running-in-compatibility-mode/">WARNING: Rsyslogd Is Running in Compatibility Mode. Automatically Generated Config Directives May Interfer With Your rsyslog.conf Settings. We Suggest Upgrading Your Config and Adding -c3 as the First Rsyslogd Option.</a></h1>
 	<div class="entry-content">
-		<p>mysqladmin ext -i1 | grep Threads_running</p>
+		<p>If you are getting the error:</p>
+
+<p>WARNING: rsyslogd is running in compatibility mode. Automatically generated config directives may interfer with your rsyslog.conf settings. We suggest upgrading your config and adding -c3 as the first rsyslogd option.</p>
+
+<p>when starting up your rsyslog, do this:</p>
+
+<p>edit /etc/sysconfig/syslog</p>
+
+<p>and add -c5 in your options like this:</p>
+
+<p>SYSLOGD_OPTIONS=&#8221;-c5 -m 0&#8221;</p>
 
 		
 		
@@ -140,7 +150,7 @@
   
 
 
-<time datetime="2012-10-05T12:07:00-07:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time></div>
+<time datetime="2012-08-16T08:39:38-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -150,700 +160,470 @@
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/10/05/configuring-sysctl-conf-for-high-traffic-sites/">Configuring sysctl.conf for High Traffic Sites (150k+/min)</a></h1>
+	<h1 class="title"><a href="/blog/2012/08/16/dev-xvc0-no-such-file-or-directory/">/dev/xvc0: No Such File or Directory</a></h1>
 	<div class="entry-content">
-		<p>edit /etc/sysctl.conf</p>
+		<p>So I been getting a lot of these errors lately.</p>
 
-<pre><code> #net.ipv4.netfilter.ip_conntrack_max = 300000 # for centos 5  
- net.netfilter.nf_conntrack_max = 300000 # for centos 6
- net.ipv4.tcp_max_syn_backlog = 10240
- net.core.netdev_max_backlog = 4000
- kernel.panic = 10
- net.ipv4.tcp_slow_start_after_idle=0
- net.ipv4.tcp_tw_reuse = 1
- net.ipv4.ip_local_port_range = 1024 65023
- net.ipv4.tcp_max_syn_backlog = 10240
- net.ipv4.tcp_max_tw_buckets = 400000
- net.ipv4.tcp_max_orphans = 60000
- net.ipv4.tcp_synack_retries = 3
- net.core.somaxconn = 10000
+<p>It&#8217;s due to some legacy XEN images. Here&#8217;s how to get rid of it:</p>
+
+<p>edit /etc/inittab</p>
+
+<p>find the line, co:2345:respawn:/sbin/agetty xvc0 9600 vt100-nav</p>
+
+<p>and comment it out, like so:</p>
+
+<h1>co:2345:respawn:/sbin/agetty xvc0 9600 vt100-nav</h1>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-15T11:48:00-07:00" pubdate data-updated="true">Aug 15<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/15/creating-a-vnc-tunnel-using-freenx/">Creating a VNC Tunnel Using freeNX</a></h1>
+	<div class="entry-content">
+		<p>I found a pretty cool VNC alternative, which I think surpasses all other solutions out there.</p>
+
+<p>Installation is very easy too!</p>
+
+<p>on centos:</p>
+
+<p>yum groupinstall &#8220;X Window System&#8221; &#8220;KDE (K Desktop Environment)&#8221;<br/>
+yum install nx freenx<br/>
+nxserver &#8211;start</p>
+
+<p>Now nx server is installed and should be awaiting connections!</p>
+
+<p>Download the NX Client for Windows/Mac (for macs, i think you have to use something else)</p>
+
+<p>Now on password, click &#8220;choose key&#8221;. Copy and paste this on to that textarea:</p>
+
+<p>cat /var/lib/nxserver/home/.ssh/client.id_dsa.key</p>
+
+<p>Once done, put in your server hostname info, etc.. and you should be able to connect.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-09T09:31:35-07:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/09/openvpn-stuck-on-obtaining-configuration-for-windows/">Openvpn Stuck on Obtaining Configuration for Windows</a></h1>
+	<div class="entry-content">
+		<p>So i been using openvpn to connect to our internal servers.<br/>
+I noticed that some of my other co-workers had issue connecting to the VPN, they would get stuck on the screen saying:</p>
+
+<p>&#8220;Obtaining configuration&#8221;</p>
+
+<p>This was odd to me and I couldn&#8217;t reproduce this so I thought something was wrong with their PC.</p>
+
+<p>But just today, I too had this same behaviour and I was locked out. I decided to wonder if this was a VPN client issue and I tested on my Mac via TunnelBlick, and it was able to connect fine.</p>
+
+<p>So I knew the problem was with the openVPN client software and decided to look for an alternative, I wish there was a TunnelBlick for Windows but Mac only.</p>
+
+<p>I stumbled across Sparklab&#8217;s Viscosity VPN client. I installed via free trial and I was able to connect!</p>
+
+<p><a href="http://www.thesparklabs.com/viscosity/">[http://www.thesparklabs.com/viscosity/](http://www.thesparklabs.com/viscosity/)</a></p>
+
+<p>I hate to pay for it but it seems at the moment, I don&#8217;t have a choice. It&#8217;s only $9 lifetime, fairly cheap.</p>
+
+<p>Anyhow, problem solved.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-09T09:27:59-07:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/09/openvpn-stuck-on-obtaining-configuration-for-windows-2/">Openvpn Stuck on Obtaining Configuration for Windows</a></h1>
+	<div class="entry-content">
+		<p>So i been using openvpn to connect to our internal servers.<br/>
+I noticed that some of my other co-workers had issue connecting to the VPN, they would get stuck on the screen saying:</p>
+
+<p>&#8220;Obtaining configuration&#8221;</p>
+
+<p>This was odd to me and I couldn&#8217;t reproduce this so I thought something was wrong with their PC.</p>
+
+<p>But just today, I too had this same behaviour and I was locked out. I decided to wonder if this was a VPN client issue and I tested on my Mac via TunnelBlick, and it was able to connect fine.</p>
+
+<p>So I knew the problem was with the openVPN client software and decided to look for an alternative, I wish there was a TunnelBlick for Windows but Mac only.</p>
+
+<p>I stumbled across <a href="http://www.viscosity.com">www.viscosity.com</a>. I installed via free trial and I was able to connect!</p>
+
+<p>I hate to pay for it but it seems at the moment, I don&#8217;t have a choice.</p>
+
+<p>Anyhow, problem solved.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T19:44:23-07:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/30/ssh-tunnel-multiple-servers/">Ssh Tunnel Multiple Servers</a></h1>
+	<div class="entry-content">
+		<p>i have a bastion server i need to connect to access other servers.<br/>
+this pose some problems when i require a need to access a web-gui within the internal servers, such as ASL admin gui or other control panels, etc …</p>
+
+<p>here is a simple way to forward a port from my target server to my localhost specified port:</p>
+
+<p>ssh -t -t -L8081:localhost:10000 mvriel@a.server.example.com &#8216;ssh -L10000:localhost:80 mvriel@b.server.example.com&#8217; </p>
+
+<p>now when i point my browser to http://localhost:8081, i am viewing the port 80 from server b.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-09T21:56:17-07:00" pubdate data-updated="true">Jul 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/09/ssh-tunnel-how-to-condensed/">SSH Tunnel How to (Condensed)</a></h1>
+	<div class="entry-content">
+		<p>I have a Private Cloud under firewall and I needed to run Nessus on our internal network.</p>
+
+<p>Problem is, I&#8217;d have no way to access the web-gui unless I explicitly expose the port on the firewall, something I&#8217;d not want to do.</p>
+
+<p>It appeared SSH Tunneling is what I needed. It sounded simple enough, but in practice, I just couldn&#8217;t get my head around it.</p>
+
+<p>Why? Mainly because I was on Windows w/ Linux on Virtualbox. So the whole concept of me opening a tunnel didn&#8217;t make sense to me as Windows box won&#8217;t have access to the tunnel.</p>
+
+<p>I read there are some ways you can do it through Putty but that in itself was quite an exercise. Randomly, I was on a mac, googling for SSH tunnel and all of a sudden it all made sense. </p>
+
+<p>From terminal:</p>
+
+<p>ssh -N -L 2080:internalserver1:80 root@publicserver</p>
+
+<p>It&#8217;ll appear as if nothing happened, as you&#8217;ll get no response output.</p>
+
+<p>But now, point your browser to http://localhost:2080</p>
+
+<p>And you&#8217;ll see that it&#8217;s loading the website from internalserver. Voila.</p>
+
+<p>I hope this made far clearer sense than other pages that teaches you about SSH tunneling.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-02T09:26:00-07:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/07/02/remote-system-logging-to-mysql-with-rsyslog-in-centos/">Remote System Logging to Mysql With Rsyslog in Centos 5.8</a></h1>
+	<div class="entry-content">
+		<p>Gathering information message is important on Data Center, in some situations you’ll want to store all entries of logfiles on another server. If a server crashes or gets hacked it will be able to trace through  logfiles from your machine. this is can be accomplished by using centralized log server that receive messages from another hosts.  A syslog facility can receive messages from Unix/Linux hosts but also network devices and windows hosts.</p>
+
+<p>In this post, I want to explain step installation of Rsyslog, and Centralized log using MySQL Database. And using LogAnalyzer web interface, for graphical view and administrative.</p>
+
+<p>Step Installation:</p>
+
+<p><strong>1. First we need to install the following packages:</strong></p>
+
+<p><code># yum install rsyslog rsyslog-mysql mysql-server php-mysql php-gd httpd mod_ssl</code></p>
+
+<p><strong>2. Configure rsyslog, mysqld, and httpd to run on startup:</strong></p>
+
+<p>`#  chkconfig &#8211;add rsyslog</p>
+
+<h1>  chkconfig &#8211;add mysqld</h1>
+
+<h1>  chkconfig &#8211;add httpd</h1>
+
+<h1>  chkconfig rsyslog on</h1>
+
+<h1>  chkconfig httpd on</h1>
+
+<h1>  chkconfig mysqld on</h1>
+
+<h1>  service rsyslog start</h1>
+
+<h1>  service mysqld start</h1>
+
+<h1>  service httpd start`</h1>
+
+<p><strong>3.  Configure RSyslog with MySQL Database Connection
+</strong></p>
+
+<p>Assuming for example:
+user: root
+password: sql password
+host: localhost
+db to create: Rsyslogdb
+RSyslog-mysql database installation path: /usr/share/doc/rsyslog-mysql-2.0.0/createDB.sql</p>
+
+<p>Create database:
+<code># mysql –u root –psqlpassword
+mysql&gt; CREATE DATABASE Rsyslogdb;</code></p>
+
+<p>Export rsyslog database table:
+<code># mysql –u root –psqlpassword Rsyslogdb &lt; /usr/share/doc/rsyslog-mysql-2.0.0/createDB.sql</code></p>
+
+<p>Setup MySQL permission (must be same with /etc/rsyslog.conf and /path/to/loganalyzer/config.php)
+<code># mysql –u root –psqlpassword
+mysql&gt; GRANT ALL ON Rsyslogdb.* TO ‘root’@’localhost’ IDENTIFIED BY 'sqlpassword';</code></p>
+
+<p><strong>4. Configure RSyslog</strong></p>
+
+<p>edit rsyslog configuration file
+<code>vi /etc/rsyslog.conf</code></p>
+
+<p>add this line below:
+`$ModLoad ommysql
+$ModLoad imuxsock
+$ModLoad imklog
+$Modload imudp
+$UDPServerRun 514
+$Modload imtcp
+$InputTCPServerRun 514</p>
+
+<h2>Optional</h2>
+
+<h1>$UDPServerAddress 0.0.0.0</h1>
+
+<h2>Optional</h2>
+
+<h1>$RepeatedMsgReduction ()</h1>
+
+<p>$template dbFormat,&#8221;insert into SystemEvents (Message, Facility,FromHost, Priority, DeviceReportedTime, ReceivedAt, InfoUnitID, SysLogTag) values (&#8216;%msg%&#8217;, %syslogfacility%, &#8216;%HOSTNAME%&#8217;,%syslogpriority%, &#8216;%timereported:::date-mysql%&#8217;, &#8216;%timegenerated:::date-mysql%&#8217;, %iut%, &#8216;%syslogtag%&#8217;)&#8221;,sql
+<em>.</em>       : ommysql:localhost,Ryslog,root,sqlpassword
+<em>.info;mail.none;authpriv.none;cron.none            /var/log/messages
+authpriv.</em>                                          /var/log/secure
+mail.<em>                                              /var/log/maillog
+cron.</em>                                              /var/log/cron
+<em>.emerg                                             *
+uucp,news.crit                                      /var/log/spooler
+local7.</em>                                             /var/log/boot.log`</p>
+
+<p><strong>5. Restarting rsyslog service:</strong>
+<code># service rsyslog restart</code></p>
+
+<p><strong>6. Centralized Syslog Server</strong>
+Edit file:  /etc/sysconfig/rsyslog  (add this line)
+<code># vi /etc/sysconfig/rsyslog
+SYSLOGD_OPTIONS="-c3"</code></p>
+
+<p><strong>7. Log Analyzer Installation</strong>
+Download the latest installation :
+<a href="http://loganalyzer.adiscon.com/downloads">http://loganalyzer.adiscon.com/downloads</a></p>
+
+<p>`# cd /tmp</p>
+
+<h1>wget <a href="http://download.adiscon.com/loganalyzer/loganalyzer-3.0.6.tar.gz">http://download.adiscon.com/loganalyzer/loganalyzer-3.0.6.tar.gz</a></h1>
+
+<h1>tar -zxvf loganalyzer-3.0.6.tar.gz</h1>
+
+<h1>cd loganalyzer-3.0.6/src/</h1>
+
+<h1>mkdir /var/www/html/Rsyslog</h1>
+
+<h1>cp –R * /var/www/html/Rsyslog</h1>
+
+<h1>cp ../contrib/configure.sh /var/www/html/</h1>
+
+<h1>chmod +x configure.sh</h1>
+
+<h1>./configure.sh`</h1>
+
+<p>After you execute configuration.sh files, it will create an empty config.php that used for Log Analyzer Configuration.</p>
+
+<p>Open your favorite web browser and navigate into your homepage (i.e: <a href="http://localhost/">http://localhost</a>), then fill in and follow the Log Analyzer configuration steps to complete. From here RSyslog can be displayed on Show Events tab, choose MySQL Native to load your syslog messages on this machine into your RSyslog database on MySQL.</p>
+
+<p><a href="http://gembuls.files.wordpress.com/2011/02/rsyslog1.jpg">
+</a>Done!</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-29T16:25:00-07:00" pubdate data-updated="true">Jun 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/29/disable-emacs-backup-file/">Disable Emacs Backup File</a></h1>
+	<div class="entry-content">
+		<p>Edit/create a ~/.emacs file in your home directory.</p>
+
+<p>(1). prevent the creation of backup files:</p>
+
+<pre><code>&lt;code&gt;(setq make-backup-files nil) &lt;/code&gt;
 </code></pre>
 
-<h5>also look into considering increasing ulimit</h5>
+<p>or</p>
 
-<p>ulimit -n 30000
-ulimit -u 50000</p>
+<p>(2). Have it save the backup files in some other directory, where they won&#8217;t bother you unless you go looking for them. I have the following in my .emacs:</p>
 
-<p>now save then type sysctl -p to reload changes</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-05T10:33:14-07:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/10/05/centos-5-install-from-url-for-xenserver/">Centos 5 Install From Url for XenServer</a></h1>
-	<div class="entry-content">
-		<p>since i keep forgetting which url i need to put in, here it is:</p>
-
-<p><a href="http://mirror.centos.org/centos-5/5.8/os/x86_64/">[http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5/5.8/os/x86_64/)</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-01T14:32:05-07:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/10/01/percona-xtrabackup-how-to/">Percona Xtrabackup How To</a></h1>
-	<div class="entry-content">
-		<p>to create a backup:</p>
-
-<p>innobackupex &#8211;user=root &#8211;password=xxx .</p>
-
-<p>this should create a folder in timestamp, i.e; 2012-09-01_11-11-11</p>
-
-<p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
-
-<p>this keeps backup in sync, so make sure to apply this, always.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-27T20:45:00-07:00" pubdate data-updated="true">Sep 27<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/27/rotate-outgoing-ip-in-postfix/">Rotate Outgoing Ip in Postfix</a></h1>
-	<div class="entry-content">
-		<p>Here is a script I wrote for a friend who needed to update his outgoing IP on his postfix server and rotate them once every minute: /root/crons/rotate_postfix_ip.sh and add it to your cronjob to run every minute and you are set!</p>
-
-<pre><code>#!/bin/bash
-ips=("64.250.120.128" "64.250.121.241" "64.250.121.242")
-length=${#ips[@]}
-pos=`cat current.txt`
-oldip=${ips[$pos - 1]}
-if [ "$length" -eq "$pos" ] ; then
-    echo "limit reached"
-    pos=1
-else
-    echo "increment!"
-    (( pos++ ))
-fi
-
-echo "$pos" &gt; current.txt
-
-newip=${ips[$pos - 1]}
-echo "prev: $oldip"
-echo "new: $newip"
-
-sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
-service postfix reload
-</code></pre>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-14T15:06:11-07:00" pubdate data-updated="true">Sep 14<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections/">Tcpdump Get IP of All Outgoing HTTPS Connections</a></h1>
-	<div class="entry-content">
-		<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
-
-<p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-13T16:24:49-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file/">Dnsmasq as a Centralized Hosts File</a></h1>
-	<div class="entry-content">
-		<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.</p>
-
-<p>have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?</p>
-
-<p>well look no further. dnsmasq, is that, and more.</p>
-
-<p>install dnsmasq on centos 5.8 is as easy as: yum install dnsmasq -y</p>
-
-<p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
-
-<h1>note if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</h1>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-13T13:24:31-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/13/change-master-host-on-mysql/">Change Master Host on Mysql</a></h1>
-	<div class="entry-content">
-		<p>CHANGE MASTER TO MASTER_HOST=&#8217;db0.local&#8217;, MASTER_USER=&#8217;xxx&#8217;, MASTER_PASSWORD=&#8217;xxx&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000003&#8217;, MASTER_LOG_POS=628;</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-11T17:09:27-07:00" pubdate data-updated="true">Sep 11<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/11/a-perl-script-to-check-for-system-configuration/">A Perl Script to Check for System Configuration</a></h1>
-	<div class="entry-content">
-		<pre><code>#!/usr/bin/perl
-#  Version 0.0.1.F alpha
-#  To use locally.
-#   example:    "./pci_check.pl"
-#
-#  Remotely redirect to ssh.  
-#   example:    "ssh username@servername perl &lt; pci_check.pl"
-#
-#  Looping through multiple servers. 
-#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl; done"
-#
-#  Redirect output to local file.
-#   example:    "ssh username@servername perl &lt; pci_check.pl &gt;&gt; output.txt"
-#
-#  Redirecting output to a local file while looping through multiple servers.
-#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl &gt;&gt; output.txt; done"
-#
-#  Looping through multiple servers specified from a list.
-#   example:    "for server in `cat serverlist.txt` ; do ssh username@$server perl &lt; pci_check.pl; done" 
-#
-
-use strict;
-my $internet_connectivity_url = "http://www.google.com";
-
-my $which_cmd = "which";
-my $etc_passwd_file = "/etc/passwd";
-my $etc_login_defs_file = "/etc/login.defs";
-my $etc_lsb_release_file = "/etc/lsb-release";
-my $etc_redhat_release_file = "/etc/redhat-release";
-my $etc_gentoo_release_file = "/etc/gentoo-release";
-my $etc_ntp_conf_file = "/etc/ntp.conf";
-my $etc_exports_file = "/etc/exports";
-my $etc_fstab_file = "/etc/fstab";
-my $etc_ssh_sshd_conf_file = "/etc/ssh/sshd_config";
-my $var_log_clamav_freshclam_log = "/var/log/clamav/freshclam.log";
-my $my_id = `id -u`;
-my $sysctl_cmd = "/sbin/sysctl";
-my $passwd_cmd = `$which_cmd passwd`;
-  chomp $passwd_cmd;
-my $curl_cmd = `$which_cmd curl`;
-  chomp $curl_cmd;
-my $crontab_cmd = `$which_cmd crontab`;
-  chomp $crontab_cmd;
-my $ifconfig_cmd= `$which_cmd ifconfig`;
-  chomp $ifconfig_cmd;
-
-
-
-my $hostname = `/bin/hostname`;
-my @ps_cmd = `/bin/ps -eo %c h`;
-my @ifconfig = `$ifconfig_cmd`;
-my @netstat = `/bin/netstat -nlp`;
-my @pam_d_contents = `/bin/cat /etc/pam.d/*  2&gt; /dev/null`;
-if ($my_id == 0)
-  {
-    my @crontab = `$crontab_cmd -l`;
-  }
-
-
-my @installed_packages;
-my $os_distro;
-my $ipv6_status;
-
-my @sysctl_oids = 
-  qw( 
-    net.ipv4.conf.all.forwarding
-    net.ipv4.conf.default.forwarding
-    net.ipv4.ip_forward
-    net.ipv4.conf.default.accept_source_route
-    net.ipv4.conf.all.accept_source_route
-  );
-
-my @cron_directories =
-  qw(
-    /etc/cron.hourly
-    /etc/cron.daily
-    /etc/cron.weekly
-    /etc/cron.montly
-    );
-
-my @log_directories =
-  qw(
-    /var/log
-    /var/log/httpd
-    );
-
-my @login_defs = open_file($etc_login_defs_file);
-my @etc_lsb_release = open_file($etc_lsb_release_file);
-my @etc_redhat_release = open_file($etc_redhat_release_file);
-my @etc_gentoo_release = open_file($etc_gentoo_release_file);
-my @etc_ntp_conf = open_file($etc_ntp_conf_file);
-my @etc_exports = open_file($etc_exports_file);
-my @etc_fstab = open_file($etc_fstab_file);
-my @etc_ssh_sshd_conf = open_file($etc_ssh_sshd_conf_file);
-my @etc_passwd = open_file($etc_passwd_file);
-my @clamav_freshclam = open_file($var_log_clamav_freshclam_log);
-
-
-print "Hostname:nt$hostname";
-
-#print whether internet connectivity is detected or not
-if ( length($curl_cmd) != 0 )
-  {
-    if ( `$curl_cmd --silent -m 5 $internet_connectivity_url` )
-      {
-        print "tINTERNET CONNECTIVITY DETECTEDn";
-      }
-    else
-      {
-        print "tNO INTERNET CONNECTIVITYn";
-      }
-  }
-
-print "OS Version:n";
-foreach (@etc_lsb_release)
-  {
-    if (/DISTRIB_DESCRIPTION="(.*)"/)
-      {
-        print "t$1n";
-    $os_distro = $1;
-      }
-  }
-
-foreach (@etc_redhat_release)
-  {
-    if (/(.*)/)
-      {
-        print "t$1n";
-        $os_distro = $1;
-      }
-  }
-foreach (@etc_gentoo_release)
-  {
-    if (/(.*)/)
-      {
-         print "t$1n";
-         $os_distro = $1;
-      }
-  }
-
-
-#Loop through ifconfig for IP Addresses
-print "IP Addresses:n";
-foreach (@ifconfig)
-  {
-    if (/inet (?:addr:)?([d.]+)/)
-      {
-        print "t$1n";
-      }
-  }  
-
-
-
-#Loop through ifconfig for IPv6
-foreach (@ifconfig)
-  {
-    if (/inet6/)
-      {
-        $ipv6_status = 1;
-        last;
-      }
-  } 
-
-if ($ipv6_status)
-  {
-    print "IPv6 is Enabledn";
-  }
-else
-  {
-    print "IPv6 is Disabledn";
-  }
-
-
-#services
-print "Listening Services:n";
-foreach (@netstat)
-  {
-    if (/(tcp|udp).* ([d.d.d.d]+:d+)/)
-      {
-        print "t$1 $2n";
-      }
-  }
-
-
-
-#Sysctl Values
-print "IP sysctl:n";
-foreach (@sysctl_oids)
-  {
-    print "t" . read_sysctl($_);
-  }
-
-#Enumerate System Users
-print "Users:n";
-foreach (@etc_passwd)
-  {
-    my($login, $passwd, $uid, $gid,$gcos, $home, $shell) = split(/:/);
-    print "t$logint$homet$shell";
-      if ( $my_id == 0 )
-        {
-          print "t".`$passwd_cmd -S $login`;
-        }
-  }
-
-
-#NTP server configuration
-print "NTP Servers:n";
-foreach (@etc_ntp_conf)
-  {
-    if (m/^(server.*)/)
-      {
-        print "t$1n";
-      }
-  }
-
-#List filesystem exports
-print "Filesystem NFS Exports:n";
-foreach (@etc_exports)
-  {
-    if (!(m/^#/))
-      {
-    print "t$_";
-      }
-  }
-
-
-#etc fstab contents
-print "fstab mounts:n";
-foreach (@etc_fstab)
-  {
-    if (!(m/^#/))
-      {
-        print "t$_";
-      }
-  }
-
-#etc sshd config contents
-if ($my_id == 0)
-  {
-  print "sshd_conf:n";
-  foreach (@etc_ssh_sshd_conf)
-    {
-      if (!(m/^#/) &amp;&amp; !(m/^$/))
-        {
-          print "t$_";
-        }
-    }
-  }
-
-
-#Determine OS and find installed packages
-if ($os_distro =~ m/ubuntu/i)
-  {
-    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
-    foreach (@installed_packages_tmp)
-      {
-        my @line =  split(/s+/, $_);
-        push @installed_packages, "$line[1]t$line[2]n";
-      }
-  }
-
-if ($os_distro =~ m/debian/i)
-  {
-    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
-    foreach (@installed_packages_tmp)
-      {
-        my @line =  split(/s+/, $_);
-        push @installed_packages, "$line[1]t$line[2]n";
-      }
-  }
-
-if ($os_distro =~ m/gentoo/i)
-  {
-    @installed_packages = `ls -d /var/db/pkg/*/*`;
-  }
-
-if ($os_distro =~ m/centos/i)
-  {
-    @installed_packages = `rpm -qa`;
-  }
-
-if ($os_distro =~ m/red hat/i)
-  {
-    @installed_packages = `rpm -qa`;
-  }
-
-
-print "Installed packages:n";
-foreach (@installed_packages)
-  {
-    if (m/(.*(ssh|ntp|httpd|apache|named|bind|avg|clam|portmap|sophos|sys|ssl|cups|sec|tripwire).*)/i)
-    {
-       print "t$1n";
-    } 
-  }
-
-
-if (-e $var_log_clamav_freshclam_log)
-    {
-      print "ClamAV Updates:n";
-      foreach (@clamav_freshclam[-30,-1])
-        {
-          print "t$_";
-        }
-    }
-
-print "File contents: login.defsn";
-foreach (@login_defs)
-  {
-    if (m/(^(MD5_CRYPT_ENAB|ENCRYPT_METHOD|LOGIN_RETRIES|LOGIN_TIMEOUT|LOG_OK_LOGINS|SYSLOG_SU_ENAB|PASS_MAX_DAYS).*)/i){print "t$1n";}
-  }
-
-
-print "Pam.d config:n";
-foreach (@pam_d_contents)
-  {
-    if ((!(m/^#/) &amp;&amp; ((m/(.*pam_unix.*)/i) || (m/(.*pam_tally.*)/i) || (m/(.*pam_crack.*)/i) || (m/(.*minlen.*)/i) || (m/(.*retry.*)/i)) ) )
-      {
-        print "t$1n";
-      }
-  }
-
-print "Cron Jobs:n";
-foreach my $file (@cron_directories)
-  {
-    foreach (&lt;$file/*&gt;)
-      {
-        print "t $_n";
-      }
-  }
-
-print "Log Files:n";
-foreach my $file (@log_directories)
-  {
-    foreach (&lt;$file/*&gt;)
-      {
-    if (!(m/.[0-9]/))
-          {
-            print "t $_n";
-          }
-      }
-  }
-
-
-#Sort unique processes 
-print "System Processes:n";
-my %seen;
-foreach ( sort( grep{ ! $seen{$_}++ } @ps_cmd))
-  {
-    print "t$_";
-  }
-
-
-
-
-#Argument filename, Returns array
-sub open_file
-  {
-    my $file_name = $_[0];
-    open FILE, ")
-      {
-        push(@file_contents, $_);
-      }
-    close FILE;
-    return @file_contents;
-  }
-
-#Read specific sysctl
-sub read_sysctl
-  {
-    my $search_oid=$_[0];
-    open SYSCTL, "$sysctl_cmd $search_oid |" || die "Can't run sysctl: $!n";
-    my $output;
-    while ()
-      {
-        $output = $_;
-      }
-    close SYSCTL;
-    return $output;
-  }
+<pre><code>&lt;code&gt;(setq backup-directory-alist '(("." . "~/.emacs.d/backup")) backup-by-copying t ; Don't delink hardlinks version-control t ; Use version numbers on backups delete-old-versions t ; Automatically delete excess backups kept-new-versions 20 ; how many of the newest versions to keep kept-old-versions 5 ; and how many of the old )&lt;/code&gt;
 </code></pre>
 
 		
@@ -867,7 +647,7 @@ sub read_sysctl
   
 
 
-<time datetime="2012-09-05T15:43:11-07:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time></div>
+<time datetime="2012-06-26T09:26:08-07:00" pubdate data-updated="true">Jun 26<span>th</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -877,25 +657,1275 @@ sub read_sysctl
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/09/05/encrypt-decrypt-tar-backups/">Encrypt / Decrypt Tar Backups</a></h1>
+	<h1 class="title"><a href="/blog/2012/06/26/changing-the-default-bash-color-scheme/">Changing the Default Bash Color Scheme</a></h1>
 	<div class="entry-content">
-		<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
+		<p>edit .bashrc</p>
 
-<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
+<p>paste this:</p>
 
-<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
+<p>LS_COLORS=&#8217;di=35:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=32:*.rpm=90&#8217;<br/>
+export LS_COLORS</p>
 
-<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
+<p>it will show magenta for dir and green for files</p>
 
-<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
+		
+		
+	</div>
 
-<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
+</article>
 
-<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
 
-<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
+    <article class="post">
+	<div class="meta">
+		<div class="date">
 
-<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-20T15:51:23-07:00" pubdate data-updated="true">Jun 20<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/20/change-document-root-in-cpanel-for-primary-domains/">Change Document Root in Cpanel for Primary Domains</a></h1>
+	<div class="entry-content">
+		<p>So I needed to change document root of one of my accounts in cpanel.</p>
+
+<p>I know I can do this for add-on and subdomains but I couldn&#8217;t find out how for account&#8217;s primary domain.</p>
+
+<p>So here&#8217;s what I found:<br/>
+ </p>
+
+<p>Changing Primary domains</p>
+
+<p>For changing the main/primary domain, you will need to have root SSH access and be able to locate and edit the following file (replacing your user &amp; domain info):</p>
+
+<p>/var/cpanel/userdata/USERNAME/DOMAIN.COM</p>
+
+<ol>
+<li>Once you have opened the file, look for the following line:</li>
+</ol>
+
+
+<p>documentroot: /home/USERNAME/public_html</p>
+
+<ol>
+<li><p>Modify the location according to your needs. Save it and exit.</p></li>
+<li><p>Rebuild the Apache conf and restart Apache:</p></li>
+</ol>
+
+
+<p>/scripts/rebuildhttpd.conf<br/>
+service httpd restart</p>
+
+<p>The change will be immediate. Simply clear your browser cache and force refresh the page!</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-08T11:50:21-07:00" pubdate data-updated="true">Jun 8<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/06/08/install-python-2-6-centos-5-8/">Install Python 2.6 Centos 5.8</a></h1>
+	<div class="entry-content">
+		<p><a href="http://agilesysadmin.net/recent-python-on-rhel-or-centos">[http://agilesysadmin.net/recent-python-on-rhel-or-centos](http://agilesysadmin.net/recent-python-on-rhel-or-centos)</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-15T16:23:00-07:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/05/15/running-tungsten-to-do-a-mysql-ha-multi-master-setup-w/">Running Tungsten to Do a Mysql HA Multi-master Setup W/ HAProxy</a></h1>
+	<div class="entry-content">
+		<h3>setup of tungsten on centos 5.8</h3>
+
+<p>1) copy private key of root to other mysql servers</p>
+
+<p>sudo su -</p>
+
+<p>ssh-keygen</p>
+
+<p>cd ~/.ssh</p>
+
+<p>ssh-copy-id -i id_rsa.pub root@procdb1<br/>
+ </p>
+
+<p>2) install libraries</p>
+
+<p>yum install ruby ruby-libs <br/>
+ </p>
+
+<p>3) install java</p>
+
+<p>download and install the rpm <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html">http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html</a></p>
+
+<p>4) add this to my.cnf and restart mysql</p>
+
+<h3>tungsten ###</h3>
+
+<p>server-id                               =       1 #set to 2 on other<br/>
+log-bin                                 =       mysql-bin<br/>
+innodb_flush_log_at_trx_commit          =       2<br/>
+sync_binlog                             =       0<br/>
+max_allowed_packet                      =       48m</p>
+
+<h1>number of servers</h1>
+
+<p>auto_increment_increment                =       2</p>
+
+<h1>set this to 1, set to 2 on other</h1>
+
+<p>auto_increment_offset                   =       1<br/>
+ </p>
+
+<p>5) create super account &#8216;tungsten&#8217; on all mysql servers</p>
+
+<p>grant all privileges on <em>.</em> to tungsten IDENTIFIED BY &#8216;xxx&#8217; with grant option;</p>
+
+<p>6) download tungsten replicator</p>
+
+<p>wget <a href="http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz">http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz</a></p>
+
+<p>7) create setup-multimaster.sh and run it</p>
+
+<h1>! /bin/bash</h1>
+
+<p>TUNGSTEN_HOME=/opt/replication</p>
+
+<p>TUNGSTEN_TOOLS=tools</p>
+
+<p>MASTER_USER=tungsten</p>
+
+<p>MASTER_PW=xxxx</p>
+
+<p>MASTER1=procdb0 #change to the hostname of your db</p>
+
+<p>SERVICE1=$MASTER1</p>
+
+<p>MASTER2=procdb1 #change to the hostname of your db</p>
+
+<p>SERVICE2=$MASTER2</p>
+
+<p>echo &#8216;setting up installer for &#8216;$MASTER1</p>
+
+<p>./tools/tungsten-installer</p>
+
+<p>    &#8211;master-slave</p>
+
+<p>    &#8211;master-host=$MASTER1</p>
+
+<p>    &#8211;datasource-user=$MASTER_USER</p>
+
+<p>    &#8211;datasource-password=$MASTER_PW</p>
+
+<p>    &#8211;service-name=$SERVICE1</p>
+
+<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
+
+<p>    &#8211;cluster-hosts=$MASTER1</p>
+
+<p>    &#8211;start-and-report</p>
+
+<p>echo &#8216;setting up installer for &#8216;$MASTER2</p>
+
+<p>./tools/tungsten-installer</p>
+
+<p>    &#8211;master-slave</p>
+
+<p>    &#8211;master-host=$MASTER2</p>
+
+<p>    &#8211;datasource-user=$MASTER_USER</p>
+
+<p>    &#8211;datasource-password=$MASTER_PW</p>
+
+<p>    &#8211;service-name=$SERVICE2</p>
+
+<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
+
+<p>    &#8211;cluster-hosts=$MASTER2</p>
+
+<p>    &#8211;start-and-report</p>
+
+<p>8) create configure-multimaster.sh and run it</p>
+
+<h1>! /bin/bash</h1>
+
+<p>TUNGSTEN_HOME=/opt/replication</p>
+
+<p>TUNGSTEN_TOOLS=/opt/replication/tungsten/tools</p>
+
+<p>MASTER1=procdb0 #change to the hostname of your db</p>
+
+<p>SERVICE1=$MASTER1</p>
+
+<p>MASTER2=procdb1 #change to the hostname of your db</p>
+
+<p>SERVICE2=$MASTER2</p>
+
+<p>echo &#8216;configure services for &#8216;$MASTER1</p>
+
+<p>$TUNGSTEN_TOOLS/configure-service</p>
+
+<p>   &#8211;host $MASTER1</p>
+
+<p>   -C -q</p>
+
+<p>   &#8211;local-service-name=$SERVICE1</p>
+
+<p>   &#8211;role=slave</p>
+
+<p>   &#8211;service-type=remote</p>
+
+<p>   &#8211;datasource=$MASTER1</p>
+
+<p>   &#8211;master-thl-host=$MASTER2</p>
+
+<p>   &#8211;svc-start $SERVICE2</p>
+
+<p>echo &#8216;configure services for &#8216;$MASTER2</p>
+
+<p>$TUNGSTEN_TOOLS/configure-service</p>
+
+<p>  &#8211;host $MASTER2</p>
+
+<p>  -C -q</p>
+
+<p>  &#8211;local-service-name=$SERVICE2</p>
+
+<p>  &#8211;role=slave</p>
+
+<p>  &#8211;service-type=remote</p>
+
+<p>  &#8211;datasource=$MASTER2</p>
+
+<p>  &#8211;master-thl-host=$MASTER1</p>
+
+<p>  &#8211;svc-start $SERVICE1</p>
+
+<p>9) All done, check if they are running</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/trepctl services<br/>
+this should list two blocks of texts if everything is working correctly    </p>
+
+<p>11) to stop or start replication, do:</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator stop</p>
+
+<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator start</p>
+
+<p>when server goes down or is rebooted, make sure to start the replicator as it&#8217;s not turned on automatically like mysql daemon. this to ensure you can just double check your data.</p>
+
+<h3>configure haproxy for mysql multi-master</h3>
+
+<p>12) setup haproxy</p>
+
+<p>have heartbeat installed and make sure you&#8217;ve got a virtual ip for your db servers.</p>
+
+<p>add these to the end of your /etc/haproxy/haproxy.cfg:</p>
+
+<p>listen mysql-cluster</p>
+
+<p>        bind x.x.y.y:3306 #virtual ip</p>
+
+<p>        mode tcp</p>
+
+<p>        balance roundrobin</p>
+
+<p>        option tcpka</p>
+
+<p>        option httpchk</p>
+
+<p>        option mysql-check user root</p>
+
+<p>        server procdb0 x.x.x.x:3306 check #db ip</p>
+
+<p>        server procdb1 x.x.x.y:3306 check #db ip2</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T16:40:38-07:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/05/10/the-real-mysql-5-5-master-slave-replication-how-to/">The REAL Mysql 5.5 Master Slave Replication How-to</a></h1>
+	<div class="entry-content">
+		<p>so i spent about half a day trying to get a simple mysql 5.5 master to slave replication going. mainly because 5.5 seems to have changed in how replication works, compared to the previous versions, so all the tutorials on google, didn&#8217;t work for me.</p>
+
+<p>after trying out literally 5 different tutorials with no luck, i went to the trusted mysql&#8217;s documentation (i should do that more often), and i was able to follow their directions and finish replication in under 3 mins. o_O</p>
+
+<p>so here&#8217;s the deal:</p>
+
+<p>first go here <a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html">[http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)</a> , follow exactly what they tell you to do step by step.</p>
+
+<p>but since you are here, i&#8217;ll go ahead and list out the steps below:</p>
+
+<h3>1) Setup the Master</h3>
+
+<p>1) edit my.cnf (from a default my.cnf) and make sure you have these</p>
+
+<p>[mysqld]<br/>
+log-bin=mysql-bin<br/>
+server-id=1</p>
+
+<p>and now restart mysql</p>
+
+<p>2) from mysql console</p>
+
+<ul>
+<li>add slave user:<br/>
+grant replication slave ON <em>.</em> TO &#8216;slave&#8217;@&#8217;%&#8217; IDENTIFIED BY &#8216;test&#8217;;</li>
+</ul>
+
+
+<p>flush privileges; (not sure if it&#8217;s needed anymore but do it anyway for good measures)</p>
+
+<ul>
+<li>lock writes</li>
+</ul>
+
+
+<p>flush tables with read lock ;</p>
+
+<ul>
+<li>get your log file and log position (save these since you&#8217;ll need it later for slave setup)</li>
+</ul>
+
+
+<p>show master status;</p>
+
+<h3>2) Setup the Slave</h3>
+
+<p>1) edit my.cnf</p>
+
+<p>[mysqld]<br/>
+server-id=2</p>
+
+<p>that&#8217;s all you need. restart mysql</p>
+
+<p>2) load master&#8217;s database dump (optional), apparently you need to use mysql cli to load data, you can&#8217;t do &#8220;load data from master&#8221; anymore as it&#8217;s deprecated.</p>
+
+<p>3) put in your master server and log details:</p>
+
+<p>CHANGE MASTER TO MASTER_HOST=&#8217;ServerIP/FQDN&#8217;, MASTER_USER=&#8217;slave&#8217;, MASTER_PASSWORD=&#8217;test&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000001&#8217;, MASTER_LOG_POS=98;</p>
+
+<p>*Replace mysql-bin.0000001 and master_log_pos with what you got from &#8220;show master status&#8221; from Master server</p>
+
+<p>4) start slave;</p>
+
+<p>5) check if everything is cool by doing:</p>
+
+<p>show slave statusG;</p>
+
+<p>You should see stuffs like:</p>
+
+<p>mysql> show slave statusG;</p>
+
+<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em> 1. row </em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+
+<p>               Slave_IO_State: Waiting for master to send event</p>
+
+<p>                  Master_Host: mysql1</p>
+
+<p>                  Master_User: slave_user</p>
+
+<p>                  Master_Port: 3306</p>
+
+<p>                Connect_Retry: 60</p>
+
+<p>              Master_Log_File: mysql-bin.000005</p>
+
+<p>          Read_Master_Log_Pos: 10383</p>
+
+<p>if not something went wrong</p>
+
+<h3>Almost done</h3>
+
+<p>1) go back to master server mysql console and unlock the tables</p>
+
+<p>unlock tables;</p>
+
+<h3>Done</h3>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-29T15:45:49-08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/02/29/centos-6-w-nginx-php-5-3-php-fpm-fastcgi-apc/">CentOS 6 W/ Nginx + PHP 5.3 (PHP-FPM / FastCGI) + APC</a></h1>
+	<div class="entry-content">
+		<p><a href="http://rob.olmos.name/2010/08/centos-5-5-php-5-3-3-php-fpm-nginx-rpms/">[http://rob.olmos.name/2010/08/centos-5-5-php-5-3-3-php-fpm-nginx-rpms/](http://rob.olmos.name/2010/08/centos-5-5-php-5-3-3-php-fpm-nginx-rpms/)</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-29T15:00:07-08:00" pubdate data-updated="true">Feb 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/02/29/a-kindly-older-woman-told-me-that-happiness-is/">None</a></h1>
+	<div class="entry-content">
+		<blockquote><p>A kindly older woman told me that happiness is when the family is together. Given the fairly intact nature of the rural village, people looked pretty content with their lot.</p></blockquote>
+
+<p><a href="http://www.fastcompany.com/1820974/buyology-martin-lindstrom-global-happiness">[http://www.fastcompany.com/1820974/buyology-martin-lindstrom-global-happiness](http://www.fastcompany.com/1820974/buyology-martin-lindstrom-global-happiness)</a></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-25T21:24:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/02/25/how-to-check-page-loading-speed-in-linux-cli/">How to Check Page Loading Speed in Linux Cli</a></h1>
+	<div class="entry-content">
+		<p>Here is a quick handy one liner to get the time it took to load up a webpage in linux cli</p>
+
+<blockquote><p>time wget -p <a href="http://google.com/">http://google.com/</a> >/dev/null 2>&amp;1</p></blockquote>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-05T21:39:59-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/02/05/php-cookie-not-getting-deleted-solved/">PHP Cookie Not Getting Deleted [Solved]</a></h1>
+	<div class="entry-content">
+		<p>This one was a bit of a hair puller but finally found out why I could not reset a cookie.<br/>
+All the stuffs online tells you to use:</p>
+
+<p>setcookie(&#8216;yourcookie&#8217;, &#8220;, time() - 86400);</p>
+
+<p>Well apparently this fails for most web apps.</p>
+
+<p>What will work however is this:</p>
+
+<p>setcookie(&#8216;yourcookie&#8217;, &#8220;, time() - 86400, &#8216;/&#8217;);</p>
+
+<p>The reason being is that I am setting my cookie initially from /auth/login. So this means my cookie will only live inside /auth path. But by setting &#8216;/&#8217; to reset it, it tells it to reset for all the sub folders in the site.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-14T17:08:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/01/14/ubuntu-10-04-apache2-php5-switching-mpm-prefork-to/">Ubuntu 10.04 Apache2 + Php5 - Switching Mpm-prefork to Mpm-worker How to Guide</a></h1>
+	<div class="entry-content">
+		<p>I am running an online service that gets about 500k hits/day. It&#8217;s a new service I started up beginning of december last year but growing at an incredible rate so I never had time to properly lay out a scalable infrastructure. Up until now, I was running it on a single dedicated server but noticed it was starting to take a toll on the server and didn&#8217;t want to affect the other sites on the server (load avg 1.5+) so I decided to move it to Rackspace cloud.</p>
+
+<p>So I set up the instances:<br/>
+- 1 haproxy load balancer (256 mb)<br/>
+- 1 memcache (256 mb)<br/>
+- 3 apache (1 gig)<br/>
+- 1 nginx (1 gig)<br/>
+- 1 mysql master (1 gig)<br/>
+- 1 mysql slave (1 gig)</p>
+
+<p>I&#8217;d have imagine this would be enough to handle this much traffic but my app servers kept swapping time to time. There was no way I was going to spin up even more apache servers as I know this will cost me more than double what I used to pay for the dedicated server which was holding up just fine.</p>
+
+<p>First thing I did was move over from apache to nginx using php5-fpm. It works fine as a single dedicated instance but when it is routed off of haproxy, it was giving me some strange errors. Since I didn&#8217;t have much time to tinker with it, I decided to try something I always heard about but never tried before, Apache MPM-WORKER.</p>
+
+<p>So after googling around, I found a really nifty tutorial (can&#8217;t remember where I got this from) which only took me like 2 minutes to go from apache mpm-prefork to mpm-worker. And as soon as I changed to it, I saw my load drop dramatically and I even went from 3 apache&#8217;s to just 1 apache and still holding up well. </p>
+
+<p>So I highly recommend those of you looking to go to nginx or trying to scale their apache, take a jab at trying out the apache mpm-worker w/ php5 fcgi. It works flawlessly. I&#8217;d say it works just as well as nginx + php5 fpm.</p>
+
+<hr />
+
+<p>When you install lamp on Ubuntu 10.04 , apache comes by default as mpm-prefork.<br/>
+But you will want to instead use mpm-worker, as it will use less memory and be more efficient. </p>
+
+<p>To use the “worker” MPM with PHP, do the following:</p>
+
+<p><strong>Step 1. </strong>Stop the apache2 daemon</p>
+
+<p><code>sudo /etc/init.d/apache2 stop</code></p>
+
+<p><strong>Step 2.  </strong>Uninstall <em>apache2-mpm-prefork</em></p>
+
+<p><code>sudo aptitude remove apache2-mpm-prefork</code></p>
+
+<p><strong>Step 3.</strong>  Install <em>apache2-mpm-worker</em> and <em>apache2-threaded-dev</em></p>
+
+<p><code>sudo aptitude install apache2-mpm-worker apache2-threaded-dev</code></p>
+
+<p><strong>Step 4.</strong> Enable <em>CGI</em> and <em>mod_actions</em> (may already be enabled)</p>
+
+<p><code>sudo a2enmod cgid``2``sudo a2enmod actions</code></p>
+
+<p><strong>Step 5.</strong>  Create a file in <em>/etc/apache2/conf.d</em> with the following content (I called mine php5-cgi.conf):</p>
+
+<p><code>&lt;IfModule mod_actions.c&gt;``2``        ``Action application/x-httpd-php /cgi-bin/php5``3``&lt;/IfModule&gt;</code></p>
+
+<p><strong>Step 6.</strong>  Start the apache2 daemon</p>
+
+<p><code>sudo /etc/init.d/apache2 start</code></p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-30T21:06:37-08:00" pubdate data-updated="true">Dec 30<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/12/30/how-to-installing-php5-fpm-to-nginx-on-ubuntu-11-04/">HOW to: Installing PHP5-FPM to Nginx on Ubuntu 11.04</a></h1>
+	<div class="entry-content">
+		<p>Nginx by default does not include the setup necessary for PHP.  For that, we will need to configure the php5-fpm package.  We will first discuss that package, and then discuss configuring nginx to work with php5-fpm.  Note that the actions done in this HOW-TO will most likely need superuser rights, either via the use of sudo or by the use of the superuser account.</p>
+
+<h2>php5-fpm</h2>
+
+<ol>
+<li>We need to install php5-fpm and its dependencies.  The version from the Ubuntu repositories will work well:</li>
+</ol>
+
+
+<pre><code>sudo apt-get install php5-fpm
+</code></pre>
+
+<ol>
+<li>We will begin by editing the php.ini file.  Open the php.ini file in the current directory with your favorite editor (I prefer using nano, but you’re free to use vim, emacs, or any other editor you like, as long as its run as superuser with sudo):</li>
+</ol>
+
+
+<pre><code>sudo nano /etc/php5/fpm/pool.d/www.conf
+</code></pre>
+
+<ol>
+<li>We will be configuring the php5-fpm process to use a socket.  This will allow for nginx to more easily communicate with the php5-fpm process to serve the PHP content to the Internet.  Inside the <a href="http://www.conf">www.conf</a> file, look for the line starting with:</li>
+</ol>
+
+
+<pre><code>listen =
+</code></pre>
+
+<p>and replace that line so it instead says:</p>
+
+<pre><code>listen = /var/run/php5-fpm.sock
+</code></pre>
+
+<p>This tells the php5-fpm process to only listen for incoming PHP processing requests in the socket file located in the /var/run/ directory.</p>
+
+<ol>
+<li>Restart the php5-fpm service:</li>
+</ol>
+
+
+<pre><code>sudo service php5-fpm restart
+</code></pre>
+
+<p>If all was configured correctly, then the php5-fpm service should have restarted without any errors.  On to configuring your nginx site for working with PHP.</p>
+
+<h2>nginx Site Configuration</h2>
+
+<p>NOTE!  There are different steps you will need to take in order to get PHP on nginx working if you want to use SSL!  <em>Those steps are not covered in this HOW-TO, but may be covered in a future HOW-TO, so keep an eye on this blog!</em></p>
+
+<p>We will now begin setting up your nginx site config file for using PHP.  This is the sample config file from the initial Configuring nginx HOW-TO on this blog, using foobar.com as the domain name.  Your domain name will be different:</p>
+
+<pre><code>server {
+        server_name localhost;
+        root /var/www/;
+
+        index index.html index.htm /index.htm;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+</code></pre>
+
+<p>As you can tell, this doesn’t include anything about PHP. It only talks about HTML, and the basic server configuration. We will now modify this to include the information necessary to allow the processing of PHP.</p>
+
+<ol>
+<li><p>Navigate to the location of your site’s configuration file.  If you followed the HOW-TO on this site, then the file will be located in /etc/nginx/sites-available/.</p></li>
+<li><p>Open the configuration file for your site.</p></li>
+<li><p>Add the following to the server block, and then save the file:</p></li>
+</ol>
+
+
+<pre><code>location ~ .php$ {
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+}
+</code></pre>
+
+<p>This will add the necessary parameters in order to process the PHP files and serve them correctly.</p>
+
+<ol>
+<li><p>Restart the nginx service: sudo service nginx restart</p></li>
+<li><p>In wherever you stated in the “root” statement in your site’s config, create a file called phpinfo.php, containing the following:</p></li>
+</ol>
+
+
+<pre><code>&lt;?php phpinfo();
+</code></pre>
+
+<p>and then open the page in your Internet browser (in the example config, the site would be <a href="http://foobar.com/phpinfo.php">http://foobar.com/phpinfo.php</a>)</p>
+
+<ol>
+<li>If you configured PHP correctly, a page containing various information regarding PHP and your web server should be displayed.  If this is the case, then congratulations, PHP has been successfully configured for your site.  You can now remove the phpinfo.php page (it is not advised to keep that page, as it contains some information which can put your server at risk).  If you did not configure PHP correctly, you will instead be prompted with either a blank page or a download prompt.  If this is the case, make sure you followed the steps in this HOW-TO correctly.</li>
+</ol>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-15T10:03:00-08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/12/15/bitcss-project-follow-up/">Bitcss Project Follow-up</a></h1>
+	<div class="entry-content">
+		<h3>First of all</h3>
+
+<p>I wanted to thank you all for showing your interest on this project. Especially to all the twitterers and watchers at github. It is serving me as a motivation to bring this project to life. =D</p>
+
+<h3>And I been giving it some thoughts</h3>
+
+<p>So I been thinking a lot on how to make this really work. I&#8217;m writing this post really to clear my head a little bit.</p>
+
+<p>The problem, making it work is easy. Making it work in an intuitive fashion much like jQuery, is hard. </p>
+
+<h3>Things I thought of</h3>
+
+<p>I have thought about a few ways of going about it but all of them have their pros and cons. I&#8217;d like to hear what you think about them.</p>
+
+<h3>Option #1 - Free-style structure, just a collection of folders.</h3>
+
+<p>This is the simplest method. It&#8217;ll be a soup of all css snippets / examples / themes out there in this one repository. I also find real value in this despite it&#8217;s simplicity.</p>
+
+<p>So I went ahead and started the project in this manner and created the following folders, and we can just keep adding them as the need rises:</p>
+
+<ul>
+<li><p>/frameworks - a collection of css frameworks out there</p></li>
+<li><p>/themes - a collection of css templates</p></li>
+<li><p>/styleguides - a collection of css style guides</p></li>
+</ul>
+
+
+<p><strong>Pros: </strong>Simple to get going as there is almost no back-end/front-end coding required. It&#8217;ll completely be ran via git and will be a repository with many different collections of css codes / examples / themes that are randomly contributed by members. </p>
+
+<p><strong>Cons: </strong>There will be no way to search and cherry pick to mix/match what you want from the template. What you&#8217;ll do is, just browse through many different folders, if you find something you like, you inspect the element, grab the style, and copy / paste to your site. I&#8217;m guessing this is the method most of us are already familiar with.</p>
+
+<h3>Option #2 - Structured CSS naming convention</h3>
+
+<p>This is going to be a bit tougher, as there needs to be a strict guideline to how you style, much like the way <a href="http://jqueryui.com/docs/Theming">jquery-ui</a> does it. For every elements out there, such as: modal, header, menu, etc … there will be a standard structured html to style off of.</p>
+
+<p>So a simple example would be a menu:</p>
+
+<ul> <li> …. </li> </ul>
+
+
+<p>To apply bitcss, you&#8217;d do:</p>
+
+<ul class="bitcss-menu** theme1**">
+
+
+
+
+<li> …. </li>
+
+
+
+
+</ul>
+
+
+<p>And to use a different theme, you&#8217;d just do:</p>
+
+<ul class="bitcss-menu** theme2**">
+
+
+
+
+<li> …. </li>
+
+
+
+
+</ul>
+
+
+<p>This all sounds good in theory but this was a super simple example. For things a bit more complex, I have a hard time imagining just how practical it would be. My thoughts on this is that, it requires a strong disciplined community and will rely heavily on utilizing best practices (and I don&#8217;t think anyone really knows what the best practice is). This also means that there will be some form of a design committee that will review and judge, which is something I&#8217;d like to stay away from.</p>
+
+<p><strong>Pros: </strong>Once there is some sort of solid guidelines down, I can see it being pretty useful. Anyone can contribute their variations of elements easily just by following the rules and will know exactly how to use/apply to their site.</p>
+
+<p><strong>Cons: </strong>It may require a use of SaaS (like google webfonts) to pick and choose exactly the type of style you want to use on your site. I think it can get a bit hairy as there are ton of variations for CSS, compared to fonts:</p>
+
+<p><a href="http://bitcss.com/api/?themes:theme1">http://bitcss.com/api/?themes:theme1</a>[h5,button,menu],theme5[h1,h2,h3,h4,modal]</p>
+
+<h3>Option #3: A database-driven stylesheet guide generator</h3>
+
+<p>This option means no github and it&#8217;ll be on a web platform that lets you visually generate a stylesheet guide from the website.</p>
+
+<ol>
+<li><p>User comes to the site</p></li>
+<li><p>Clicks on &#8220;Create a stylesheet guide&#8221;</p></li>
+<li><p>User sees a stylesheet that lists all types of elements from h1 to h5, buttons to modals, etc … etc … much like <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> page</p></li>
+<li><p>Only difference is that, with this, you can edit the CSS properties directly by clicking on it</p></li>
+<li><p>So if a user wanted a different color scheme for the button.large, user just clicks on that button, change the color css attribute, and hit save</p></li>
+<li><p>Think of it like Firebug on a stylesheet guide from the website that saves a css file</p></li>
+</ol>
+
+
+<p><strong>Pros: </strong>No need for manifest.json and setting up git. Those two were what I would of thought can hinder it due to certain level of complexity. It also solves many of the issues of the other options.</p>
+
+<p><strong>Cons:</strong> The biggest drawback for me is that I&#8217;ll need an entire site to develop. But I think it&#8217;ll make for a cool weekend project.</p>
+
+<h3>So …. my thoughts are ….</h3>
+
+<p>For me, I think #3 is a pretty compelling option and I get the feeling that it&#8217;ll be the most simple to use and provides value right off the gate.</p>
+
+<h1>1 is also something I always wanted, and it seems like it may serve a different purpose so those two can work together. I kind of wanted a folder that had a collection of many different landing page themes, that I can use whenever the need rises, etc …</h1>
+
+<h1>2, I get a little iffy thinking about the structures/guidelines, from my experience, it is almost impossible to follow a guideline.</h1>
+
+<p>So my thoughts are that, I think <strong>#3</strong> is the route to take. But also continue with <strong>#1</strong> to create and support an ever evolving css dump collection.</p>
+
+<h3>Let me hear what you guys think</h3>
+
+<p>Well those were my thoughts, but, I&#8217;d love to hear what you guys think, feel free to leave me a comment or two.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-14T10:13:00-08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/12/14/bitcss-a-centralized-css-repository-powered-by-github/">Bitcss - a Centralized CSS Repository Powered by Github</a></h1>
+	<div class="entry-content">
+		<h3>A single repository for CSS</h3>
+
+<p>When developing sites, I constantly feel the need to have the ability to quickly browse and choose through hundreds of styles. Like a centralized repository, just for css. Not even just to use them, but even just to serve me as an inspiration.</p>
+
+<p>There are seemingly many single centralized repositories out there, like jquery plugins for js, gems for ruby, and apt for ubuntu, etc. But nothing like it for css.</p>
+
+<h3>Gotta admit that Twitter bootstrap is cool</h3>
+
+<p>Currently, CSS are a pain to re-use but when there is a way (like how twitter bootstrap did), it is simply an enjoyable experience to work off of. But currently they are the only ones that exists of that nature and I don&#8217;t think we will see any more of these anytime soon.</p>
+
+<h3>The Github strategy</h3>
+
+<p>So I&#8217;m creating a centralized github repository, where anyone can crowd-source their CSS and html assets.</p>
+
+<p>Anyone can then easily browse through and choose different types of h1, h2, h3, top menus, boxes, containers, and etc … And everyone is encouraged to to create variations (big or small) to support even more varieties and styles back to the community.</p>
+
+<p>For anyone that is familiar to Remy&#8217;s mit-license repo (<a href="https://github.com/remy/mit-license">github.com/remy/…</a>) it&#8217;ll be like that and it works surprisingly well. There can be some automation done to be better but I don&#8217;t think it&#8217;s that much of an issue.</p>
+
+<h3>Simple to use and simple to contribute</h3>
+
+<p>For those not familiar, it works like this:</p>
+
+<p>1) fork the bitcss repo<br/>
+2) add your own folder (like /yourusername/my_bootstrap) with your own copy of the assets (html/images/css) to the repo<br/>
+3) send a push notification when you want to contribute back</p>
+
+<h3>For the benefit of the web development community</h3>
+
+<p>Considering the small effort it takes to contribute, the amount of benefit the css community as a whole will get is worth it.</p>
+
+<h3>Like an open-source CSS community</h3>
+
+<p>Basically for starters, small contributions of simple stylable elements like modal box, navigations, forms, and alerts/confirm would be very helpful.</p>
+
+<p>Next step is to come up with a front-end interface that lets you browse through these css snippets, and possibly even make it into a SaaS to deliver custom CSS on the fly.</p>
+
+<h3>Need developers!</h3>
+
+<p>I haven&#8217;t really done anything yet up to this point. I&#8217;m just really using this post to validate an idea and see if there is enough people interested in it. Even the github, I need to sitdown and think about the best file structures to support this. If you are interested in being a part of this project or want to just keep tabs on the status of the project, follow me at @jaequery. </p>
+
+<h3>Update</h3>
+
+<p>I have posted a <a href="http://jaequery.tumblr.com/post/14268207291/ask-hn-bitcss-project-follow-up">follow up to this post</a>!</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-28T09:09:48-08:00" pubdate data-updated="true">Nov 28<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/11/28/quick-way-to-enable-ssl-for-apache-2-on-ubuntu-10-04/">Quick Way to Enable SSL for Apache 2 on Ubuntu 10.04+</a></h1>
+	<div class="entry-content">
+		<p><strong>Here is a real simple and a quick way of enabling SSL for your apache server on ubuntu 10.04+</strong></p>
+
+<p>sudo apt-get install libapache2-mod-auth-mysql<br/>
+sudo a2enmod auth_mysql<br/>
+sudo /etc/init.d/apache2 restart<br/>
+sudo a2dismod auth_mysql<br/>
+sudo a2enmod ssl<br/>
+sudo a2ensite default-ssl<br/>
+sudo /etc/init.d/apache2 restart</p>
+
+<h1>optional: nano ports (disable 80)</h1>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-22T09:57:00-08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/11/22/take-and-capture-screenshots-of-any-webpage-using-php/">Take and Capture Screenshots of Any Webpage Using PHP & Ubuntu</a></h1>
+	<div class="entry-content">
+		<h3>An Open Source screenshot capture script using PHP and Ubuntu</h3>
+
+<p>For those looking to take screenshots of webpages, I just released a couple scripts to Github that can help you out.</p>
+
+<p>This works on using CutyCapt (qt webkit) and the Xvfb (headless X11).</p>
+
+<p><strong>To get started:</strong></p>
+
+<ol>
+<li><p>Install dependencies</p></li>
+<li><p><a href="https://github.com/jaequery/cutycapt-installer-script-on-ubuntu">[https://github.com/jaequery/cutycapt-installer-script-on-ubuntu](https://github.com/jaequery/cutycapt-installer-script-on-ubuntu)</a></p></li>
+<li><p>Get the php script</p></li>
+<li><p><a href="https://github.com/jaequery/php-site-screenshot">[https://github.com/jaequery/php-site-screenshot](https://github.com/jaequery/php-site-screenshot)</a></p></li>
+</ol>
+
+
+<p><strong>Next, you need to configure the script capture.php:</strong></p>
+
+<p>// lib path<br/>
+$xvfb_path = &#8216;/usr/bin&#8217;;<br/>
+$cutycapt_path = &#8220;/home/user/scripts/cutycapt/CutyCapt&#8221;;</p>
+
+<p>// capture settings<br/>
+$screen = &#8216;1280x1024x24&#8217;;<br/>
+$output_path = &#8216;/home/user/www/images/capture.png&#8217;;<br/>
+$url = $_GET[&#8216;url&#8217;]; // set it however you want<br/>
+//$url = &#8216;http://www.yahoo.com&#8217;; // set it manually</p>
+
+<p><strong>Change them accordingly and you are done</strong></p>
+
+<p>To get you started, here is a simple usage: http://localhost/capture.php?url=http://www.google.com</p>
+
+<p>Hope this is useful to someone.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-07T13:19:00-08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/11/07/web-designers-should-start-companies-not-freelance/">Web Designers Should Start Companies, Not Freelance</a></h1>
+	<div class="entry-content">
+		<h3>Design is crucial for your startup</h3>
+
+<p>Being in a startup industry, it didn&#8217;t take me long enough to realize just how critical your web design is to your company. And I don&#8217;t mean to say this in a &#8220;marketing&#8221; gimmick-ish way. I say this from having launched several companies in the past w/ many different types of web designers. The ones that succeeded, always had awesome designs. </p>
+
+<p>A web site can be as clunky as it can be in terms of back-end but if the front-end kicks ass, people can easily overlook the back-end. But the same is not so true in reverse, which is to say, no one gives a crap about the &#8220;back-end&#8221;, as long as it works.</p>
+
+<h3>Good design creates trust</h3>
+
+<p>There is a big difference from launching your product with an &#8220;okay&#8221; design and a &#8220;great&#8221; design. Design will immediately show the visitors how serious your product is. If your idea is great, show the visitor you are for real ($$$) by investing a bit more time and money in the pursuit of an awesome design.</p>
+
+<p>You can&#8217;t put a price tag on trust. Trust is the single biggest factor going for any business and relationships. No trust, no business.</p>
+
+<h3>People lust for great designs</h3>
+
+<p>There are some people who says that design is secondary and product comes first. If product sucks, design doesn&#8217;t matter. Yes this is true and if your product sucks, not even a great design will help you there. But if you have a great product and a bad/okay design, you&#8217;ll just be scratching your head why is nobody using our great product? So get a great design, it will initially show you have a great product.</p>
+
+<p>Take a look at mint.com. I&#8217;d be hard willing to bet that if it wasn&#8217;t for their hard design work, they wouldn&#8217;t be anywhere near as where they are now. Their business of saving / money / spreadsheet isn&#8217;t something that attracts people, especially if their design was sub-par. But it was their attractive design that made boring work fun. Not only that, people &#8220;came&#8221; to the site, just to check out how beautiful the site is. That itself is priceless.</p>
+
+<h3>It let&#8217;s you be the &#8220;new kid&#8221; in town</h3>
+
+<p>Let&#8217;s say you&#8217;ve launched a new site with an awesome design. You&#8217;ve already changed the landscape of the market and you&#8217;ve created &#8220;awareness&#8221; about your product, just by launching it. Visitor don&#8217;t even have to know your background / history to know that you are going to be a big time player in the space.<br/>
+Even if there are competitors that has been in the field for longer than 5-10 years, you&#8217;ve established yourself as the &#8220;new kid&#8221; in town. Doing so has already created a huge psychological advantage over your competitors and will get played out in your favor for chance of success.</p>
+
+<h3>But now, where are all these &#8220;great&#8221; designers?</h3>
+
+<p>The reason why I wanted to write this post is because there seems to be a problem among these &#8220;rock-star&#8221; web designers. They seem to be &#8220;freelance&#8221; only mentality-mode. They don&#8217;t want to be involved in joining a startup it seems, like most web developers do. They seem to view their job as a one-off thing where once they design the work, they must move on to their next project. Mainly because, they often don&#8217;t work for equity, but project based.</p>
+
+<h3>Web designers under-value themselves</h3>
+
+<p>Usually when a startup forms a &#8220;rockstar team&#8221;, it usually involves a high-level CEO and a rockstar &#8220;CTO&#8221;, but really, never a rockstar &#8220;designer&#8221;.</p>
+
+<p>Why? This is the result of a designer under-valuing the importance of what his/her work can bring to the table in a startup. IMO, a rockstar designer should take more stake in a company than a rockstar developer. Apple was one that really knew the importance of design, and it is what shaped their company. Same goes for a other companies, like &#8220;twitter&#8221;, &#8220;basecamp&#8221;, and &#8220;spotify&#8221;. All with strong unique design principles. The design is highly important because it is the first indicator to see if the user wants to user your product. If you miss out on that, it is game overs muchacho. Create a design user likes and he/she will try out your product to see what other cool stuff it is there. So invest your time finding a good designer, it will be your best investment. One way I&#8217;d recommend going about this is to reach out to <a href="http://folyo.me">http://folyo.me</a>, they just launched a service hand-picking all the top designers. </p>
+
+<h3>Web designers need to focus less on projects and more on companies</h3>
+
+<p>Sure, everyone has to make a living and taking jobs project by project is really the only way most of these designers make their earnings. I&#8217;m sure it&#8217;s fun going from project to project but, there is a point where you realize you just can&#8217;t do this forever. You can say the same for other jobs too but no one dominates the &#8220;freelance&#8221; market as do designers. And by the way, having your &#8220;freelance&#8221; shop, is not really starting your own company. I hope they realize that there is more to be had, than just freelancing.</p>
+
+<h3>Reach out to rockstar designers and get them involved</h3>
+
+<p>We need to start getting these designers involved. They really are some of the hardest working people in the industry and having an amazing designer in your startup DNA will have tremendous benefits over the course of your startup. They usually make great business decisions. Having a design-centric founder will help your startup succeed through envisioning and feeling your product before it&#8217;s even ready. That is a type of skill-set one can&#8217;t just learn but only to be born with.</p>
+
+<h3>Why I believe web designers should start companies? Because, at the end, they are the ones that shape the product.</h3>
+
+<p>I believe they are the best fit to starting companies, especially when it comes to the web. Because they are the ones who can uniquely vision how their product should be and create them. </p>
+
+<p>I know many developers, myself included, can come up with a great idea, but just can not put them on to paper. Even explaining my vision to be relayed to a designer in itself is a monumental task. Without much design sense, my ideas are worthless. </p>
+
+<p>Product life cycle usually goes like this:</p>
+
+<p>1) Idea<br/>
+2) Design<br/>
+3) Programming</p>
+
+<p>I can&#8217;t recall how many times I had an idea but stopped short because I could not proceed to step 2. For me programming is easy and as once I have the design work ready, I can push it out the door. </p>
+
+<p>But if I were a designer with an idea, I can easily go from idea to design, it doesn&#8217;t even have to be working, but then easily hand it off to other developers to make it function.</p>
+
+<p>Starting from an idea, I (and probably many other developers) started some projects themselves by copying/pasting/printscreen&#8217;ing other people works. But these projects don&#8217;t go very far. The ones that goes successfully from zero to launch, usually have a great set of design laid out for them.</p>
+
+<p>So I believe designers should start companies because they have the most &#8220;abilities&#8221; to get a company off the ground. Once they get their site designed, it&#8217;ll be just a matter of getting the site programmed.</p>
 
 		
 		
