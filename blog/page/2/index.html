@@ -300,53 +300,36 @@ service postfix reload
   
 
 
-<time datetime="2012-09-21T13:39:00-07:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time></div>
+<time datetime="2012-09-21T00:00:00-07:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time></div>
 		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/featured/'>Featured</a>, <a class='category' href='/blog/categories/technology/'>Technology</a>
-
 
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development/">The Ultimate LAMP Elisp for LAMP Development</a></h1>
+	<h1 class="title"><a href="/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development/">The Ultimate Lamp Elisp for Lamp Development</a></h1>
 	<div class="entry-content">
-		<p>Emacs out of the box doesn’t have a great php/html/js editor.
-So here are what you need to get it good.</p>
+		<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
 
-<p>First, let’s create the elisp folder that stores all your elisps:</p>
+<ol>
+<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
 
-<p>mkdir ~/elisp
-cd ~/elsip</p>
+<p>mkdir ~/elisp cd ~/elsip</p></li>
+<li><p>Now download “php-mode”
+wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
+<li><p>Now download “multi-web-mode” for html/js/css
+wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
+<li><p>Now add/update this line to your ~/.emacs file
+(add-to-list ‘load-path “~/elisp”)
+(require ‘php-mode)
+(require ‘multi-web-mode)
+(setq mweb-default-major-mode ‘html-mode)
+(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
+(js-mode “”)
+(css-mode “”)))
+(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+(multi-web-global-mode 1)</p></li>
+</ol>
 
-<h1>now download “php-mode”</h1>
-
-<p>wget <a href="http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el">http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</a></p>
-
-<h1>now download “multi-web-mode” for html/js/css</h1>
-
-<p>wget <a href="https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el">https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</a></p>
-
-<h1>now add/update this line to your ~/.emacs file</h1>
-
-<p>(add-to-list ‘load-path “~/elisp”)</p>
-
-<p>(require ‘php-mode)</p>
-
-<p>(require ‘multi-web-mode)</p>
-
-<p>(setq mweb-default-major-mode ‘html-mode)</p>
-
-<p>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)</p>
-
-<p>(js-mode “<script +\(type="text/javascript"\|language="javascript"\)[^>]*>” “</script>”)</p>
-
-<p>(css-mode “<style +type="text/css"[^>]*>” “</style>”)))</p>
-
-<p>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))</p>
-
-<p>(multi-web-global-mode 1)</p>
 
 		
 		
