@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="edit /etc/sysctl.conf #net.ipv4.netfilter.ip_conntrack_max = 300000 # for centos 5 net.netfilter.nf_conntrack_max = 300000 # for centos 6 net.ipv4. &hellip;">
+	<meta name="description" content=" mysqladmin ext -i1 | grep Threads_running ">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +89,41 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-06T00:05:36-07:00" pubdate data-updated="true">Oct 6<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql/">Check How Many Threads Are Currently Running in Mysql</a></h1>
+	<div class="entry-content">
+		<p>mysqladmin ext -i1 | grep Threads_running</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -278,58 +313,6 @@ echo "new: $newip"
 sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
 service postfix reload
 </code></pre>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-21T00:00:00-07:00" pubdate data-updated="true">Sep 21<span>st</span>, 2012</time></div>
-		<div class="tags">
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development/">The Ultimate Lamp Elisp for Lamp Development</a></h1>
-	<div class="entry-content">
-		<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
-
-<ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
-
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”
-wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css
-wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file
-(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
-</ol>
-
 
 		
 		

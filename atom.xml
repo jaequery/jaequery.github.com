@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-04T11:51:09-08:00</updated>
+  <updated>2013-02-04T11:54:14-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ultimate emacs elisp for web development]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development/"/>
+    <updated>2013-02-04T11:53:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development</id>
+    <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
+
+<ol>
+<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
+
+<p>mkdir ~/elisp cd ~/elsip</p></li>
+<li><p>Now download “php-mode”
+wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
+<li><p>Now download “multi-web-mode” for html/js/css
+wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
+<li><p>Now add/update this line to your ~/.emacs file
+(add-to-list ‘load-path “~/elisp”)
+(require ‘php-mode)
+(require ‘multi-web-mode)
+(setq mweb-default-major-mode ‘html-mode)
+(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
+(js-mode “”)
+(css-mode “”)))
+(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+(multi-web-global-mode 1)</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby is strange and odd]]></title>
@@ -377,36 +407,6 @@ echo "new: $newip"
 sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
 service postfix reload
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Ultimate Lamp Elisp For Lamp Development]]></title>
-    <link href="http://jaequery.github.com/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development/"/>
-    <updated>2012-09-21T00:00:00-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/09/21/the-ultimate-lamp-elisp-for-lamp-development</id>
-    <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
-
-<ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
-
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”
-wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css
-wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file
-(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
-</ol>
-
 ]]></content>
   </entry>
   
