@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-04T11:48:51-08:00</updated>
+  <updated>2013-02-04T11:49:21-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -328,31 +328,6 @@ ulimit -u 50000</p>
     <content type="html"><![CDATA[<p>since i keep forgetting which url i need to put in, here it is:</p>
 
 <p><a href="http://mirror.centos.org/centos-5/5.8/os/x86_64/">[http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5/5.8/os/x86_64/)</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sysctl.conf settings for high traffic 100+ concurrent users]]></title>
-    <link href="http://jaequery.github.com/blog/2012/10/04/sysctl-conf-settings-for-high-traffic-100-concurrent/"/>
-    <updated>2012-10-04T16:26:00-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/10/04/sysctl-conf-settings-for-high-traffic-100-concurrent</id>
-    <content type="html"><![CDATA[<p>for high traffic 100+ concurrent servers, update sysctl.conf</p>
-
-<p>net.ipv4.netfilter.ip_conntrack_max=524288<br/>
-net.netfilter.nf_conntrack_tcp_timeout_established=600<br/>
-net.ipv4.tcp_slow_start_after_idle=0<br/>
-net.ipv4.netfilter.ip_conntrack_tcp_timeout_time_wait = 1</p>
-
-<p>and reboot</p>
-
-<p>or run them one time by:</p>
-
-<p>sysctl -w net.ipv4.netfilter.ip_conntrack_max=524288<br/>
-sysctl -w net.netfilter.nf_conntrack_tcp_timeout_established=600<br/>
-sysctl -w net.ipv4.tcp_slow_start_after_idle=0<br/>
-sysctl -w net.ipv4.netfilter.ip_conntrack_tcp_timeout_time_wait = 1</p>
-
-<p>now save then type sysctl -a to reload changes</p>
 ]]></content>
   </entry>
   
@@ -873,6 +848,31 @@ sub read_sysctl
     return $output;
   }
 </code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[encrypt / decrypt tar backups]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups/"/>
+    <updated>2012-09-05T15:43:11-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups</id>
+    <content type="html"><![CDATA[<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
+
+<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
+
+<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
+
+<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
+
+<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
+
+<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
+
+<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
+
+<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
+
+<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content=" tar -zcf todays_backup.tar.gz todays_backup This command will compress the directory todays_backup into the compressed filetodays_backup.tar.gz. To &hellip;">
+	<meta name="description" content="tcpdump by default will listen and output everything, including your current SSH session, which means you&#8217;ll get a lot of junk! so do this to &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,57 +89,6 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-05T15:43:11-07:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/05/encrypt-decrypt-tar-backups/">Encrypt / Decrypt Tar Backups</a></h1>
-	<div class="entry-content">
-		<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
-
-<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
-
-<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
-
-<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
-
-<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
-
-<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
-
-<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
-
-<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
-
-<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
-
-		
-		
-	</div>
-
-</article>
 
 
     <article class="post">
@@ -636,6 +585,56 @@ I noticed that some of my other co-workers had issue connecting to the VPN, they
 <p><a href="http://www.thesparklabs.com/viscosity/">[http://www.thesparklabs.com/viscosity/](http://www.thesparklabs.com/viscosity/)</a></p>
 
 <p>I hate to pay for it but it seems at the moment, I don&#8217;t have a choice. It&#8217;s only $9 lifetime, fairly cheap.</p>
+
+<p>Anyhow, problem solved.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-09T09:27:59-07:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/09/openvpn-stuck-on-obtaining-configuration-for-windows-2/">Openvpn Stuck on Obtaining Configuration for Windows</a></h1>
+	<div class="entry-content">
+		<p>So i been using openvpn to connect to our internal servers.<br/>
+I noticed that some of my other co-workers had issue connecting to the VPN, they would get stuck on the screen saying:</p>
+
+<p>&#8220;Obtaining configuration&#8221;</p>
+
+<p>This was odd to me and I couldn&#8217;t reproduce this so I thought something was wrong with their PC.</p>
+
+<p>But just today, I too had this same behaviour and I was locked out. I decided to wonder if this was a VPN client issue and I tested on my Mac via TunnelBlick, and it was able to connect fine.</p>
+
+<p>So I knew the problem was with the openVPN client software and decided to look for an alternative, I wish there was a TunnelBlick for Windows but Mac only.</p>
+
+<p>I stumbled across <a href="http://www.viscosity.com">www.viscosity.com</a>. I installed via free trial and I was able to connect!</p>
+
+<p>I hate to pay for it but it seems at the moment, I don&#8217;t have a choice.</p>
 
 <p>Anyhow, problem solved.</p>
 
