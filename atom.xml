@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-03T21:31:42-08:00</updated>
+  <updated>2013-02-03T21:32:29-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -20,7 +20,7 @@
     <id>http://jaequery.github.com/blog/2013/02/03/ruby-is-strange-and-odd</id>
     <content type="html"><![CDATA[<h3>Day 2 of Ruby</h3>
 
-<p>It&#8217;s strange and I and confused by all these weird syntaxes.</p>
+<p>It&#8217;s strange and I am confused by all these weird syntaxes.</p>
 
 <p>Coming from PHP, I assumed at first glance:</p>
 
