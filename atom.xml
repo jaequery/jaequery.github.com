@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Jaequery]]></title>
+  <link href="http://jaequery.github.com/atom.xml" rel="self"/>
+  <link href="http://jaequery.github.com/"/>
+  <updated>2013-02-04T11:58:28-08:00</updated>
+  <id>http://jaequery.github.com/</id>
+  <author>
+    <name><![CDATA[jaequery]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ultimate emacs elisp for web development]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development/"/>
+    <updated>2013-02-04T11:53:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development</id>
+    <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
+
+<ol>
+<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
+
+<p>mkdir ~/elisp cd ~/elsip</p></li>
+<li><p>Now download “php-mode”</p>
+
+<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
+<li><p>Now download “multi-web-mode” for html/js/css</p>
+
+<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
+<li><p>Now add/update this line to your ~/.emacs file</p>
+
+<p>(add-to-list ‘load-path “~/elisp”)
+(require ‘php-mode)
+(require ‘multi-web-mode)
+(setq mweb-default-major-mode ‘html-mode)
+(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
+(js-mode “”)
+(css-mode “”)))
+(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+(multi-web-global-mode 1)</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby is strange and odd]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/03/ruby-is-strange-and-odd/"/>
+    <updated>2013-02-03T19:08:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/03/ruby-is-strange-and-odd</id>
+    <content type="html"><![CDATA[<h3>Day 2 of Ruby</h3>
+
+<p>It&#8217;s strange and I am confused by all these weird syntaxes.</p>
+
+<p>Coming from PHP, I assumed at first glance:</p>
+
+<pre><code>   @name (ruby) is $name (php)
+</code></pre>
+
+<p>But no, because in ruby, you have several different ways of assigning a variable.</p>
+
+<p>There are:</p>
+
+<ul>
+<li>@name (instance var)</li>
+<li>@@name (class var)</li>
+<li>name (method var)</li>
+</ul>
+
+
+<p>Not to mention, &#8220;symbols&#8221; which really threw me off guard.</p>
+
+<p>Anyhow, here is what I found out.</p>
+
+<ol>
+<li><p>@name (instance var)
+Instance vars are similar to $this->name in php.
+So @name = $this->name.</p></li>
+<li><p>@@name (class var)
+Now this one is a bit tricky. Class vars probably won&#8217;t ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.
+The reason why it&#8217;s that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p></li>
+<li><p>name (method var)
+This is pretty straight forward. It&#8217;s a var that only lives inside a method. Good for throwaway/temporary variables, such as res, total, etc &#8230;</p></li>
+<li><p>:name (symbols)
+Before learning ruby, I thought this was ruby&#8217;s way of PHP&#8217;s $ sign. Every ruby code I see online had some :symbols and I thought ruby would be a walk in the park as long as I think to myself that is PHP&#8217;s equivalent of assigning variables. But no, it&#8217;s probably what threw me off the most.</p></li>
+</ol>
+
+
+<p>You see, :symbols aren&#8217;t something you can assign to. It&#8217;s not a variable, it&#8217;s a reference. Or, atleast that&#8217;s what other ruby devs told me on freenode. I still didn&#8217;t undersetand, so is this like a pointer reference I asked? And they said no. After about an hour of chatting back and forth, I came to conclusion from bits and pieces of evidence that :symbols are only used inside hashes as keys.</p>
+
+<p>So in php land:</p>
+
+<pre><code>$users = array(
+    "name" =&gt; "john",
+    "name" =&gt; "mark",
+)
+
+foreach($users AS $user){
+    echo $user['name'];
+}
+</code></pre>
+
+<p>But in ruby land, it&#8217;s:</p>
+
+<pre><code>users = {
+    :name =&gt; "john",
+    :name =&gt; "mark",
+}
+
+users.each do |user|
+    puts user.name
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[switching from PHP to RoR]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/01/switching-from-php-to-ror/"/>
+    <updated>2013-02-01T19:07:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/01/switching-from-php-to-ror</id>
+    <content type="html"><![CDATA[<p>In one unlikely evening, I was bored and just felt like doing something new, I did something I probably never thought I&#8217;d do. Jump into RoR.
+I say unlikely because those that knows me, knows how much of a PHP advocate I am. Afterall, I didn&#8217;t spend 10+ years on it for nothing.
+I&#8217;m also not the type to stop on something until I&#8217;ve mastered it. I suddenly now have quite a challenge on my hands.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs good movement guide]]></title>
+    <link href="http://jaequery.github.com/blog/2012/12/29/emacs-good-movement-guide/"/>
+    <updated>2012-12-29T00:41:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2012/12/29/emacs-good-movement-guide</id>
+    <content type="html"><![CDATA[<p>Emacs navigation key commands are one of those things every developer should take time to learn. Because once you get to know them, you&#8217;ll be using them throughout your dev lifecycle, including in terminals, editing, and pretty much everywhere if you are using a linux/*nix like macs.</p>
+
+<p><a href="http://www.masteringemacs.org/articles/2011/01/14/effective-editing-movement/">http://www.masteringemacs.org/articles/2011/01/14/effective-editing-movement/</a></p>
+
+<p>For vi/vim users, it may even be a new opportunity for you to take a moment to step outside and experience all the powers and wonders emacs can provide for you. :) Just try.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[xenserver 6 auto start VM's]]></title>
+    <link href="http://jaequery.github.com/blog/2012/12/13/xenserver-6-auto-start-vms/"/>
+    <updated>2012-12-13T11:34:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2012/12/13/xenserver-6-auto-start-vms</id>
+    <content type="html"><![CDATA[<p>Citrix decided to disable auto-start VM&#8217;s for their free edition startin v6, as I found this out the hard way.</p>
+
+<p>i guess it&#8217;s their strategy of getting you to buy their paid license, which gives you the auto-start from the GUI.</p>
+
+<p>but for the rest of us, here is a quick simple way to do this, you need to manually start the VM&#8217;s upon bootup of the host.</p>
+
+<p>here&#8217;s how:</p>
+
+<p>from the host, edit /etc/rc.local, and at the end of the line, add these two:</p>
+
+<p>sleep 20<br/>
+/opt/xensource/bin/xe vm-start uuid=fbd0fdec-9f69-e47f-072a-02ff854fd890</p>
+
+<p>where uuid is that of your VM. you can find the uuid from xencenter on VM&#8217;s general tab.</p>
+
+<p>do this for each VMs you want auto started</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[strong iptables firewall script for cpanel (or any servers)]]></title>
+    <link href="http://jaequery.github.com/blog/2012/11/06/strong-iptables-firewall-script-for-cpanel-or-any/"/>
+    <updated>2012-11-06T10:12:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2012/11/06/strong-iptables-firewall-script-for-cpanel-or-any</id>
+    <content type="html"><![CDATA[<pre><code>#!/bin/bash
+#####################################################################
+
+# 1) Clear old Rules
+iptables -F                                                 # Delete all existing rules
+
+# 2) Default Drop
+iptables -P INPUT DROP                                            # Set default chain policies to DROP
+iptables -P FORWARD DROP                                        # Set default chain policies to DROP
+iptables -P OUTPUT DROP                                            # Set default chain policies to DROP
+
+# 3) Loopback                                                     
+iptables -A INPUT -i lo -j ACCEPT                                    # Allow loopback access from INPUT
+iptables -A OUTPUT -o lo -j ACCEPT                                    # Allow loopback access from Output
+
+# 4) BLACKLIST IP's
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP                                # Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP                                # Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP                                # Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP                                # Block a specific ip-address
+
+# 5) WHITELIST IP's
+iptables -A INPUT -s 127.0.0.1/32 -j ACCEPT                                # Allow Anything from localhost     
+iptables -A INPUT -s "ALLOW_THIS_IP"/32 -j ACCEPT                                # Allow Anything from KeyServer
+
+
+# 6) ALLOWED SERVICES
+iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT            # PORT 25   SMTP   - Allow connections to outbound
+iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT                            # PORT 54   DNS    - Allow connections to outbound 
+iptables -A INPUT -p tcp -m tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 80   httpd  - Allow connections from anywhere
+iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute --limit-burst 100 -j ACCEPT        # PORT 80   httpd  - Rate Limit from outside
+iptables -A INPUT -p tcp -m tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 443  SSL    - Allow connections from anywhere
+iptables -A INPUT -p tcp -m tcp --dport 2082 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 2082 cPanel - Allow connections to outbound 
+iptables -A INPUT -p tcp -m tcp --dport 2083 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 2083 cPanel - Allow connections to outbound 
+iptables -A INPUT -p tcp -m tcp --dport 2086 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 2086 WHM    - Allow connections to outbound 
+iptables -A INPUT -p tcp -m tcp --dport 2087 -m state --state NEW,ESTABLISHED -j ACCEPT            # PORT 2087 WHM    - Allow connections to outbound 
+
+# 7) PING
+iptables -A INPUT -p icmp -m icmp --icmp-type address-mask-request -j DROP                # Drop Ping from address-mask-request
+iptables -A INPUT -p icmp -m icmp --icmp-type timestamp-request -j DROP                    # Drop Ping from timestamp-request
+iptables -A INPUT -p icmp -m icmp -m limit --limit 1/second -j ACCEPT                     # Rate Limit Ping from outside 
+
+# 8) Validate packets
+iptables -A INPUT   -m state --state INVALID -j DROP                            # Drop invalid packets 
+iptables -A FORWARD -m state --state INVALID -j DROP                            # Drop invalid packets 
+iptables -A OUTPUT  -m state --state INVALID -j DROP                            # Drop invalid packets 
+iptables -A INPUT -p tcp -m tcp --tcp-flags SYN,FIN SYN,FIN -j DROP                    # Drop TCP - SYN,FIN packets 
+iptables -A INPUT -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP                    # Drop TCP - SYN,RST packets 
+
+# 9) Reject Invalid networks (Spoof)
+iptables -A INPUT -s 10.0.0.0/8       -j DROP                                # (Spoofed network)
+iptables -a INPUT -s 192.0.0.1/24     -j DROP                                # (Spoofed network)
+iptables -A INPUT -s 169.254.0.0/16   -j DROP                                # (Spoofed network)
+iptables -A INPUT -s 172.16.0.0/12    -j DROP                                # (Spoofed network)
+iptables -A INPUT -s 224.0.0.0/4      -j DROP                                # (Spoofed network)
+iptables -A INPUT -d 224.0.0.0/4      -j DROP                                # (Spoofed network)
+iptables -A INPUT -s 240.0.0.0/5      -j DROP                                # (Spoofed network)
+iptables -A INPUT -d 240.0.0.0/5      -j DROP                                # (Spoofed network)
+iptables -A INPUT -s 0.0.0.0/8        -j DROP                                # (Spoofed network)
+iptables -A INPUT -d 0.0.0.0/8        -j DROP                                # (Spoofed network)
+iptables -A INPUT -d 239.255.255.0/24 -j DROP                                # (Spoofed network)
+iptables -A INPUT -d 255.255.255.255  -j DROP                                # (Spoofed network)
+
+
+# 10) CHAINS
+
+# FTP_BRUTE CHAIN
+iptables -A INPUT -p tcp -m multiport --dports 20,21 -m state --state NEW -m recent --set --name FTP_BRUTE
+iptables -A INPUT -p tcp -m multiport --dports 20,21 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 --rttl --name FTP_BRUTE -j DROP
+
+# SYNFLOOD CHAIN
+iptables -A INPUT -m state --state NEW -p tcp -m tcp --syn -m recent --name SYNFLOOD--set                        
+iptables -A INPUT -m state --state NEW -p tcp -m tcp --syn -m recent --name SYNFLOOD --update --seconds 1 --hitcount 60 -j DROP
+
+# Logging CHAIN
+iptables -N LOGGING                                                # Create `LOGGING` chain for logging denied packets
+iptables -A INPUT -j LOGGING                                            # Create `LOGGING` chain for logging denied packets     
+iptables -A LOGGING -m limit --limit 2/min -j LOG --log-prefix "IPTables Packet Dropped: " --log-level 6    # Log denied packets to /var/log/messages
+iptables -A LOGGING -j DROP                                            # Drop everything
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[install git on centos 5/6]]></title>
+    <link href="http://jaequery.github.com/blog/2012/11/01/install-git-on-centos-5-6/"/>
+    <updated>2012-11-01T15:40:49-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/11/01/install-git-on-centos-5-6</id>
+    <content type="html"><![CDATA[<p>you need to disable excludes</p>
+
+<pre><code>yum --disableexcludes=main install git
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[emacs iswitch-mode makes switching between buffers easier]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/24/emacs-iswitch-mode-makes-switching-between-buffers/"/>
+    <updated>2012-10-24T15:21:48-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/24/emacs-iswitch-mode-makes-switching-between-buffers</id>
+    <content type="html"><![CDATA[<p>i somehow came across this <a href="http://emacswiki.org/emacs/IswitchBuffers">[http://emacswiki.org/emacs/IswitchBuffers](http://emacswiki.org/emacs/IswitchBuffers)</a> and i&#8217;m thinking to myself how i didn&#8217;t know about it this whole time.</p>
+
+<p>basically on your ~/.emacs, just put this line of code:<br/>
+(iswitchb-mode 1)</p>
+
+<p>and now create multiple buffers, either through multi-window (ctrl+x+2) or (ctrl+f … and type file name)</p>
+
+<p>now just hit ctrl+b, it&#8217;s like mac finder, awesome. </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[disable apache GET requests logging]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/08/disable-apache-get-requests-logging/"/>
+    <updated>2012-10-08T16:00:24-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/08/disable-apache-get-requests-logging</id>
+    <content type="html"><![CDATA[<p>If you are working for PCI compliance, you may have run into situations as to where you need to disable all GET request logging.</p>
+
+<p>This is due to the fact that some merchants might accidentally submit their card processing over GET, in which, the server will be logging all card numbers and other valuable information in clear text.</p>
+
+<p>So to do that:</p>
+
+<p>SetEnvIf Request_Method &#8220;GET&#8221; dontlog<br/>
+CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!dontlog </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[see whats using up your server]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server/"/>
+    <updated>2012-10-06T11:34:57-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server</id>
+    <content type="html"><![CDATA[<h5>see which connections are connected to you sorted by</h5>
+
+<p>netstat -pant | grep :80 | awk &#8216;{ print $5}&#8217; | cut -d: -f1 | sort | uniq -c | sort -n</p>
+
+<h5>see which process are eating up your server</h5>
+
+<p>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[check how many threads are currently running in mysql]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql/"/>
+    <updated>2012-10-06T00:05:36-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql</id>
+    <content type="html"><![CDATA[<p>mysqladmin ext -i1 | grep Threads_running</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[configuring sysctl.conf for high traffic sites (150k+/min)]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/05/configuring-sysctl-conf-for-high-traffic-sites/"/>
+    <updated>2012-10-05T12:07:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/05/configuring-sysctl-conf-for-high-traffic-sites</id>
+    <content type="html"><![CDATA[<p>edit /etc/sysctl.conf</p>
+
+<pre><code> #net.ipv4.netfilter.ip_conntrack_max = 300000 # for centos 5  
+ net.netfilter.nf_conntrack_max = 300000 # for centos 6
+ net.ipv4.tcp_max_syn_backlog = 10240
+ net.core.netdev_max_backlog = 4000
+ kernel.panic = 10
+ net.ipv4.tcp_slow_start_after_idle=0
+ net.ipv4.tcp_tw_reuse = 1
+ net.ipv4.ip_local_port_range = 1024 65023
+ net.ipv4.tcp_max_syn_backlog = 10240
+ net.ipv4.tcp_max_tw_buckets = 400000
+ net.ipv4.tcp_max_orphans = 60000
+ net.ipv4.tcp_synack_retries = 3
+ net.core.somaxconn = 10000
+</code></pre>
+
+<h5>also look into considering increasing ulimit</h5>
+
+<p>ulimit -n 30000
+ulimit -u 50000</p>
+
+<p>now save then type sysctl -p to reload changes</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[centos 5 install from url for XenServer]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/05/centos-5-install-from-url-for-xenserver/"/>
+    <updated>2012-10-05T10:33:14-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/05/centos-5-install-from-url-for-xenserver</id>
+    <content type="html"><![CDATA[<p>since i keep forgetting which url i need to put in, here it is:</p>
+
+<p><a href="http://mirror.centos.org/centos-5/5.8/os/x86_64/">[http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5/5.8/os/x86_64/)</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[percona xtrabackup how to]]></title>
+    <link href="http://jaequery.github.com/blog/2012/10/01/percona-xtrabackup-how-to/"/>
+    <updated>2012-10-01T14:32:05-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/10/01/percona-xtrabackup-how-to</id>
+    <content type="html"><![CDATA[<p>to create a backup:</p>
+
+<p>innobackupex &#8211;user=root &#8211;password=xxx .</p>
+
+<p>this should create a folder in timestamp, i.e; 2012-09-01_11-11-11</p>
+
+<p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
+
+<p>this keeps backup in sync, so make sure to apply this, always.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rotate outgoing ip in postfix]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/27/rotate-outgoing-ip-in-postfix/"/>
+    <updated>2012-09-27T20:45:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/27/rotate-outgoing-ip-in-postfix</id>
+    <content type="html"><![CDATA[<p>Here is a script I wrote for a friend who needed to update his outgoing IP on his postfix server and rotate them once every minute: /root/crons/rotate_postfix_ip.sh and add it to your cronjob to run every minute and you are set!</p>
+
+<pre><code>#!/bin/bash
+ips=("64.250.120.128" "64.250.121.241" "64.250.121.242")
+length=${#ips[@]}
+pos=`cat current.txt`
+oldip=${ips[$pos - 1]}
+if [ "$length" -eq "$pos" ] ; then
+    echo "limit reached"
+    pos=1
+else
+    echo "increment!"
+    (( pos++ ))
+fi
+
+echo "$pos" &gt; current.txt
+
+newip=${ips[$pos - 1]}
+echo "prev: $oldip"
+echo "new: $newip"
+
+sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
+service postfix reload
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[tcpdump get IP of all outgoing HTTPS connections]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections/"/>
+    <updated>2012-09-14T15:06:11-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections</id>
+    <content type="html"><![CDATA[<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
+
+<p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dnsmasq as a centralized hosts file]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file/"/>
+    <updated>2012-09-13T16:24:49-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file</id>
+    <content type="html"><![CDATA[<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.</p>
+
+<p>have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?</p>
+
+<p>well look no further. dnsmasq, is that, and more.</p>
+
+<p>install dnsmasq on centos 5.8 is as easy as: yum install dnsmasq -y</p>
+
+<p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
+
+<h1>note if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[change master host on mysql]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/13/change-master-host-on-mysql/"/>
+    <updated>2012-09-13T13:24:31-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/13/change-master-host-on-mysql</id>
+    <content type="html"><![CDATA[<p>CHANGE MASTER TO MASTER_HOST=&#8217;db0.local&#8217;, MASTER_USER=&#8217;xxx&#8217;, MASTER_PASSWORD=&#8217;xxx&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000003&#8217;, MASTER_LOG_POS=628;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A perl script to check for system configuration]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/11/a-perl-script-to-check-for-system-configuration/"/>
+    <updated>2012-09-11T17:09:27-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/11/a-perl-script-to-check-for-system-configuration</id>
+    <content type="html"><![CDATA[<pre><code>#!/usr/bin/perl
+#  Version 0.0.1.F alpha
+#  To use locally.
+#   example:    "./pci_check.pl"
+#
+#  Remotely redirect to ssh.  
+#   example:    "ssh username@servername perl &lt; pci_check.pl"
+#
+#  Looping through multiple servers. 
+#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl; done"
+#
+#  Redirect output to local file.
+#   example:    "ssh username@servername perl &lt; pci_check.pl &gt;&gt; output.txt"
+#
+#  Redirecting output to a local file while looping through multiple servers.
+#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl &gt;&gt; output.txt; done"
+#
+#  Looping through multiple servers specified from a list.
+#   example:    "for server in `cat serverlist.txt` ; do ssh username@$server perl &lt; pci_check.pl; done" 
+#
+
+use strict;
+my $internet_connectivity_url = "http://www.google.com";
+
+my $which_cmd = "which";
+my $etc_passwd_file = "/etc/passwd";
+my $etc_login_defs_file = "/etc/login.defs";
+my $etc_lsb_release_file = "/etc/lsb-release";
+my $etc_redhat_release_file = "/etc/redhat-release";
+my $etc_gentoo_release_file = "/etc/gentoo-release";
+my $etc_ntp_conf_file = "/etc/ntp.conf";
+my $etc_exports_file = "/etc/exports";
+my $etc_fstab_file = "/etc/fstab";
+my $etc_ssh_sshd_conf_file = "/etc/ssh/sshd_config";
+my $var_log_clamav_freshclam_log = "/var/log/clamav/freshclam.log";
+my $my_id = `id -u`;
+my $sysctl_cmd = "/sbin/sysctl";
+my $passwd_cmd = `$which_cmd passwd`;
+  chomp $passwd_cmd;
+my $curl_cmd = `$which_cmd curl`;
+  chomp $curl_cmd;
+my $crontab_cmd = `$which_cmd crontab`;
+  chomp $crontab_cmd;
+my $ifconfig_cmd= `$which_cmd ifconfig`;
+  chomp $ifconfig_cmd;
+
+
+
+my $hostname = `/bin/hostname`;
+my @ps_cmd = `/bin/ps -eo %c h`;
+my @ifconfig = `$ifconfig_cmd`;
+my @netstat = `/bin/netstat -nlp`;
+my @pam_d_contents = `/bin/cat /etc/pam.d/*  2&gt; /dev/null`;
+if ($my_id == 0)
+  {
+    my @crontab = `$crontab_cmd -l`;
+  }
+
+
+my @installed_packages;
+my $os_distro;
+my $ipv6_status;
+
+my @sysctl_oids = 
+  qw( 
+    net.ipv4.conf.all.forwarding
+    net.ipv4.conf.default.forwarding
+    net.ipv4.ip_forward
+    net.ipv4.conf.default.accept_source_route
+    net.ipv4.conf.all.accept_source_route
+  );
+
+my @cron_directories =
+  qw(
+    /etc/cron.hourly
+    /etc/cron.daily
+    /etc/cron.weekly
+    /etc/cron.montly
+    );
+
+my @log_directories =
+  qw(
+    /var/log
+    /var/log/httpd
+    );
+
+my @login_defs = open_file($etc_login_defs_file);
+my @etc_lsb_release = open_file($etc_lsb_release_file);
+my @etc_redhat_release = open_file($etc_redhat_release_file);
+my @etc_gentoo_release = open_file($etc_gentoo_release_file);
+my @etc_ntp_conf = open_file($etc_ntp_conf_file);
+my @etc_exports = open_file($etc_exports_file);
+my @etc_fstab = open_file($etc_fstab_file);
+my @etc_ssh_sshd_conf = open_file($etc_ssh_sshd_conf_file);
+my @etc_passwd = open_file($etc_passwd_file);
+my @clamav_freshclam = open_file($var_log_clamav_freshclam_log);
+
+
+print "Hostname:nt$hostname";
+
+#print whether internet connectivity is detected or not
+if ( length($curl_cmd) != 0 )
+  {
+    if ( `$curl_cmd --silent -m 5 $internet_connectivity_url` )
+      {
+        print "tINTERNET CONNECTIVITY DETECTEDn";
+      }
+    else
+      {
+        print "tNO INTERNET CONNECTIVITYn";
+      }
+  }
+
+print "OS Version:n";
+foreach (@etc_lsb_release)
+  {
+    if (/DISTRIB_DESCRIPTION="(.*)"/)
+      {
+        print "t$1n";
+    $os_distro = $1;
+      }
+  }
+
+foreach (@etc_redhat_release)
+  {
+    if (/(.*)/)
+      {
+        print "t$1n";
+        $os_distro = $1;
+      }
+  }
+foreach (@etc_gentoo_release)
+  {
+    if (/(.*)/)
+      {
+         print "t$1n";
+         $os_distro = $1;
+      }
+  }
+
+
+#Loop through ifconfig for IP Addresses
+print "IP Addresses:n";
+foreach (@ifconfig)
+  {
+    if (/inet (?:addr:)?([d.]+)/)
+      {
+        print "t$1n";
+      }
+  }  
+
+
+
+#Loop through ifconfig for IPv6
+foreach (@ifconfig)
+  {
+    if (/inet6/)
+      {
+        $ipv6_status = 1;
+        last;
+      }
+  } 
+
+if ($ipv6_status)
+  {
+    print "IPv6 is Enabledn";
+  }
+else
+  {
+    print "IPv6 is Disabledn";
+  }
+
+
+#services
+print "Listening Services:n";
+foreach (@netstat)
+  {
+    if (/(tcp|udp).* ([d.d.d.d]+:d+)/)
+      {
+        print "t$1 $2n";
+      }
+  }
+
+
+
+#Sysctl Values
+print "IP sysctl:n";
+foreach (@sysctl_oids)
+  {
+    print "t" . read_sysctl($_);
+  }
+
+#Enumerate System Users
+print "Users:n";
+foreach (@etc_passwd)
+  {
+    my($login, $passwd, $uid, $gid,$gcos, $home, $shell) = split(/:/);
+    print "t$logint$homet$shell";
+      if ( $my_id == 0 )
+        {
+          print "t".`$passwd_cmd -S $login`;
+        }
+  }
+
+
+#NTP server configuration
+print "NTP Servers:n";
+foreach (@etc_ntp_conf)
+  {
+    if (m/^(server.*)/)
+      {
+        print "t$1n";
+      }
+  }
+
+#List filesystem exports
+print "Filesystem NFS Exports:n";
+foreach (@etc_exports)
+  {
+    if (!(m/^#/))
+      {
+    print "t$_";
+      }
+  }
+
+
+#etc fstab contents
+print "fstab mounts:n";
+foreach (@etc_fstab)
+  {
+    if (!(m/^#/))
+      {
+        print "t$_";
+      }
+  }
+
+#etc sshd config contents
+if ($my_id == 0)
+  {
+  print "sshd_conf:n";
+  foreach (@etc_ssh_sshd_conf)
+    {
+      if (!(m/^#/) &amp;&amp; !(m/^$/))
+        {
+          print "t$_";
+        }
+    }
+  }
+
+
+#Determine OS and find installed packages
+if ($os_distro =~ m/ubuntu/i)
+  {
+    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
+    foreach (@installed_packages_tmp)
+      {
+        my @line =  split(/s+/, $_);
+        push @installed_packages, "$line[1]t$line[2]n";
+      }
+  }
+
+if ($os_distro =~ m/debian/i)
+  {
+    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
+    foreach (@installed_packages_tmp)
+      {
+        my @line =  split(/s+/, $_);
+        push @installed_packages, "$line[1]t$line[2]n";
+      }
+  }
+
+if ($os_distro =~ m/gentoo/i)
+  {
+    @installed_packages = `ls -d /var/db/pkg/*/*`;
+  }
+
+if ($os_distro =~ m/centos/i)
+  {
+    @installed_packages = `rpm -qa`;
+  }
+
+if ($os_distro =~ m/red hat/i)
+  {
+    @installed_packages = `rpm -qa`;
+  }
+
+
+print "Installed packages:n";
+foreach (@installed_packages)
+  {
+    if (m/(.*(ssh|ntp|httpd|apache|named|bind|avg|clam|portmap|sophos|sys|ssl|cups|sec|tripwire).*)/i)
+    {
+       print "t$1n";
+    } 
+  }
+
+
+if (-e $var_log_clamav_freshclam_log)
+    {
+      print "ClamAV Updates:n";
+      foreach (@clamav_freshclam[-30,-1])
+        {
+          print "t$_";
+        }
+    }
+
+print "File contents: login.defsn";
+foreach (@login_defs)
+  {
+    if (m/(^(MD5_CRYPT_ENAB|ENCRYPT_METHOD|LOGIN_RETRIES|LOGIN_TIMEOUT|LOG_OK_LOGINS|SYSLOG_SU_ENAB|PASS_MAX_DAYS).*)/i){print "t$1n";}
+  }
+
+
+print "Pam.d config:n";
+foreach (@pam_d_contents)
+  {
+    if ((!(m/^#/) &amp;&amp; ((m/(.*pam_unix.*)/i) || (m/(.*pam_tally.*)/i) || (m/(.*pam_crack.*)/i) || (m/(.*minlen.*)/i) || (m/(.*retry.*)/i)) ) )
+      {
+        print "t$1n";
+      }
+  }
+
+print "Cron Jobs:n";
+foreach my $file (@cron_directories)
+  {
+    foreach (&lt;$file/*&gt;)
+      {
+        print "t $_n";
+      }
+  }
+
+print "Log Files:n";
+foreach my $file (@log_directories)
+  {
+    foreach (&lt;$file/*&gt;)
+      {
+    if (!(m/.[0-9]/))
+          {
+            print "t $_n";
+          }
+      }
+  }
+
+
+#Sort unique processes 
+print "System Processes:n";
+my %seen;
+foreach ( sort( grep{ ! $seen{$_}++ } @ps_cmd))
+  {
+    print "t$_";
+  }
+
+
+
+
+#Argument filename, Returns array
+sub open_file
+  {
+    my $file_name = $_[0];
+    open FILE, ")
+      {
+        push(@file_contents, $_);
+      }
+    close FILE;
+    return @file_contents;
+  }
+
+#Read specific sysctl
+sub read_sysctl
+  {
+    my $search_oid=$_[0];
+    open SYSCTL, "$sysctl_cmd $search_oid |" || die "Can't run sysctl: $!n";
+    my $output;
+    while ()
+      {
+        $output = $_;
+      }
+    close SYSCTL;
+    return $output;
+  }
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[encrypt / decrypt tar backups]]></title>
+    <link href="http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups/"/>
+    <updated>2012-09-05T15:43:11-07:00</updated>
+    <id>http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups</id>
+    <content type="html"><![CDATA[<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
+
+<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
+
+<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
+
+<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
+
+<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
+
+<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
+
+<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
+
+<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
+
+<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
+]]></content>
+  </entry>
+  
+</feed>
