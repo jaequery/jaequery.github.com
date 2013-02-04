@@ -9,7 +9,7 @@ categories:
 - Technology
 ---
 
-#!/bin/bash
+    #!/bin/bash
     #####################################################################
     
     # 1) Clear old Rules
