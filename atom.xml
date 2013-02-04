@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-03T21:31:04-08:00</updated>
+  <updated>2013-02-03T21:31:42-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -47,13 +47,8 @@
 Instance vars are similar to $this->name in php.
 So @name = $this->name.</p></li>
 <li><p>@@name (class var)
-Now this one is a bit tricky. Class vars probably won&#8217;t ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.</p></li>
-</ol>
-
-
-<p>The reason why it&#8217;s that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p>
-
-<ol>
+Now this one is a bit tricky. Class vars probably won&#8217;t ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.
+The reason why it&#8217;s that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p></li>
 <li><p>name (method var)
 This is pretty straight forward. It&#8217;s a var that only lives inside a method. Good for throwaway/temporary variables, such as res, total, etc &#8230;</p></li>
 <li><p>:name (symbols)
