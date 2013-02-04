@@ -7,8 +7,7 @@
 	<meta name="author" content="Jae Lee">
 
 	
-	<meta name="description" content="In one unlikely evening, I was bored and just felt like doing something new, I did something I probably never thought I&#8217;d do. Jump into RoR.
-I &hellip;">
+	<meta name="description" content="Day 2 of Ruby It&#8217;s strange and I and confused by all these weird syntaxes. Coming from PHP, I assumed at first glance: @name (ruby) is $name ( &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +89,74 @@ I &hellip;">
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T19:08:00-08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/02/03/ruby-is-strange-and-odd/">Ruby Is Strange and Odd</a></h1>
+	<div class="entry-content">
+		<h3>Day 2 of Ruby</h3>
+
+<p>It&#8217;s strange and I and confused by all these weird syntaxes.</p>
+
+<p>Coming from PHP, I assumed at first glance:</p>
+
+<pre><code>   @name (ruby) is $name (php)
+</code></pre>
+
+<p>But no, because in ruby, you have several different ways of assigning a variable.</p>
+
+<p>There are:</p>
+
+<ul>
+<li>@name (instance var)</li>
+<li>@@name (class var)</li>
+<li>name (method var)</li>
+</ul>
+
+
+<p>Not to mention, &#8220;symbols&#8221; which really threw me off guard.</p>
+
+<p>Anyhow, here is what I found out.</p>
+
+<h3>@name (instance var)</h3>
+
+<p>Instance vars are similar to $this->name in php.
+So @name = $this->name.</p>
+
+<h3>@@name (class var)</h3>
+
+<p>Now this one is a bit tricky. Class vars probably won&#8217;t ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.</p>
+
+<p>The reason why it&#8217;s that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p>
+
+<h3>name (method var)</h3>
+
+<p>This is pretty straight forward. It&#8217;s a var that only lives inside a method. Good for throwaway/temporary variables, such as res, total, etc &#8230;</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
