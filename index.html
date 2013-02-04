@@ -137,20 +137,50 @@
 
 <p>Anyhow, here is what I found out.</p>
 
-<h3>@name (instance var)</h3>
+<h5>@name (instance var)</h5>
 
 <p>Instance vars are similar to $this->name in php.
 So @name = $this->name.</p>
 
-<h3>@@name (class var)</h3>
+<h5>@@name (class var)</h5>
 
 <p>Now this one is a bit tricky. Class vars probably won&#8217;t ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.</p>
 
 <p>The reason why it&#8217;s that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p>
 
-<h3>name (method var)</h3>
+<h5>name (method var)</h5>
 
 <p>This is pretty straight forward. It&#8217;s a var that only lives inside a method. Good for throwaway/temporary variables, such as res, total, etc &#8230;</p>
+
+<h5>:name (symbols)</h5>
+
+<p>Before learning ruby, I thought this was ruby&#8217;s way of PHP&#8217;s $ sign. Every ruby code I see online had some :symbols and I thought ruby would be a walk in the park as long as I think to myself that is PHP&#8217;s equivalent of assigning variables. But no, it&#8217;s probably what threw me off the most.</p>
+
+<p>You see, :symbols aren&#8217;t something you can assign to. It&#8217;s not a variable, it&#8217;s a reference. Or, atleast that&#8217;s what other ruby devs told me on freenode. I still didn&#8217;t undersetand, so is this like a pointer reference I asked? And they said no. After about an hour of chatting back and forth, I came to conclusion from bits and pieces of evidence that :symbols are only used inside hashes as keys.</p>
+
+<p>So in php land:</p>
+
+<pre><code>$users = array(
+    "name" =&gt; "john",
+    "name" =&gt; "mark",
+)
+
+foreach($users AS $user){
+    echo $user['name'];
+}
+</code></pre>
+
+<p>But in ruby land, it&#8217;s:</p>
+
+<pre><code>users = {
+    :name =&gt; "john",
+    :name =&gt; "mark",
+}
+
+users.each do |user|
+    puts user.name
+end
+</code></pre>
 
 		
 		
