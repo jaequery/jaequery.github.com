@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-04T11:44:53-08:00</updated>
+  <updated>2013-02-04T11:47:14-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -270,11 +270,11 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
     <link href="http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server/"/>
     <updated>2012-10-06T11:34:57-07:00</updated>
     <id>http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server</id>
-    <content type="html"><![CDATA[<h1>see which connections are connected to you sorted by</h1>
+    <content type="html"><![CDATA[<h5>see which connections are connected to you sorted by</h5>
 
 <p>netstat -pant | grep :80 | awk &#8216;{ print $5}&#8217; | cut -d: -f1 | sort | uniq -c | sort -n</p>
 
-<h1>see which process are eating up your server</h1>
+<h5>see which process are eating up your server</h5>
 
 <p>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</p>
 ]]></content>

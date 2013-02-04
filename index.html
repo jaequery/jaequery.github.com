@@ -569,11 +569,11 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
 	</div>
 	<h1 class="title"><a href="/blog/2012/10/06/see-whats-using-up-your-server/">See Whats Using Up Your Server</a></h1>
 	<div class="entry-content">
-		<h1>see which connections are connected to you sorted by</h1>
+		<h5>see which connections are connected to you sorted by</h5>
 
 <p>netstat -pant | grep :80 | awk &#8216;{ print $5}&#8217; | cut -d: -f1 | sort | uniq -c | sort -n</p>
 
-<h1>see which process are eating up your server</h1>
+<h5>see which process are eating up your server</h5>
 
 <p>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</p>
 
