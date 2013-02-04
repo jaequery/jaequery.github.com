@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-04T11:54:14-08:00</updated>
+  <updated>2013-02-04T11:55:07-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -24,12 +24,15 @@
 <li><p>First, let’s create the elisp folder that stores all your elisps:</p>
 
 <p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”
-wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css
-wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file
-(add-to-list ‘load-path “~/elisp”)
+<li><p>Now download “php-mode”</p>
+
+<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
+<li><p>Now download “multi-web-mode” for html/js/css</p>
+
+<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
+<li><p>Now add/update this line to your ~/.emacs file</p>
+
+<p>(add-to-list ‘load-path “~/elisp”)
 (require ‘php-mode)
 (require ‘multi-web-mode)
 (setq mweb-default-major-mode ‘html-mode)
