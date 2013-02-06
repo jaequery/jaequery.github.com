@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby, | Jaequery]]></title>
+  <link href="http://jaequery.github.com/blog/categories/ruby-/atom.xml" rel="self"/>
+  <link href="http://jaequery.github.com/"/>
+  <updated>2013-02-06T10:52:45-08:00</updated>
+  <id>http://jaequery.github.com/</id>
+  <author>
+    <name><![CDATA[jaequery]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby is strange and odd]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/03/ruby-is-strange-and-odd/"/>
+    <updated>2013-02-03T19:08:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/03/ruby-is-strange-and-odd</id>
+    <content type="html"><![CDATA[<h3>Day 2 of Ruby</h3>
+
+<p>It's strange and I am confused by all these weird syntaxes.</p>
+
+<p>Coming from PHP, I assumed at first glance:</p>
+
+<pre><code>   @name (ruby) is $name (php)
+</code></pre>
+
+<p>But no, because in ruby, you have several different ways of assigning a variable.</p>
+
+<p>There are:</p>
+
+<ul>
+<li>@name (instance var)</li>
+<li>@@name (class var)</li>
+<li>name (method var)</li>
+</ul>
+
+
+<p>Not to mention, "symbols" which really threw me off guard.</p>
+
+<p>Anyhow, here is what I found out.</p>
+
+<ol>
+<li><p>@name (instance var)
+Instance vars are similar to $this->name in php.
+So @name = $this->name.</p></li>
+<li><p>@@name (class var)
+Now this one is a bit tricky. Class vars probably won't ring a bell to PHP developer as in PHP, class vars are like instance vars. However in Ruby, @@name is similar to static vars.
+The reason why it's that is because if you have 3-4+ instances of a class, @@name is shared by all of them. Somewhat of a singleton variable.</p></li>
+<li><p>name (method var)
+This is pretty straight forward. It's a var that only lives inside a method. Good for throwaway/temporary variables, such as res, total, etc ...</p></li>
+<li><p>:name (symbols)
+Before learning ruby, I thought this was ruby's way of PHP's $ sign. Every ruby code I see online had some :symbols and I thought ruby would be a walk in the park as long as I think to myself that is PHP's equivalent of assigning variables. But no, it's probably what threw me off the most.</p></li>
+</ol>
+
+
+<p>You see, :symbols aren't something you can assign to. It's not a variable, it's a reference. Or, atleast that's what other ruby devs told me on freenode. I still didn't undersetand, so is this like a pointer reference I asked? And they said no. After about an hour of chatting back and forth, I came to conclusion from bits and pieces of evidence that :symbols are only used inside hashes as keys.</p>
+
+<p>So in php land:</p>
+
+<pre><code>$users = array(
+    "name" =&gt; "john",
+    "name" =&gt; "mark",
+)
+
+foreach($users AS $user){
+    echo $user['name'];
+}
+</code></pre>
+
+<p>But in ruby land, it's:</p>
+
+<pre><code>users = {
+    :name =&gt; "john",
+    :name =&gt; "mark",
+}
+
+users.each do |user|
+    puts user.name
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

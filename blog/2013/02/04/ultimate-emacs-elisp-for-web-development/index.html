@@ -42,6 +42,8 @@
 <p class="subtitle">The untold adventures of a 13+ years PHP developer making the jump from PHP to Ruby.</p>
 <nav id="main-nav"><ul class="main-navigation">
   <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/projects">Projects</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 </ul>
 </nav>
@@ -92,28 +94,50 @@
 	<h1 class="title">Ultimate Emacs Elisp for Web Development</h1>
 	<div class="entry-content"><p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
 
-<ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
+<ul>
+<li>First, let’s create the elisp folder that stores all your elisps:</li>
+</ul>
 
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”</p>
 
-<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css</p>
+<p><code>mkdir ~/elisp &amp;&amp; cd ~/elsip</code></p>
 
-<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file</p>
+<ul>
+<li>Now download “php-mode”</li>
+</ul>
 
-<p>(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
-</ol>
+
+<p><code>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</code></p>
+
+<ul>
+<li>Now download “multi-web-mode” for html/js/css</li>
+</ul>
+
+
+<p><code>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</code></p>
+
+<ul>
+<li>Now add/update this line to your ~/.emacs file</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(add-to-list ‘load-path “~/elisp”)
+</span><span class='line'>(require ‘php-mode)
+</span><span class='line'>(require ‘multi-web-mode)
+</span><span class='line'>(setq mweb-default-major-mode ‘html-mode)
+</span><span class='line'>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
+</span><span class='line'>(js-mode “”)
+</span><span class='line'>(css-mode “”)))
+</span><span class='line'>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+</span><span class='line'>(multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
