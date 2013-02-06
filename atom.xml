@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T23:31:32-08:00</updated>
+  <updated>2013-02-05T23:32:32-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -59,28 +59,42 @@ Something like:
     <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
 
 <ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
-
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”</p>
-
-<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css</p>
-
-<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file</p>
-
-<p>(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
+<li>First, let’s create the elisp folder that stores all your elisps:</li>
 </ol>
 
+
+<p><code>mkdir ~/elisp cd ~/elsip</code></p>
+
+<ol>
+<li>Now download “php-mode”</li>
+</ol>
+
+
+<p><code>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</code></p>
+
+<ol>
+<li>Now download “multi-web-mode” for html/js/css</li>
+</ol>
+
+
+<p><code>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</code></p>
+
+<ol>
+<li>Now add/update this line to your ~/.emacs file</li>
+</ol>
+
+
+<p><code>
+   (add-to-list ‘load-path “~/elisp”)
+   (require ‘php-mode)
+   (require ‘multi-web-mode)
+   (setq mweb-default-major-mode ‘html-mode)
+   (setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
+   (js-mode “”)
+   (css-mode “”)))
+   (setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+   (multi-web-global-mode 1)
+</code></p>
 ]]></content>
   </entry>
   
