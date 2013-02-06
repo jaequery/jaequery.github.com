@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T23:11:43-08:00</updated>
+  <updated>2013-02-05T23:14:17-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -14,12 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Quick secure iptables ruleset for LAMP]]></title>
+    <title type="html"><![CDATA[A strong iptables ruleset for running websites]]></title>
     <link href="http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset/"/>
     <updated>2013-02-05T22:55:00-08:00</updated>
     <id>http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset</id>
-    <content type="html"><![CDATA[<p>Here is a simple quick rule to get you secure for most running websites. It is fairly strict as it only allows HTTP (port 80) from the internet.
-Save this into a file (e.g; ~/iptables.hardened)</p>
+    <content type="html"><![CDATA[<p>Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the internet.</p>
+
+<p>Save this into a file (e.g; ~/iptables.hardened)</p>
 
 <pre><code>*filter
 :INPUT ACCEPT [0:0]
