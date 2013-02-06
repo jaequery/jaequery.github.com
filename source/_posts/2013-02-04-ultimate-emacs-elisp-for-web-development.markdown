@@ -3,7 +3,7 @@ layout: post
 title: "Ultimate emacs elisp for web development"
 date: 2013-02-04 11:53
 comments: true
-categories: 
+categories: ide, emacs
 ---
 
 Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.

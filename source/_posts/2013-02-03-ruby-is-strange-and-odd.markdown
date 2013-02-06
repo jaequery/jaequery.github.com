@@ -3,7 +3,7 @@ layout: post
 title: "Ruby is strange and odd"
 date: 2013-02-03 19:08
 comments: true
-categories: 
+categories: ruby, rails
 ---
 
 ### Day 2 of Ruby
