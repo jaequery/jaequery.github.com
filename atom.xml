@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T23:36:32-08:00</updated>
+  <updated>2013-02-05T23:36:58-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -63,7 +63,7 @@ Something like:
 </ul>
 
 
-<p><code>mkdir ~/elisp cd ~/elsip</code></p>
+<p><code>mkdir ~/elisp &amp;&amp; cd ~/elsip</code></p>
 
 <ul>
 <li>Now download “php-mode”</li>
