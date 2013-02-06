@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T23:34:29-08:00</updated>
+  <updated>2013-02-05T23:35:18-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -93,41 +93,15 @@ Something like:
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   (add-to-list ‘load-path “~/elisp”)
-</span><span class='line'>   (require ‘php-mode)
-</span><span class='line'>   (require ‘multi-web-mode)
-</span><span class='line'>   (setq mweb-default-major-mode ‘html-mode)
-</span><span class='line'>   (setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
-</span><span class='line'>   (js-mode “”)
-</span><span class='line'>   (css-mode “”)))
-</span><span class='line'>   (setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-</span><span class='line'>   (multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>test</p>
-
-<p>test</p>
-
-<p>test</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>   (add-to-list ‘load-path “~/elisp”)
-</span><span class='line'>   (require ‘php-mode)
-</span><span class='line'>   (require ‘multi-web-mode)
-</span><span class='line'>   (setq mweb-default-major-mode ‘html-mode)
-</span><span class='line'>   (setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
-</span><span class='line'>   (js-mode “”)
-</span><span class='line'>   (css-mode “”)))
-</span><span class='line'>   (setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-</span><span class='line'>   (multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(add-to-list ‘load-path “~/elisp”)
+</span><span class='line'>(require ‘php-mode)
+</span><span class='line'>(require ‘multi-web-mode)
+</span><span class='line'>(setq mweb-default-major-mode ‘html-mode)
+</span><span class='line'>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
+</span><span class='line'>(js-mode “”)
+</span><span class='line'>(css-mode “”)))
+</span><span class='line'>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+</span><span class='line'>(multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
