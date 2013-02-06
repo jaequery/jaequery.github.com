@@ -3,7 +3,7 @@ layout: post
 title: "A strong iptables ruleset for running websites"
 date: 2013-02-05 22:55
 comments: true
-categories: 
+categories: security
 ---
 
 Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the internet.
