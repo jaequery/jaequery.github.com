@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T23:14:17-08:00</updated>
+  <updated>2013-02-05T23:31:32-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -44,10 +44,8 @@ COMMIT
 </code></pre>
 
 <p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
-Something like:</p>
-
-<pre><code>  */5 * * * * /etc/init.d/iptables stop
-</code></pre>
+Something like:
+<code>*/5 * * * * /etc/init.d/iptables stop</code></p>
 
 <p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
 ]]></content>

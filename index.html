@@ -139,10 +139,8 @@ COMMIT
 </code></pre>
 
 <p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
-Something like:</p>
-
-<pre><code>  */5 * * * * /etc/init.d/iptables stop
-</code></pre>
+Something like:
+<code>*/5 * * * * /etc/init.d/iptables stop</code></p>
 
 <p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
 
