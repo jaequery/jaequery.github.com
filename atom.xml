@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-05T22:59:59-08:00</updated>
+  <updated>2013-02-05T23:03:59-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -18,7 +18,8 @@
     <link href="http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset/"/>
     <updated>2013-02-05T22:55:00-08:00</updated>
     <id>http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset</id>
-    <content type="html"><![CDATA[<p>Here is a simple quick rule to get you secure</p>
+    <content type="html"><![CDATA[<p>Here is a simple quick rule to get you secure.
+Save this into a file (e.g; ~/iptables.hardened)</p>
 
 <pre><code>*filter
 :INPUT ACCEPT [0:0]
@@ -35,6 +36,19 @@
 -A INPUT -j DROP # drop everything else
 COMMIT
 </code></pre>
+
+<p>Then test it by:</p>
+
+<pre><code> iptables-restore &lt; ~/iptables.hardened
+</code></pre>
+
+<p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
+Something like:</p>
+
+<pre><code>  */5 * * * * /etc/init.d/iptables stop
+</code></pre>
+
+<p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
 ]]></content>
   </entry>
   

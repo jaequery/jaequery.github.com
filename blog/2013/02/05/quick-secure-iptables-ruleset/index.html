@@ -7,12 +7,11 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Here is a simple quick rule to get you secure *filter
+	<meta name="description" content="Here is a simple quick rule to get you secure.
+Save this into a file (e.g; ~/iptables.hardened) *filter
 :INPUT ACCEPT [0:0]
 :FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -i lo -j ACCEPT
--A INPUT &hellip;">
+: &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,7 +94,8 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post">
 	<h1 class="title">Quick Secure Iptables Ruleset</h1>
-	<div class="entry-content"><p>Here is a simple quick rule to get you secure</p>
+	<div class="entry-content"><p>Here is a simple quick rule to get you secure.
+Save this into a file (e.g; ~/iptables.hardened)</p>
 
 <pre><code>*filter
 :INPUT ACCEPT [0:0]
@@ -112,6 +112,19 @@
 -A INPUT -j DROP # drop everything else
 COMMIT
 </code></pre>
+
+<p>Then test it by:</p>
+
+<pre><code> iptables-restore &lt; ~/iptables.hardened
+</code></pre>
+
+<p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
+Something like:</p>
+
+<pre><code>  */5 * * * * /etc/init.d/iptables stop
+</code></pre>
+
+<p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
 </div>
 
 </article>
