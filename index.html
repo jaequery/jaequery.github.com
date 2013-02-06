@@ -7,7 +7,12 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good. First, let’s create the elisp folder that &hellip;">
+	<meta name="description" content="Here is a simple quick rule to get you secure *filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +94,53 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-05T22:55:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/02/05/quick-secure-iptables-ruleset/">Quick Secure Iptables Ruleset</a></h1>
+	<div class="entry-content">
+		<p>Here is a simple quick rule to get you secure</p>
+
+<pre><code>*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state INVALID -j DROP           # drop anything weird
+-A INPUT -p icmp -m icmp --icmp-type any -j ACCEPT      # allows ping
+-A INPUT -p tcp --dport 80 -j ACCEPT                # allows HTTP
+-A INPUT -p tcp -s x.x.x.x/32 --dport 22 -j ACCEPT      # allows SSH from certain IP (remove -s source if needed)
+-A INPUT -p tcp -s x.x.x.x/32 --dport 3306 -j ACCEPT        # allows Mysql from certain IP (remove -s source if needed)
+-A INPUT -p tcp --dport 0:1024 -m state --state NEW -m limit --limit 5/s -j LOG     # logs iptable notices
+-A INPUT -j DROP # drop everything else
+COMMIT
+</code></pre>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1715,43 +1767,6 @@ export ftp_proxy  </p>
 <p>This site has a bit more detailed instructions:</p>
 
 <p><a href="http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164">[http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164](http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164)</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-27T21:51:00-07:00" pubdate data-updated="true">Aug 27<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/08/27/log-all-root-commands/">Log All Root Commands</a></h1>
-	<div class="entry-content">
-		<p>PROMPT_COMMAND=&#8217;history -a >(tee -a ~/.bash_history | logger -t &#8220;$USER[$$] $SSH_CONNECTION&#8221;)&#8217;</p>
-
-<p>add this to /root/.bashrc and it will log all to syslog/rsyslog messages</p>
 
 		
 		
