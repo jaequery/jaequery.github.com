@@ -4,7 +4,7 @@
   <title><![CDATA[Jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-04T12:01:50-08:00</updated>
+  <updated>2013-02-05T23:47:49-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -14,34 +14,94 @@
 
   
   <entry>
+    <title type="html"><![CDATA[A strong iptables ruleset for running websites]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset/"/>
+    <updated>2013-02-05T22:55:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/05/quick-secure-iptables-ruleset</id>
+    <content type="html"><![CDATA[<p>Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the internet.</p>
+
+<p>Save this into a file (e.g; ~/iptables.hardened)</p>
+
+<pre><code>*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -p icmp -m icmp --icmp-type any -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -s x.x.x.x/32 --dport 22 -j ACCEPT
+-A INPUT -p tcp -s x.x.x.x/32 --dport 3306 -j ACCEPT
+-A INPUT -p tcp --dport 0:1024 -m state --state NEW -m limit --limit 5/s -j LOG
+-A INPUT -j DROP
+COMMIT
+</code></pre>
+
+<p>Then test it by:</p>
+
+<pre><code> iptables-restore &lt; ~/iptables.hardened
+</code></pre>
+
+<p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
+Something like:
+<code>*/5 * * * * /etc/init.d/iptables stop</code></p>
+
+<p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Ultimate emacs elisp for web development]]></title>
     <link href="http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development/"/>
     <updated>2013-02-04T11:53:00-08:00</updated>
     <id>http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development</id>
     <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
 
-<ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
+<ul>
+<li>First, let’s create the elisp folder that stores all your elisps:</li>
+</ul>
 
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”</p>
 
-<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css</p>
+<p><code>mkdir ~/elisp &amp;&amp; cd ~/elsip</code></p>
 
-<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file</p>
+<ul>
+<li>Now download “php-mode”</li>
+</ul>
 
-<p>(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
-</ol>
+
+<p><code>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</code></p>
+
+<ul>
+<li>Now download “multi-web-mode” for html/js/css</li>
+</ul>
+
+
+<p><code>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</code></p>
+
+<ul>
+<li>Now add/update this line to your ~/.emacs file</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(add-to-list ‘load-path “~/elisp”)
+</span><span class='line'>(require ‘php-mode)
+</span><span class='line'>(require ‘multi-web-mode)
+</span><span class='line'>(setq mweb-default-major-mode ‘html-mode)
+</span><span class='line'>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
+</span><span class='line'>(js-mode “”)
+</span><span class='line'>(css-mode “”)))
+</span><span class='line'>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+</span><span class='line'>(multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
@@ -837,31 +897,6 @@ sub read_sysctl
     return $output;
   }
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[encrypt / decrypt tar backups]]></title>
-    <link href="http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups/"/>
-    <updated>2012-09-05T15:43:11-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/09/05/encrypt-decrypt-tar-backups</id>
-    <content type="html"><![CDATA[<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
-
-<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
-
-<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
-
-<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
-
-<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
-
-<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
-
-<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
-
-<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
-
-<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
 ]]></content>
   </entry>
   

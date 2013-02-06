@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good. First, let’s create the elisp folder that &hellip;">
+	<meta name="description" content="Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,70 @@
   
 
 
+<time datetime="2013-02-05T22:55:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/security/'>security</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/02/05/quick-secure-iptables-ruleset/">A Strong Iptables Ruleset for Running Websites</a></h1>
+	<div class="entry-content">
+		<p>Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the internet.</p>
+
+<p>Save this into a file (e.g; ~/iptables.hardened)</p>
+
+<pre><code>*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -p icmp -m icmp --icmp-type any -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -s x.x.x.x/32 --dport 22 -j ACCEPT
+-A INPUT -p tcp -s x.x.x.x/32 --dport 3306 -j ACCEPT
+-A INPUT -p tcp --dport 0:1024 -m state --state NEW -m limit --limit 5/s -j LOG
+-A INPUT -j DROP
+COMMIT
+</code></pre>
+
+<p>Then test it by:</p>
+
+<pre><code> iptables-restore &lt; ~/iptables.hardened
+</code></pre>
+
+<p>Note) If you are paranoid and don&#8217;t want to risk yourself from locking out of the machine, just make sure to add a cronjob to stop iptables every minute.
+Something like:
+<code>*/5 * * * * /etc/init.d/iptables stop</code></p>
+
+<p>Once you are satisfied, save it to your /etc/sysconfig/iptables to make it permanent.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2013-02-04T11:53:00-08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2013</time></div>
 		<div class="tags">
 
@@ -115,28 +179,50 @@
 	<div class="entry-content">
 		<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
 
-<ol>
-<li><p>First, let’s create the elisp folder that stores all your elisps:</p>
+<ul>
+<li>First, let’s create the elisp folder that stores all your elisps:</li>
+</ul>
 
-<p>mkdir ~/elisp cd ~/elsip</p></li>
-<li><p>Now download “php-mode”</p>
 
-<p>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</p></li>
-<li><p>Now download “multi-web-mode” for html/js/css</p>
+<p><code>mkdir ~/elisp &amp;&amp; cd ~/elsip</code></p>
 
-<p>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</p></li>
-<li><p>Now add/update this line to your ~/.emacs file</p>
+<ul>
+<li>Now download “php-mode”</li>
+</ul>
 
-<p>(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?>”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)</p></li>
-</ol>
+
+<p><code>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</code></p>
+
+<ul>
+<li>Now download “multi-web-mode” for html/js/css</li>
+</ul>
+
+
+<p><code>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</code></p>
+
+<ul>
+<li>Now add/update this line to your ~/.emacs file</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>(add-to-list ‘load-path “~/elisp”)
+</span><span class='line'>(require ‘php-mode)
+</span><span class='line'>(require ‘multi-web-mode)
+</span><span class='line'>(setq mweb-default-major-mode ‘html-mode)
+</span><span class='line'>(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
+</span><span class='line'>(js-mode “”)
+</span><span class='line'>(css-mode “”)))
+</span><span class='line'>(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
+</span><span class='line'>(multi-web-global-mode 1)</span></code></pre></td></tr></table></div></figure>
 
 
 		
@@ -1715,43 +1801,6 @@ export ftp_proxy  </p>
 <p>This site has a bit more detailed instructions:</p>
 
 <p><a href="http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164">[http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164](http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164)</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-27T21:51:00-07:00" pubdate data-updated="true">Aug 27<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/08/27/log-all-root-commands/">Log All Root Commands</a></h1>
-	<div class="entry-content">
-		<p>PROMPT_COMMAND=&#8217;history -a >(tee -a ~/.bash_history | logger -t &#8220;$USER[$$] $SSH_CONNECTION&#8221;)&#8217;</p>
-
-<p>add this to /root/.bashrc and it will log all to syslog/rsyslog messages</p>
 
 		
 		
