@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Jaequery]]></title>
   <link href="http://jaequery.github.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-06T11:09:20-08:00</updated>
+  <updated>2013-02-08T11:22:35-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pagination in Ruby on Rails]]></title>
+    <link href="http://jaequery.github.com/blog/2013/02/08/pagination-in-ruby-on-rails/"/>
+    <updated>2013-02-08T11:16:00-08:00</updated>
+    <id>http://jaequery.github.com/blog/2013/02/08/pagination-in-ruby-on-rails</id>
+    <content type="html"><![CDATA[<p>I haven't tried it out yet but it looks like Rails uses a gem called "kaminari" for dealing with pagination.
+Here is a nice video tutorial on usage at <a href="http://railscasts.com/episodes/254-pagination-with-kaminari">Railscast</a></p>
+
+<p>Basically it involves doing:</p>
+
+<ul>
+<li><p>Bash
+<code>
+bundle
+rails g kaminari:views default
+</code></p></li>
+<li><p>update Gemfile to include the kaminari gem
+<code>
+gem 'kaminari'
+</code></p></li>
+<li><p>update controller (products_controller.rb)
+<code>
+@products = Product.order("name").page(params[:page]).per(5)
+</code></p></li>
+<li><p>update locales (config/locales/en.yml)
+`
+en:
+hello: "Hello world"
+views:
+  pagination:</p>
+
+<pre><code>previous: "&amp;lt; Previous"
+next: "Next &amp;gt;"
+truncate: "..."
+</code></pre>
+
+<p>`</p></li>
+<li><p>print pagination from view (products/index.html.erb)
+<code>
+&lt;%= paginate @products %&gt;
+</code></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby is strange and odd]]></title>

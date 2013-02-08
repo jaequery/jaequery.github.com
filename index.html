@@ -7,7 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Here is a simple quick rule to get you secure for most running websites. But it is extremely strict as it only allows HTTP (port 80) from the &hellip;">
+	<meta name="description" content="I haven&#8217;t tried it out yet but it looks like Rails uses a gem called &#8220;kaminari&#8221; for dealing with pagination.
+Here is a nice video &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +92,78 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-08T11:16:00-08:00" pubdate data-updated="true">Feb 8<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/rails/'>rails</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/02/08/pagination-in-ruby-on-rails/">Pagination in Ruby on Rails</a></h1>
+	<div class="entry-content">
+		<p>I haven&#8217;t tried it out yet but it looks like Rails uses a gem called &#8220;kaminari&#8221; for dealing with pagination.
+Here is a nice video tutorial on usage at <a href="http://railscasts.com/episodes/254-pagination-with-kaminari">Railscast</a></p>
+
+<p>Basically it involves doing:</p>
+
+<ul>
+<li><p>Bash
+<code>
+bundle
+rails g kaminari:views default
+</code></p></li>
+<li><p>update Gemfile to include the kaminari gem
+<code>
+gem 'kaminari'
+</code></p></li>
+<li><p>update controller (products_controller.rb)
+<code>
+@products = Product.order("name").page(params[:page]).per(5)
+</code></p></li>
+<li><p>update locales (config/locales/en.yml)
+`
+en:
+hello: &#8220;Hello world&#8221;
+views:
+  pagination:</p>
+
+<pre><code>previous: "&amp;lt; Previous"
+next: "Next &amp;gt;"
+truncate: "..."
+</code></pre>
+
+<p>`</p></li>
+<li><p>print pagination from view (products/index.html.erb)
+<code>
+&lt;%= paginate @products %&gt;
+</code></p></li>
+</ul>
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1752,65 +1825,6 @@ export ftp_proxy  </p>
 <p>………..</p>
 
 <p>that&#8217;s it. now all your internal/private servers can access the internet.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-29T20:24:00-07:00" pubdate data-updated="true">Aug 29<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/08/29/how-to-setup-a-local-yum-repo-mirror/">How to Setup a Local Yum Repo/mirror</a></h1>
-	<div class="entry-content">
-		<p>I&#8217;ve spent some countless hours fiddling around rsync&#8217;ing many public mirrors praying it supports directory crawling.</p>
-
-<p>Well those days are no more, it seems there was a utility that handles mirroring your current yum packages repos identically to be distributed to your other servers.</p>
-
-<p>It&#8217;s called &#8220;reposync&#8221; and rightly named. You might need to yum install yum-utils.</p>
-
-<p>Now, just do:</p>
-
-<p>reposync -p -v /var/www/html/yumrepos</p>
-
-<p>This might take a while, especially the main OS base packages. </p>
-
-<p>Once done, you need to create metadata so it can be accessed via yum, to do so, you need to run createrepo:</p>
-
-<p>createrepo -s sha /var/www/html/yumrepos/reponame_goes_here</p>
-
-<p>Do this for each of the repositories you have.</p>
-
-<p>Now, point your other servers to use your new proxy server for yum updates.</p>
-
-<p>One thing to note is that some repositories require GPG keys, such as EPEL, so make sure you copy over your /etc/pki/rpm-gpg/* files on your repo server to your other servers.</p>
-
-<p>This site has a bit more detailed instructions:</p>
-
-<p><a href="http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164">[http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164](http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164)</a></p>
 
 		
 		

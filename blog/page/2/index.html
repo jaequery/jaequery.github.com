@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="PROMPT_COMMAND=&#8217;history -a >(tee -a ~/.bash_history | logger -t &#8220;$USER[$$] $SSH_CONNECTION&#8221;)&#8217; add this to /root/.bashrc and &hellip;">
+	<meta name="description" content="I&#8217;ve spent some countless hours fiddling around rsync&#8217;ing many public mirrors praying it supports directory crawling. Well those days &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +91,65 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-29T20:24:00-07:00" pubdate data-updated="true">Aug 29<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/29/how-to-setup-a-local-yum-repo-mirror/">How to Setup a Local Yum Repo/mirror</a></h1>
+	<div class="entry-content">
+		<p>I&#8217;ve spent some countless hours fiddling around rsync&#8217;ing many public mirrors praying it supports directory crawling.</p>
+
+<p>Well those days are no more, it seems there was a utility that handles mirroring your current yum packages repos identically to be distributed to your other servers.</p>
+
+<p>It&#8217;s called &#8220;reposync&#8221; and rightly named. You might need to yum install yum-utils.</p>
+
+<p>Now, just do:</p>
+
+<p>reposync -p -v /var/www/html/yumrepos</p>
+
+<p>This might take a while, especially the main OS base packages. </p>
+
+<p>Once done, you need to create metadata so it can be accessed via yum, to do so, you need to run createrepo:</p>
+
+<p>createrepo -s sha /var/www/html/yumrepos/reponame_goes_here</p>
+
+<p>Do this for each of the repositories you have.</p>
+
+<p>Now, point your other servers to use your new proxy server for yum updates.</p>
+
+<p>One thing to note is that some repositories require GPG keys, such as EPEL, so make sure you copy over your /etc/pki/rpm-gpg/* files on your repo server to your other servers.</p>
+
+<p>This site has a bit more detailed instructions:</p>
+
+<p><a href="http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164">[http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164](http://icseplus.blogspot.com/2012/08/create-you-own-repo-server.html?zx=28f949eb9f42c164)</a></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1804,73 +1863,6 @@ sudo a2ensite default-ssl<br/>
 sudo /etc/init.d/apache2 restart</p>
 
 <h1>optional: nano ports (disable 80)</h1>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-22T09:57:00-08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2011</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2011/11/22/take-and-capture-screenshots-of-any-webpage-using-php/">Take and Capture Screenshots of Any Webpage Using PHP & Ubuntu</a></h1>
-	<div class="entry-content">
-		<h3>An Open Source screenshot capture script using PHP and Ubuntu</h3>
-
-<p>For those looking to take screenshots of webpages, I just released a couple scripts to Github that can help you out.</p>
-
-<p>This works on using CutyCapt (qt webkit) and the Xvfb (headless X11).</p>
-
-<p><strong>To get started:</strong></p>
-
-<ol>
-<li><p>Install dependencies</p></li>
-<li><p><a href="https://github.com/jaequery/cutycapt-installer-script-on-ubuntu">[https://github.com/jaequery/cutycapt-installer-script-on-ubuntu](https://github.com/jaequery/cutycapt-installer-script-on-ubuntu)</a></p></li>
-<li><p>Get the php script</p></li>
-<li><p><a href="https://github.com/jaequery/php-site-screenshot">[https://github.com/jaequery/php-site-screenshot](https://github.com/jaequery/php-site-screenshot)</a></p></li>
-</ol>
-
-
-<p><strong>Next, you need to configure the script capture.php:</strong></p>
-
-<p>// lib path<br/>
-$xvfb_path = &#8216;/usr/bin&#8217;;<br/>
-$cutycapt_path = &#8220;/home/user/scripts/cutycapt/CutyCapt&#8221;;</p>
-
-<p>// capture settings<br/>
-$screen = &#8216;1280x1024x24&#8217;;<br/>
-$output_path = &#8216;/home/user/www/images/capture.png&#8217;;<br/>
-$url = $_GET[&#8216;url&#8217;]; // set it however you want<br/>
-//$url = &#8216;http://www.yahoo.com&#8217;; // set it manually</p>
-
-<p><strong>Change them accordingly and you are done</strong></p>
-
-<p>To get you started, here is a simple usage: http://localhost/capture.php?url=http://www.google.com</p>
-
-<p>Hope this is useful to someone.</p>
 
 		
 		
