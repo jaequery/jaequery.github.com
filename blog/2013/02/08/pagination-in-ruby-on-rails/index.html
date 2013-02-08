@@ -131,18 +131,21 @@ gem 'kaminari'
 </ul>
 
 
-<p>`
-en:
-  hello: &#8220;Hello world&#8221;
-  views:</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>en:
+</span><span class='line'>  hello: "Hello world"
+</span><span class='line'>  views:
+</span><span class='line'>    pagination:
+</span><span class='line'>      previous: "&lt; Previous"
+</span><span class='line'>      next: "Next &gt;"
+</span><span class='line'>      truncate: "..."</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>pagination:
-  previous: "&amp;lt; Previous"
-  next: "Next &amp;gt;"
-  truncate: "..."
-</code></pre>
-
-<p>`</p>
 
 <ul>
 <li>print pagination from view (products/index.html.erb)</li>
