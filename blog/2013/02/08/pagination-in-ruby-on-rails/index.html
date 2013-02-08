@@ -99,38 +99,59 @@ Here is a nice video tutorial on usage at <a href="http://railscasts.com/episode
 <p>Basically it involves doing:</p>
 
 <ul>
-<li><p>Bash
-<code>
-bundle
-rails g kaminari:views default
-</code></p></li>
-<li><p>update Gemfile to include the kaminari gem
-<code>
-gem 'kaminari'
-</code></p></li>
-<li><p>update controller (products_controller.rb)
-<code>
-@products = Product.order("name").page(params[:page]).per(5)
-</code></p></li>
-<li><p>update locales (config/locales/en.yml)
-`
-en:
-hello: &#8220;Hello world&#8221;
-views:
-  pagination:</p>
-
-<pre><code>previous: "&amp;lt; Previous"
-next: "Next &amp;gt;"
-truncate: "..."
-</code></pre>
-
-<p>`</p></li>
-<li><p>print pagination from view (products/index.html.erb)
-<code>
-&lt;%= paginate @products %&gt;
-</code></p></li>
+<li>Bash</li>
 </ul>
 
+
+<p><code>
+bundle
+rails g kaminari:views default
+</code></p>
+
+<ul>
+<li>update Gemfile to include the kaminari gem</li>
+</ul>
+
+
+<p><code>
+gem 'kaminari'
+</code></p>
+
+<ul>
+<li>update controller (products_controller.rb)</li>
+</ul>
+
+
+<p><code>
+@products = Product.order("name").page(params[:page]).per(5)
+</code></p>
+
+<ul>
+<li>update locales (config/locales/en.yml)</li>
+</ul>
+
+
+<p>`
+en:
+  hello: &#8220;Hello world&#8221;
+  views:</p>
+
+<pre><code>pagination:
+  previous: "&amp;lt; Previous"
+  next: "Next &amp;gt;"
+  truncate: "..."
+</code></pre>
+
+<p>`</p>
+
+<ul>
+<li>print pagination from view (products/index.html.erb)</li>
+</ul>
+
+
+<p><code>
+&lt;%= paginate @products %&gt;
+</code></p>
 </div>
 
 </article>
