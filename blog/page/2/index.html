@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Jaequery</title>
+	<title>cd ~/jaequery</title>
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="I&#8217;ve spent some countless hours fiddling around rsync&#8217;ing many public mirrors praying it supports directory crawling. Well those days &hellip;">
+	<meta name="description" content="setting up a proxy server that does, DNS, http/https [setup bind on proxy server] yum install bind -y create /etc/named.conf, replace 1.1.1.0 with &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -15,7 +15,7 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="/atom.xml" rel="alternate" title="Jaequery" type="application/atom+xml">
+	<link href="/atom.xml" rel="alternate" title="cd ~/jaequery" type="application/atom+xml">
 	
 	<link rel="canonical" href="http://jaequery.github.com/blog/page/2/">
 	<link href="/favicon.png" rel="shortcut icon">
@@ -38,8 +38,8 @@
 			<header id="header" class="inner"><div class="profilepic">	
 	<img src="https://twimg0-a.akamaihd.net/profile_images/1553518100/276361_588421810_1000318656_n.jpg" alt="Profile Picture" style="width: 160px;">
 </div>
-<h1><a href="/">Jaequery</a></h1>
-<p class="subtitle">The untold adventures of a 13+ years PHP developer making the jump from PHP to Ruby.</p>
+<h1><a href="/">cd ~/jaequery</a></h1>
+<p class="subtitle">Work hard. Aim high. Stay humble.</p>
 <nav id="main-nav"><ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/about">About</a></li>
@@ -91,6 +91,131 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-30T11:19:00-07:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/08/30/setup-a-proxy-server-on-centos-for-internal-servers-to/">Setup a Proxy Server on Centos for Internal Servers to Use</a></h1>
+	<div class="entry-content">
+		<h3>setting up a proxy server that does, DNS, http/https</h3>
+
+<h1>[setup bind on proxy server]</h1>
+
+<p>yum install bind -y</p>
+
+<h1>create /etc/named.conf, replace 1.1.1.0 with your LAN servers ip range:</h1>
+
+<p>options {</p>
+
+<p>        listen-on port 53 { 127.0.0.1; 1.1.1.0/24; };</p>
+
+<p>        listen-on-v6 port 53 { ::1; };</p>
+
+<p>        directory       &#8220;/var/named&#8221;;</p>
+
+<p>        dump-file       &#8220;/var/named/data/cache_dump.db&#8221;;</p>
+
+<p>        statistics-file &#8220;/var/named/data/named_stats.txt&#8221;;</p>
+
+<p>        memstatistics-file &#8220;/var/named/data/named_mem_stats.txt&#8221;;</p>
+
+<p>        allow-query     { localhost; 1.1.1.0/24; };</p>
+
+<p>        allow-query-cache { localhost; 1.1.1.0/24; };</p>
+
+<p>};</p>
+
+<p>logging {</p>
+
+<p>        channel default_debug {</p>
+
+<p>                file &#8220;data/named.run&#8221;;</p>
+
+<p>                severity dynamic;</p>
+
+<p>        };</p>
+
+<p>};</p>
+
+<p>view localhost_resolver {</p>
+
+<p>        match-clients      { localhost; 1.1.1.0/24; };</p>
+
+<p>        match-destinations { localhost; 1.1.1.0/24; };</p>
+
+<p>        recursion yes;</p>
+
+<p>        include &#8220;/etc/named.rfc1912.zones&#8221;;</p>
+
+<p>};</p>
+
+<h1>restart bind</h1>
+
+<p>chkconfig named on</p>
+
+<p>service named restart</p>
+
+<h1>[setup squid on proxy server]</h1>
+
+<p>yum install squid -y</p>
+
+<p>chkconfig squid on</p>
+
+<h1>modify /etc/squid.conf</h1>
+
+<h1>uncomment these two lines and set the IPs you wish to grant access to</h1>
+
+<p>acl our_networks src 1.1.1.0/24</p>
+
+<p>http_access allow our_networks</p>
+
+<h1>restart squid</h1>
+
+<p>service squid start</p>
+
+<h1>[now setup client servers to use proxy server]</h1>
+
+<h1>easiest way is to add this line to your /etc/bashrc</h1>
+
+<p>http_proxy=&#8221;http://proxyserver:3128&#8221;<br/>
+ftp_proxy=&#8221;http://proxyserver:3128&#8221;  </p>
+
+<p>export http_proxy<br/>
+export ftp_proxy  </p>
+
+<h1>re-login </h1>
+
+<p>………..</p>
+
+<p>that&#8217;s it. now all your internal/private servers can access the internet.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1818,51 +1943,6 @@ But you will want to instead use mpm-worker, as it will use less memory and be m
 <h3>Update</h3>
 
 <p>I have posted a <a href="http://jaequery.tumblr.com/post/14268207291/ask-hn-bitcss-project-follow-up">follow up to this post</a>!</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-28T09:09:48-08:00" pubdate data-updated="true">Nov 28<span>th</span>, 2011</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2011/11/28/quick-way-to-enable-ssl-for-apache-2-on-ubuntu-10-04/">Quick Way to Enable SSL for Apache 2 on Ubuntu 10.04+</a></h1>
-	<div class="entry-content">
-		<p><strong>Here is a real simple and a quick way of enabling SSL for your apache server on ubuntu 10.04+</strong></p>
-
-<p>sudo apt-get install libapache2-mod-auth-mysql<br/>
-sudo a2enmod auth_mysql<br/>
-sudo /etc/init.d/apache2 restart<br/>
-sudo a2dismod auth_mysql<br/>
-sudo a2enmod ssl<br/>
-sudo a2ensite default-ssl<br/>
-sudo /etc/init.d/apache2 restart</p>
-
-<h1>optional: nano ports (disable 80)</h1>
 
 		
 		
