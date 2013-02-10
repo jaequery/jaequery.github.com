@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-09T02:05:58-08:00</updated>
+  <updated>2013-02-09T20:56:09-08:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -101,7 +101,22 @@
 
 <h3>App recommendations</h3>
 
-<p>If you know of any apps that I should try out, feel free to tweet it to me at @jaequery. I&#8217;m all ears.</p>
+<p>Here are few that I have and can&#8217;t live without:</p>
+
+<ul>
+<li><a href="http://flexibits.com/fantastical">fantastical, a calendar app</a></li>
+<li><a href="http://code.google.com/p/tunnelblick">Tunnelblick, OpenVPN client</a></li>
+<li><a href="http://getcloudapp.com/">getcloudapp, uploads copy buffers to the web and returns you a shortened link, useful for screen captures</a></li>
+<li><a href="http://www.omnigroup.com/products/omnigraffle/">omnigraffle, sweet flowchart/diagram creator</a></li>
+<li><a href="http://gitx.frim.nl/">gitx, nice little git gui client which can even be invoked from command line on working directory</a></li>
+<li><a href="http://www.codeux.com/textual/">textual, a near perfect irc client</a></li>
+<li><a href="http://www.araelium.com/querious/">querious, nice little sql gui client</a></li>
+<li><a href="http://www.aptana.com/">aptana studio, imo the best IDE in the market</a></li>
+<li><a href="http://www.apple.com/aperture/">aperture, great photo viewer</a></li>
+</ul>
+
+
+<p>If you know of any other apps that I should try, feel free to let me know at @jaequery. I&#8217;m all ears.</p>
 ]]></content>
   </entry>
   
