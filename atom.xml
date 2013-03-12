@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-02-10T14:27:18-08:00</updated>
+  <updated>2013-03-12T15:34:42-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Running Pow and MAMP simultaneously]]></title>
+    <link href="http://jaequery.github.com/blog/2013/03/12/running-pow-and-mamp-simultaneously/"/>
+    <updated>2013-03-12T15:28:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/03/12/running-pow-and-mamp-simultaneously</id>
+    <content type="html"><![CDATA[<p>In the pursuit of achieving the perfect web development environment on Mac, I&#8217;d need two things.</p>
+
+<h1>1 LAMP environment</h1>
+
+<h1>2 Ruby/Rails environment</h1>
+
+<p>For LAMP, I&#8217;ve settled on MAMP Pro. Although it costs a bit of money, this is by far the best way to manage your sites locally. For one, it&#8217;s got a great GUI to manage your vhosts. Editing by hand can get tedious and this takes care of it. It even adds /etc/hosts entries for you to handle local name resolutions.</p>
+
+<p>For Ruby, Pow has been an unbelievably efficient way of running and managing multiple ruby apps for me. All you have to do is just drop a folder in your ~/.pow and you are set as it also handles local name resolutions for you on the fly.</p>
+
+<p>But getting both of them to work at the same time posed a problem but a quick SO search revealed a very cool trick:</p>
+
+<p>[Setting up Pow and MAMP to work simultaneiously(http://stackoverflow.com/questions/7010104/running-pow-mamp-pro-simultaneously)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A month after switching to Macs]]></title>
@@ -655,25 +676,6 @@ service postfix reload
     <content type="html"><![CDATA[<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
 
 <p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[dnsmasq as a centralized hosts file]]></title>
-    <link href="http://jaequery.github.com/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file/"/>
-    <updated>2012-09-13T16:24:49-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file</id>
-    <content type="html"><![CDATA[<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.</p>
-
-<p>have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?</p>
-
-<p>well look no further. dnsmasq, is that, and more.</p>
-
-<p>install dnsmasq on centos 5.8 is as easy as: yum install dnsmasq -y</p>
-
-<p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
-
-<h1>note if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</h1>
 ]]></content>
   </entry>
   

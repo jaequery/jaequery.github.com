@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="The story For most of my life, I had a deep resentment toward Macs. I always never liked their concept of trying to do something different. Back in &hellip;">
+	<meta name="description" content="In the pursuit of achieving the perfect web development environment on Mac, I&#8217;d need two things. 1 LAMP environment 2 Ruby/Rails environment &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,49 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-12T15:28:00-07:00" pubdate data-updated="true">Mar 12<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/03/12/running-pow-and-mamp-simultaneously/">Running Pow and MAMP Simultaneously</a></h1>
+	<div class="entry-content">
+		<p>In the pursuit of achieving the perfect web development environment on Mac, I&#8217;d need two things.</p>
+
+<h1>1 LAMP environment</h1>
+
+<h1>2 Ruby/Rails environment</h1>
+
+<p>For LAMP, I&#8217;ve settled on MAMP Pro. Although it costs a bit of money, this is by far the best way to manage your sites locally. For one, it&#8217;s got a great GUI to manage your vhosts. Editing by hand can get tedious and this takes care of it. It even adds /etc/hosts entries for you to handle local name resolutions.</p>
+
+<p>For Ruby, Pow has been an unbelievably efficient way of running and managing multiple ruby apps for me. All you have to do is just drop a folder in your ~/.pow and you are set as it also handles local name resolutions for you on the fly.</p>
+
+<p>But getting both of them to work at the same time posed a problem but a quick SO search revealed a very cool trick:</p>
+
+<p>[Setting up Pow and MAMP to work simultaneiously(http://stackoverflow.com/questions/7010104/running-pow-mamp-pro-simultaneously)</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1817,55 +1860,6 @@ sub read_sysctl
 <p>so do this to ignore all ssh connections to filter them out</p>
 
 <p>tcpdump -i any -s 0 not port ssh</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-30T14:49:00-07:00" pubdate data-updated="true">Aug 30<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/08/30/allow-only-certain-sites-with-squid/">Allow Only Certain Sites With Squid</a></h1>
-	<div class="entry-content">
-		<p>first create /etc/squid/allowed-sites</p>
-
-<p>add the list of domains you wish to allow, for instance:</p>
-
-<p>.yahoo.com<br/>
-.softlayer.com</p>
-
-<p>now edit /etc/squid/squid.conf and modify as follows (remember to place these just before &#8220;http_access deny all&#8221;:</p>
-
-<p>acl allowed_network src 1.1.1.0/24<br/>
-acl allowed_sites dstdomain &#8220;/etc/squid/allowed-sites&#8221;<br/>
-http_access allow allowed_network allowed_sites<br/>
-http_access deny allowed_network !allowed_sites</p>
-
-<p>now save and reload squid</p>
 
 		
 		
