@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-03-12T15:34:42-07:00</updated>
+  <updated>2013-03-12T15:36:45-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -20,9 +20,11 @@
     <id>http://jaequery.github.com/blog/2013/03/12/running-pow-and-mamp-simultaneously</id>
     <content type="html"><![CDATA[<p>In the pursuit of achieving the perfect web development environment on Mac, I&#8217;d need two things.</p>
 
-<h1>1 LAMP environment</h1>
+<ol>
+<li>LAMP environment</li>
+<li>Ruby/Rails environment</li>
+</ol>
 
-<h1>2 Ruby/Rails environment</h1>
 
 <p>For LAMP, I&#8217;ve settled on MAMP Pro. Although it costs a bit of money, this is by far the best way to manage your sites locally. For one, it&#8217;s got a great GUI to manage your vhosts. Editing by hand can get tedious and this takes care of it. It even adds /etc/hosts entries for you to handle local name resolutions.</p>
 
@@ -30,7 +32,7 @@
 
 <p>But getting both of them to work at the same time posed a problem but a quick SO search revealed a very cool trick:</p>
 
-<p>[Setting up Pow and MAMP to work simultaneiously(http://stackoverflow.com/questions/7010104/running-pow-mamp-pro-simultaneously)</p>
+<p><a href="http://stackoverflow.com/questions/7010104/running-pow-mamp-pro-simultaneously">Setting up Pow and MAMP to work simultaneiously</a></p>
 ]]></content>
   </entry>
   
