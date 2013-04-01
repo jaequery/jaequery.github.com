@@ -34,6 +34,7 @@ What this does is it sets up and installs this to your launchctl so that it runs
 Now all your meta bindings should be using "cmd" key, except Mac's global ones, such as "cmd-space", "cmd-tab", etc ...
 
 You can customize them to which you want excluded globall and what not by:
+
 1. editing this file: ~/.cmd-key-happy.lua
 2. and issuing ```make install-plist``` to reload
 
