@@ -37,6 +37,6 @@ You can customize them to which you want excluded globall and what not by:
 1. editing this file: ~/.cmd-key-happy.lua
 2. and issuing ```make install-plist``` to reload
 
-Now I need to somehow unload all my muscle memory gone into using option as meta.
+Now that is all there is to it, I hope this especially helps out greatly for those switching from PCs to Macs.
 
 Note) When on terminal, you'll notice that paste does not work. That is because I excluded M-v into terminal section, so I can use it for page up. But paste can still be triggerd using option-v and it shouldn't cause much issue as "on terminal" you don't necessarily need to paste all that much.
