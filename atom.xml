@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-03-12T15:36:45-07:00</updated>
+  <updated>2013-04-01T11:53:47-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Re-mapping Meta key for Mac OSX (terminal / emacs)]]></title>
+    <link href="http://jaequery.github.com/blog/2013/04/01/re-mapping-meta-key-for-mac-osx-terminal-slash-emacs/"/>
+    <updated>2013-04-01T11:21:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/04/01/re-mapping-meta-key-for-mac-osx-terminal-slash-emacs</id>
+    <content type="html"><![CDATA[<p>[Disclaimer: This is not an April Fools day joke]</p>
+
+<h3>Using Mac&#8217;s meta as option is NOT an option!</h3>
+
+<p>After getting accustomed to the Mac, I fell in love with it but one thing have constantly been nagging me. It is the unbelivably horrific placement of the &#8220;meta/option&#8221; key.
+What this means is that, to go forward/back word, you have to reach your thumb all the way halfway across your hand to where your pinky is.
+Do that enough, I am pretty sure you&#8217;ll have early retirement of your hands.</p>
+
+<p>Anyhow I decided to finally do something about this once and for all. I can&#8217;t tell you how many sleepless nights I have thinking about how to combat this option. I have even ventured into re-mapping my emacs by changing all the commands using meta with control-something. For instance, page up would be re-mapped to C-u. But this is unreasonable as years of my muscle memory still have a hard time getting adjusted and I didn&#8217;t want to make up my own mapping settings for the long haul anyway.</p>
+
+<p>The first time I used the Mac, I did a google marathon of how to accomplish this but everything had it&#8217;s negative drawbacks. At the time, I didn&#8217;t know enough of all the Mac&#8217;s keyboard shortcuts so I hesitated swapping my meta with Command completely.</p>
+
+<h3>The fix!</h3>
+
+<p>Just follow these and you should be good!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/tmp && cd /tmp
+</span><span class='line'>git clone https://github.com/jaequery/cmd-key-happy .
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>make install-rcfile
+</span><span class='line'>make install-plist</span></code></pre></td></tr></table></div></figure>
+
+
+<p>What this does is it sets up and installs this to your launchctl so that it runs on boot.
+Now all your meta bindings should be using &#8220;cmd&#8221; key, except Mac&#8217;s global ones, such as &#8220;cmd-space&#8221;, &#8220;cmd-tab&#8221;, etc &#8230;</p>
+
+<p>You can customize them to which you want excluded globall and what not by:
+1. editing this file: ~/.cmd-key-happy.lua
+2. and issuing <code>make install-plist</code> to reload</p>
+
+<p>Now that is all there is to it, I hope this especially helps out greatly for those switching from PCs to Macs.</p>
+
+<p>Note) When on terminal, you&#8217;ll notice that paste does not work. That is because I excluded M-v into terminal section, so I can use it for page up. But paste can still be triggerd using option-v and it shouldn&#8217;t cause much issue as &#8220;on terminal&#8221; you don&#8217;t necessarily need to paste all that much.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running Pow and MAMP simultaneously]]></title>
@@ -667,17 +715,6 @@ echo "new: $newip"
 sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
 service postfix reload
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[tcpdump get IP of all outgoing HTTPS connections]]></title>
-    <link href="http://jaequery.github.com/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections/"/>
-    <updated>2012-09-14T15:06:11-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections</id>
-    <content type="html"><![CDATA[<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
-
-<p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
 ]]></content>
   </entry>
   

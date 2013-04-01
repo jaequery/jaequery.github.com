@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="A single repository for CSS When developing sites, I constantly feel the need to have the ability to quickly browse and choose through hundreds of &hellip;">
+	<meta name="description" content="First of all I wanted to thank you all for showing your interest on this project. Especially to all the twitterers and watchers at github. It is &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,149 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-15T10:03:00-08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2011</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2011/12/15/bitcss-project-follow-up/">Bitcss Project Follow-up</a></h1>
+	<div class="entry-content">
+		<h3>First of all</h3>
+
+<p>I wanted to thank you all for showing your interest on this project. Especially to all the twitterers and watchers at github. It is serving me as a motivation to bring this project to life. =D</p>
+
+<h3>And I been giving it some thoughts</h3>
+
+<p>So I been thinking a lot on how to make this really work. I&#8217;m writing this post really to clear my head a little bit.</p>
+
+<p>The problem, making it work is easy. Making it work in an intuitive fashion much like jQuery, is hard. </p>
+
+<h3>Things I thought of</h3>
+
+<p>I have thought about a few ways of going about it but all of them have their pros and cons. I&#8217;d like to hear what you think about them.</p>
+
+<h3>Option #1 - Free-style structure, just a collection of folders.</h3>
+
+<p>This is the simplest method. It&#8217;ll be a soup of all css snippets / examples / themes out there in this one repository. I also find real value in this despite it&#8217;s simplicity.</p>
+
+<p>So I went ahead and started the project in this manner and created the following folders, and we can just keep adding them as the need rises:</p>
+
+<ul>
+<li><p>/frameworks - a collection of css frameworks out there</p></li>
+<li><p>/themes - a collection of css templates</p></li>
+<li><p>/styleguides - a collection of css style guides</p></li>
+</ul>
+
+
+<p><strong>Pros: </strong>Simple to get going as there is almost no back-end/front-end coding required. It&#8217;ll completely be ran via git and will be a repository with many different collections of css codes / examples / themes that are randomly contributed by members. </p>
+
+<p><strong>Cons: </strong>There will be no way to search and cherry pick to mix/match what you want from the template. What you&#8217;ll do is, just browse through many different folders, if you find something you like, you inspect the element, grab the style, and copy / paste to your site. I&#8217;m guessing this is the method most of us are already familiar with.</p>
+
+<h3>Option #2 - Structured CSS naming convention</h3>
+
+<p>This is going to be a bit tougher, as there needs to be a strict guideline to how you style, much like the way <a href="http://jqueryui.com/docs/Theming">jquery-ui</a> does it. For every elements out there, such as: modal, header, menu, etc … there will be a standard structured html to style off of.</p>
+
+<p>So a simple example would be a menu:</p>
+
+<ul> <li> …. </li> </ul>
+
+
+<p>To apply bitcss, you&#8217;d do:</p>
+
+<ul class="bitcss-menu** theme1**">
+
+
+
+
+<li> …. </li>
+
+
+
+
+</ul>
+
+
+<p>And to use a different theme, you&#8217;d just do:</p>
+
+<ul class="bitcss-menu** theme2**">
+
+
+
+
+<li> …. </li>
+
+
+
+
+</ul>
+
+
+<p>This all sounds good in theory but this was a super simple example. For things a bit more complex, I have a hard time imagining just how practical it would be. My thoughts on this is that, it requires a strong disciplined community and will rely heavily on utilizing best practices (and I don&#8217;t think anyone really knows what the best practice is). This also means that there will be some form of a design committee that will review and judge, which is something I&#8217;d like to stay away from.</p>
+
+<p><strong>Pros: </strong>Once there is some sort of solid guidelines down, I can see it being pretty useful. Anyone can contribute their variations of elements easily just by following the rules and will know exactly how to use/apply to their site.</p>
+
+<p><strong>Cons: </strong>It may require a use of SaaS (like google webfonts) to pick and choose exactly the type of style you want to use on your site. I think it can get a bit hairy as there are ton of variations for CSS, compared to fonts:</p>
+
+<p><a href="http://bitcss.com/api/?themes:theme1">http://bitcss.com/api/?themes:theme1</a>[h5,button,menu],theme5[h1,h2,h3,h4,modal]</p>
+
+<h3>Option #3: A database-driven stylesheet guide generator</h3>
+
+<p>This option means no github and it&#8217;ll be on a web platform that lets you visually generate a stylesheet guide from the website.</p>
+
+<ol>
+<li><p>User comes to the site</p></li>
+<li><p>Clicks on &#8220;Create a stylesheet guide&#8221;</p></li>
+<li><p>User sees a stylesheet that lists all types of elements from h1 to h5, buttons to modals, etc … etc … much like <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> page</p></li>
+<li><p>Only difference is that, with this, you can edit the CSS properties directly by clicking on it</p></li>
+<li><p>So if a user wanted a different color scheme for the button.large, user just clicks on that button, change the color css attribute, and hit save</p></li>
+<li><p>Think of it like Firebug on a stylesheet guide from the website that saves a css file</p></li>
+</ol>
+
+
+<p><strong>Pros: </strong>No need for manifest.json and setting up git. Those two were what I would of thought can hinder it due to certain level of complexity. It also solves many of the issues of the other options.</p>
+
+<p><strong>Cons:</strong> The biggest drawback for me is that I&#8217;ll need an entire site to develop. But I think it&#8217;ll make for a cool weekend project.</p>
+
+<h3>So …. my thoughts are ….</h3>
+
+<p>For me, I think #3 is a pretty compelling option and I get the feeling that it&#8217;ll be the most simple to use and provides value right off the gate.</p>
+
+<h1>1 is also something I always wanted, and it seems like it may serve a different purpose so those two can work together. I kind of wanted a folder that had a collection of many different landing page themes, that I can use whenever the need rises, etc …</h1>
+
+<h1>2, I get a little iffy thinking about the structures/guidelines, from my experience, it is almost impossible to follow a guideline.</h1>
+
+<p>So my thoughts are that, I think <strong>#3</strong> is the route to take. But also continue with <strong>#1</strong> to create and support an ever evolving css dump collection.</p>
+
+<h3>Let me hear what you guys think</h3>
+
+<p>Well those were my thoughts, but, I&#8217;d love to hear what you guys think, feel free to leave me a comment or two.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1401,43 +1544,6 @@ Tumblr roughly has outgrown Wordpress and Blogger users combined! It&#8217;s a s
 	<h1 class="title"><a href="/blog/2010/07/06/the-re-blog-feature-of-tumblr/">The Re-blog Feature of Tumblr</a></h1>
 	<div class="entry-content">
 		<p>I&#8217;m a big fan of re-tweets and re-blog is a very cool thing going for with Tumblr. Another reason why I chose tumblr.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-06T00:04:00-07:00" pubdate data-updated="true">Jul 6<span>th</span>, 2010</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2010/07/06/currently-helping-james-with-a-site-wp-skinning-w/">Currently Helping James With a Site, Wp Skinning W/ Thesis</a></h1>
-	<div class="entry-content">
-		<p>Right now, I&#8217;m at James house and I&#8217;m trying to help him out finish up a wordpress theme for his freelance gig. He is having some issues with the Thesis framework.</p>
-
-<p>It&#8217;s the first time I checked out Thesis in-depth and I must say, Thesis really fails to live up to my expectations, due to how they&#8217;ve marketed their product. I think theming a thesis site is really difficult, especially if the design is custom-made. My overview of Thesis is that, it suits beginners who really only need slight modifications to their blogs and don&#8217;t know much about CSS. Big thumbs up to owners of Thesis for marketing their product, it&#8217;s pretty crazy how people bought into their product.</p>
 
 		
 		
