@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://jaequery.github.com
-title: Jaequery
-subtitle: The untold adventures of a 13+ years PHP developer making the jump from PHP to Ruby. 
+title: cd ~/jaequery
+subtitle: Work hard. Aim high. Stay humble. <br>CTO at <a href="http://www.processing.com" target="_blank">processing.com</a>
 author: jaequery
 simple_search: http://google.com/search
 description: 
@@ -93,7 +93,7 @@ disqus_short_name: jaequerycom
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-38367647-1
 
 # Facebook Like
 facebook_like: true
