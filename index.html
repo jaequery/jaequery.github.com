@@ -1880,23 +1880,37 @@ sub read_sysctl
 	</div>
 	<h1 class="title"><a href="/blog/2012/09/05/encrypt-decrypt-tar-backups/">Encrypt / Decrypt Tar Backups</a></h1>
 	<div class="entry-content">
-		<h1><strong> tar -zcf todays_backup.tar.gz todays_backup</strong></h1>
+		<p>This command will compress the directory <em>todays_backup</em> into the compressed file <em>todays_backup.tar.gz</em>:</p>
 
-<p>This <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">command</a> will compress the directory <strong>todays_backup</strong> into the compressed file<strong>todays_backup.tar.gz</strong>. To decompress it use the following command:</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zcf todays_backup.tar.gz todays_backup
+</span></code></pre></td></tr></table></div></figure>
 
-<h1><strong> tar -zxf todays_backup.tar.gz</strong></h1>
 
-<p>Now to the fun part. Let’s look at how we can add a basic level of <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">encryption</a> to the process we used above. To compress the directory <strong>todays_backup</strong> with protection do the following:</p>
+<p>To decompress it use the following command:</p>
 
-<h1> <strong>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd of=todays_backup.des3</strong></h1>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zxf todays_backup.tar.gz
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Replace <strong>yourpassword</strong> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <strong>todays_backup.des3</strong>. This file can only be decompressed using this password.</p>
 
-<p>To extract your protected <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">archive file</a> <strong>todays_backup.des3</strong> use the following command:</p>
+<p>Now to the fun part. Let’s look at how we can add a basic level of encryption to the process we used above. To compress the directory <em>todays_backup</em> with protection do the following:</p>
 
-<h1> <strong>dd if= todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -</strong></h1>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd <span class="nv">of</span><span class="o">=</span>todays_backup.des3
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Make note of the trailing <strong>-</strong> at the end. It is not a typo, but a requirement for this command to work. Replace <strong>yourpassword</strong> with the password you used while encrypting the file. Executing the above command will extract the <a href="http://www.simplehelp.net/2009/02/19/adding-encryption-to-protect-your-backups-on-linux/#">compressed file</a> <strong>todays_backup.des3</strong> into a directory<strong>todays_backup</strong>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
+
+<p>Replace <em>yourpassword</em> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <em>todays_backup.des3</em>. This file can only be decompressed using this password.</p>
+
+<p>To extract your protected archive <em>todays_backup.des3</em> use the following command:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dd <span class="k">if</span><span class="o">=</span> todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Make note of the trailing <em>-</em> at the end. It is not a typo, but a requirement for this command to work. Replace <em>yourpassword</em> with the password you used while encrypting the file. Executing the above command will extract the compressed file <em>todays_backup.des3</em> into a directory <em>todays_backup</em>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
 
 		
 		
