@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-04-01T16:52:59-07:00</updated>
+  <updated>2013-04-01T16:54:25-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -612,13 +612,17 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
     <link href="http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server/"/>
     <updated>2012-10-06T11:34:57-07:00</updated>
     <id>http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server</id>
-    <content type="html"><![CDATA[<h5>see which connections are connected to you sorted by</h5>
+    <content type="html"><![CDATA[<p>see which connections are connected to you sorted by:</p>
 
-<p>netstat -pant | grep :80 | awk &#8216;{ print $5}&#8217; | cut -d: -f1 | sort | uniq -c | sort -n</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -pant | grep :80 | awk '{ print $5}' | cut -d: -f1 | sort | uniq -c | sort -n</span></code></pre></td></tr></table></div></figure>
 
-<h5>see which process are eating up your server</h5>
 
-<p>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</p>
+<p>see which process are eating up your server:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</span></code></pre></td></tr></table></div></figure>
+
 ]]></content>
   </entry>
   

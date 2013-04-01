@@ -1077,13 +1077,17 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
 	</div>
 	<h1 class="title"><a href="/blog/2012/10/06/see-whats-using-up-your-server/">See Whats Using Up Your Server</a></h1>
 	<div class="entry-content">
-		<h5>see which connections are connected to you sorted by</h5>
+		<p>see which connections are connected to you sorted by:</p>
 
-<p>netstat -pant | grep :80 | awk &#8216;{ print $5}&#8217; | cut -d: -f1 | sort | uniq -c | sort -n</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -pant | grep :80 | awk '{ print $5}' | cut -d: -f1 | sort | uniq -c | sort -n</span></code></pre></td></tr></table></div></figure>
 
-<h5>see which process are eating up your server</h5>
 
-<p>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</p>
+<p>see which process are eating up your server:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
