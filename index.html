@@ -1389,17 +1389,18 @@ service postfix reload
 	</div>
 	<h1 class="title"><a href="/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file/">Dnsmasq as a Centralized Hosts File</a></h1>
 	<div class="entry-content">
-		<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.</p>
+		<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.
+have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?
+well look no further. dnsmasq, is that, and more.
+install dnsmasq on centos 5.8 is as easy as:</p>
 
-<p>have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum install dnsmasq -y</span></code></pre></td></tr></table></div></figure>
 
-<p>well look no further. dnsmasq, is that, and more.</p>
-
-<p>install dnsmasq on centos 5.8 is as easy as: yum install dnsmasq -y</p>
 
 <p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
 
-<h1>note if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</h1>
+<p>note) if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</p>
 
 		
 		
