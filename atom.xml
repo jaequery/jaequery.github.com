@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-04-03T23:24:21-07:00</updated>
+  <updated>2013-04-03T23:25:19-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How I bought a bitcoin]]></title>
-    <link href="http://jaequery.github.com/blog/2013/04/03/how-to-buy-a-bitcoin/"/>
+    <link href="http://jaequery.github.com/blog/2013/04/03/how-i-bought-a-bitcoin/"/>
     <updated>2013-04-03T23:22:00-07:00</updated>
-    <id>http://jaequery.github.com/blog/2013/04/03/how-to-buy-a-bitcoin</id>
+    <id>http://jaequery.github.com/blog/2013/04/03/how-i-bought-a-bitcoin</id>
     <content type="html"><![CDATA[<p>I thought buying a  was difficult at first but with a bit of research, it turned out pretty simple.</p>
 
 <p>Here are the steps I took and some misfortunes you might learn along the way.</p>
