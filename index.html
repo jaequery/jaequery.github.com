@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="[Disclaimer: This is not an April Fools day joke] Using Mac&#8217;s meta as option is NOT an option! After getting accustomed to the Mac, I fell in &hellip;">
+	<meta name="description" content="I thought buying a was difficult at first but with a bit of research, it turned out pretty simple. Here are the steps I took and some misfortunes &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,49 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-03T23:22:00-07:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/04/03/how-to-buy-a-bitcoin/">How to Buy a Bitcoin</a></h1>
+	<div class="entry-content">
+		<p>I thought buying a  was difficult at first but with a bit of research, it turned out pretty simple.</p>
+
+<p>Here are the steps I took and some misfortunes you might learn along the way.</p>
+
+<p>Option 1: Coinbase (Can do it all online, just provide  info from their )</p>
+
+<h1>1: I registered at coinbase.com because they looked so legit. I gave them  info and within an hour, I was  to buy a bitcoin. They did have a $1k bitcoin transaction limit and I wanted to put in more so I had to look for an alternative. Depositing the money was painless and buying was also painless. However, from the moment I purchased, it took me 5 full days for my bitcoin to get into my account. Which is an incredibly long time in a bitcoin world.</h1>
+
+<p>Option 2: Bitfloor (Need to hit the bank or Moneygrams, but I prefer this)</p>
+
+<h1>2: After much research, I chose bitfloor.com. I signed up and they told me all I needed to do now was perform a  deposit (LocalTill) or send a wire transfer to the info they provided. This process seemed daunting at first but it was as easy as depositing my own money. I used the LocalTill option which charges about 3% of the transaction fee and within minutes, I got a notification that my money have been added and ready to use. Then I went to their Trade, and put in how much I wanted to buy and within minutes, I had my bitcoins!</h1>
+
+<p>Option 3: Dwolla +  (I haven&#8217;t tried it yet, I&#8217;m still in the waiting queue, I&#8217;ll update this post once I try it out)</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1851,71 +1894,6 @@ sub read_sysctl
     return $output;
   }
 </code></pre>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-05T15:43:11-07:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/05/encrypt-decrypt-tar-backups/">Encrypt / Decrypt Tar Backups</a></h1>
-	<div class="entry-content">
-		<p>This command will compress the directory <em>todays_backup</em> into the compressed file <em>todays_backup.tar.gz</em>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zcf todays_backup.tar.gz todays_backup
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To decompress it use the following command:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zxf todays_backup.tar.gz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now to the fun part. Let’s look at how we can add a basic level of encryption to the process we used above. To compress the directory <em>todays_backup</em> with protection do the following:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar -zcf – todays_backup|openssl des3 -salt -k yourpassword | dd <span class="nv">of</span><span class="o">=</span>todays_backup.des3
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Replace <em>yourpassword</em> with a password of your own. Keep the password to yourself, and keep it carefully. The above command will generate a file called <em>todays_backup.des3</em>. This file can only be decompressed using this password.</p>
-
-<p>To extract your protected archive <em>todays_backup.des3</em> use the following command:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>dd <span class="k">if</span><span class="o">=</span> todays_backup.des3 |openssl des3 -d -k yourpassword |tar zxf -
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Make note of the trailing <em>-</em> at the end. It is not a typo, but a requirement for this command to work. Replace <em>yourpassword</em> with the password you used while encrypting the file. Executing the above command will extract the compressed file <em>todays_backup.des3</em> into a directory <em>todays_backup</em>. Use this encryption with care. As I said earlier, the only way you can retrieve your data once secured is by using the password, so do not lose this password under any circumstances.</p>
 
 		
 		

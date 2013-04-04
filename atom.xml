@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-04-01T16:57:13-07:00</updated>
+  <updated>2013-04-03T23:22:51-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to buy a bitcoin]]></title>
+    <link href="http://jaequery.github.com/blog/2013/04/03/how-to-buy-a-bitcoin/"/>
+    <updated>2013-04-03T23:22:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/04/03/how-to-buy-a-bitcoin</id>
+    <content type="html"><![CDATA[<p>I thought buying a  was difficult at first but with a bit of research, it turned out pretty simple.</p>
+
+<p>Here are the steps I took and some misfortunes you might learn along the way.</p>
+
+<p>Option 1: Coinbase (Can do it all online, just provide  info from their )</p>
+
+<h1>1: I registered at coinbase.com because they looked so legit. I gave them  info and within an hour, I was  to buy a bitcoin. They did have a $1k bitcoin transaction limit and I wanted to put in more so I had to look for an alternative. Depositing the money was painless and buying was also painless. However, from the moment I purchased, it took me 5 full days for my bitcoin to get into my account. Which is an incredibly long time in a bitcoin world.</h1>
+
+<p>Option 2: Bitfloor (Need to hit the bank or Moneygrams, but I prefer this)</p>
+
+<h1>2: After much research, I chose bitfloor.com. I signed up and they told me all I needed to do now was perform a  deposit (LocalTill) or send a wire transfer to the info they provided. This process seemed daunting at first but it was as easy as depositing my own money. I used the LocalTill option which charges about 3% of the transaction fee and within minutes, I got a notification that my money have been added and ready to use. Then I went to their Trade, and put in how much I wanted to buy and within minutes, I had my bitcoins!</h1>
+
+<p>Option 3: Dwolla +  (I haven&#8217;t tried it yet, I&#8217;m still in the waiting queue, I&#8217;ll update this post once I try it out)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Re-mapping Meta key for Mac OSX (terminal / emacs)]]></title>
@@ -691,38 +712,6 @@ ulimit -u 50000</p>
 <p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
 
 <p>this keeps backup in sync, so make sure to apply this, always.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rotate outgoing ip in postfix]]></title>
-    <link href="http://jaequery.github.com/blog/2012/09/27/rotate-outgoing-ip-in-postfix/"/>
-    <updated>2012-09-27T20:45:00-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/09/27/rotate-outgoing-ip-in-postfix</id>
-    <content type="html"><![CDATA[<p>Here is a script I wrote for a friend who needed to update his outgoing IP on his postfix server and rotate them once every minute: /root/crons/rotate_postfix_ip.sh and add it to your cronjob to run every minute and you are set!</p>
-
-<pre><code>#!/bin/bash
-ips=("64.250.120.128" "64.250.121.241" "64.250.121.242")
-length=${#ips[@]}
-pos=`cat current.txt`
-oldip=${ips[$pos - 1]}
-if [ "$length" -eq "$pos" ] ; then
-    echo "limit reached"
-    pos=1
-else
-    echo "increment!"
-    (( pos++ ))
-fi
-
-echo "$pos" &gt; current.txt
-
-newip=${ips[$pos - 1]}
-echo "prev: $oldip"
-echo "new: $newip"
-
-sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
-service postfix reload
-</code></pre>
 ]]></content>
   </entry>
   
