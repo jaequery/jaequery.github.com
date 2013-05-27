@@ -7,8 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Some thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
-I&#8217;ve found to do something similar, you can just add this to &hellip;">
+	<meta name="description" content="Navigation
+- Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -128,8 +128,9 @@ I&#8217;ve found to do something similar, you can just add this to &hellip;">
 	</div>
 	<h1 class="title"><a href="/blog/2013/05/26/emacs-power-ups/">Emacs Power Ups</a></h1>
 	<div class="entry-content">
-		<p>Some thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
-I&#8217;ve found to do something similar, you can just add this to your .emacs</p>
+		<p><strong><em>Navigation</em></strong>
+- Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
+To add something similar, add this to your ~/.emacs file:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -145,13 +146,32 @@ I&#8217;ve found to do something similar, you can just add this to your .emacs</
 </span><span class='line'>  '(lambda () (interactive) (next-line 5)))</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Also to comment a block of code, just select it by marking (C-space) and to the end of the target, then press:</p>
+<p><strong><em>Coding</em></strong>
+- Also to comment a block of code, just select it by marking (C-space) and to the end of the target, then press:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>M-;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>To un-comment just re-run it from the same selection of code that&#8217;s been commented out.</p>
+
+<p><strong><em>Editing</em></strong>
+- For the longest time to search/replace, I invoked it with M-x replace-string. It is a being long winded and I never managed to use:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-%</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Only caveat is this puts you in interactive replace, but type ! immediately afterward to replace all without the nagging prompts.</p>
+
+<ul>
+<li>Code auto-formatting to make it look pretty is extremely easy with your defined tab-spacing, etc is easy. Just do:</li>
+</ul>
+
+
+<p>&#8220;`
+C-x h
+C-M \</p>
 
 		
 		
