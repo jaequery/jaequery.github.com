@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-04-03T23:28:59-07:00</updated>
+  <updated>2013-05-26T21:46:30-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs power ups]]></title>
+    <link href="http://jaequery.github.com/blog/2013/05/26/emacs-power-ups/"/>
+    <updated>2013-05-26T21:43:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/05/26/emacs-power-ups</id>
+    <content type="html"><![CDATA[<p>Some thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
+I&#8217;ve found to do something similar, you can just add this to your .emacs</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>;; Faster point movement
+</span><span class='line'>(global-set-key "\M-\C-p"
+</span><span class='line'>  '(lambda () (interactive) (previous-line 5)))
+</span><span class='line'>
+</span><span class='line'>(global-set-key "\M-\C-n"
+</span><span class='line'>  '(lambda () (interactive) (next-line 5)))</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also to comment a block of code, just select it by marking (C-space) and to the end of the target, then press:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>M-;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To un-comment just re-run it from the same selection of code that&#8217;s been commented out.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I bought a bitcoin]]></title>
@@ -695,23 +727,6 @@ ulimit -u 50000</p>
     <content type="html"><![CDATA[<p>since i keep forgetting which url i need to put in, here it is:</p>
 
 <p><a href="http://mirror.centos.org/centos-5/5.8/os/x86_64/">[http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5/5.8/os/x86_64/)</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[percona xtrabackup how to]]></title>
-    <link href="http://jaequery.github.com/blog/2012/10/01/percona-xtrabackup-how-to/"/>
-    <updated>2012-10-01T14:32:05-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/10/01/percona-xtrabackup-how-to</id>
-    <content type="html"><![CDATA[<p>to create a backup:</p>
-
-<p>innobackupex &#8211;user=root &#8211;password=xxx .</p>
-
-<p>this should create a folder in timestamp, i.e; 2012-09-01_11-11-11</p>
-
-<p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
-
-<p>this keeps backup in sync, so make sure to apply this, always.</p>
 ]]></content>
   </entry>
   

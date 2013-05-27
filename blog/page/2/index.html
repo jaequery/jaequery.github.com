@@ -7,8 +7,12 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="This command will compress the directory todays_backup into the compressed file todays_backup.tar.gz: 1
-tar -zcf todays_backup.tar.gz todays_backup &hellip;">
+	<meta name="description" content="#!/usr/bin/perl
+# Version 0.0.1.F alpha
+# To use locally.
+# example: "./pci_check.pl"
+#
+# Remotely redirect to ssh. # example: "ssh username@ &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +108,421 @@ tar -zcf todays_backup.tar.gz todays_backup &hellip;">
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-11T17:09:27-07:00" pubdate data-updated="true">Sep 11<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/09/11/a-perl-script-to-check-for-system-configuration/">A Perl Script to Check for System Configuration</a></h1>
+	<div class="entry-content">
+		<pre><code>#!/usr/bin/perl
+#  Version 0.0.1.F alpha
+#  To use locally.
+#   example:    "./pci_check.pl"
+#
+#  Remotely redirect to ssh.  
+#   example:    "ssh username@servername perl &lt; pci_check.pl"
+#
+#  Looping through multiple servers. 
+#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl; done"
+#
+#  Redirect output to local file.
+#   example:    "ssh username@servername perl &lt; pci_check.pl &gt;&gt; output.txt"
+#
+#  Redirecting output to a local file while looping through multiple servers.
+#   example:    "for server in servername1 servername2 servernameetc; do ssh username@$server perl &lt; pci_check.pl &gt;&gt; output.txt; done"
+#
+#  Looping through multiple servers specified from a list.
+#   example:    "for server in `cat serverlist.txt` ; do ssh username@$server perl &lt; pci_check.pl; done" 
+#
+
+use strict;
+my $internet_connectivity_url = "http://www.google.com";
+
+my $which_cmd = "which";
+my $etc_passwd_file = "/etc/passwd";
+my $etc_login_defs_file = "/etc/login.defs";
+my $etc_lsb_release_file = "/etc/lsb-release";
+my $etc_redhat_release_file = "/etc/redhat-release";
+my $etc_gentoo_release_file = "/etc/gentoo-release";
+my $etc_ntp_conf_file = "/etc/ntp.conf";
+my $etc_exports_file = "/etc/exports";
+my $etc_fstab_file = "/etc/fstab";
+my $etc_ssh_sshd_conf_file = "/etc/ssh/sshd_config";
+my $var_log_clamav_freshclam_log = "/var/log/clamav/freshclam.log";
+my $my_id = `id -u`;
+my $sysctl_cmd = "/sbin/sysctl";
+my $passwd_cmd = `$which_cmd passwd`;
+  chomp $passwd_cmd;
+my $curl_cmd = `$which_cmd curl`;
+  chomp $curl_cmd;
+my $crontab_cmd = `$which_cmd crontab`;
+  chomp $crontab_cmd;
+my $ifconfig_cmd= `$which_cmd ifconfig`;
+  chomp $ifconfig_cmd;
+
+
+
+my $hostname = `/bin/hostname`;
+my @ps_cmd = `/bin/ps -eo %c h`;
+my @ifconfig = `$ifconfig_cmd`;
+my @netstat = `/bin/netstat -nlp`;
+my @pam_d_contents = `/bin/cat /etc/pam.d/*  2&gt; /dev/null`;
+if ($my_id == 0)
+  {
+    my @crontab = `$crontab_cmd -l`;
+  }
+
+
+my @installed_packages;
+my $os_distro;
+my $ipv6_status;
+
+my @sysctl_oids = 
+  qw( 
+    net.ipv4.conf.all.forwarding
+    net.ipv4.conf.default.forwarding
+    net.ipv4.ip_forward
+    net.ipv4.conf.default.accept_source_route
+    net.ipv4.conf.all.accept_source_route
+  );
+
+my @cron_directories =
+  qw(
+    /etc/cron.hourly
+    /etc/cron.daily
+    /etc/cron.weekly
+    /etc/cron.montly
+    );
+
+my @log_directories =
+  qw(
+    /var/log
+    /var/log/httpd
+    );
+
+my @login_defs = open_file($etc_login_defs_file);
+my @etc_lsb_release = open_file($etc_lsb_release_file);
+my @etc_redhat_release = open_file($etc_redhat_release_file);
+my @etc_gentoo_release = open_file($etc_gentoo_release_file);
+my @etc_ntp_conf = open_file($etc_ntp_conf_file);
+my @etc_exports = open_file($etc_exports_file);
+my @etc_fstab = open_file($etc_fstab_file);
+my @etc_ssh_sshd_conf = open_file($etc_ssh_sshd_conf_file);
+my @etc_passwd = open_file($etc_passwd_file);
+my @clamav_freshclam = open_file($var_log_clamav_freshclam_log);
+
+
+print "Hostname:nt$hostname";
+
+#print whether internet connectivity is detected or not
+if ( length($curl_cmd) != 0 )
+  {
+    if ( `$curl_cmd --silent -m 5 $internet_connectivity_url` )
+      {
+        print "tINTERNET CONNECTIVITY DETECTEDn";
+      }
+    else
+      {
+        print "tNO INTERNET CONNECTIVITYn";
+      }
+  }
+
+print "OS Version:n";
+foreach (@etc_lsb_release)
+  {
+    if (/DISTRIB_DESCRIPTION="(.*)"/)
+      {
+        print "t$1n";
+    $os_distro = $1;
+      }
+  }
+
+foreach (@etc_redhat_release)
+  {
+    if (/(.*)/)
+      {
+        print "t$1n";
+        $os_distro = $1;
+      }
+  }
+foreach (@etc_gentoo_release)
+  {
+    if (/(.*)/)
+      {
+         print "t$1n";
+         $os_distro = $1;
+      }
+  }
+
+
+#Loop through ifconfig for IP Addresses
+print "IP Addresses:n";
+foreach (@ifconfig)
+  {
+    if (/inet (?:addr:)?([d.]+)/)
+      {
+        print "t$1n";
+      }
+  }  
+
+
+
+#Loop through ifconfig for IPv6
+foreach (@ifconfig)
+  {
+    if (/inet6/)
+      {
+        $ipv6_status = 1;
+        last;
+      }
+  } 
+
+if ($ipv6_status)
+  {
+    print "IPv6 is Enabledn";
+  }
+else
+  {
+    print "IPv6 is Disabledn";
+  }
+
+
+#services
+print "Listening Services:n";
+foreach (@netstat)
+  {
+    if (/(tcp|udp).* ([d.d.d.d]+:d+)/)
+      {
+        print "t$1 $2n";
+      }
+  }
+
+
+
+#Sysctl Values
+print "IP sysctl:n";
+foreach (@sysctl_oids)
+  {
+    print "t" . read_sysctl($_);
+  }
+
+#Enumerate System Users
+print "Users:n";
+foreach (@etc_passwd)
+  {
+    my($login, $passwd, $uid, $gid,$gcos, $home, $shell) = split(/:/);
+    print "t$logint$homet$shell";
+      if ( $my_id == 0 )
+        {
+          print "t".`$passwd_cmd -S $login`;
+        }
+  }
+
+
+#NTP server configuration
+print "NTP Servers:n";
+foreach (@etc_ntp_conf)
+  {
+    if (m/^(server.*)/)
+      {
+        print "t$1n";
+      }
+  }
+
+#List filesystem exports
+print "Filesystem NFS Exports:n";
+foreach (@etc_exports)
+  {
+    if (!(m/^#/))
+      {
+    print "t$_";
+      }
+  }
+
+
+#etc fstab contents
+print "fstab mounts:n";
+foreach (@etc_fstab)
+  {
+    if (!(m/^#/))
+      {
+        print "t$_";
+      }
+  }
+
+#etc sshd config contents
+if ($my_id == 0)
+  {
+  print "sshd_conf:n";
+  foreach (@etc_ssh_sshd_conf)
+    {
+      if (!(m/^#/) &amp;&amp; !(m/^$/))
+        {
+          print "t$_";
+        }
+    }
+  }
+
+
+#Determine OS and find installed packages
+if ($os_distro =~ m/ubuntu/i)
+  {
+    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
+    foreach (@installed_packages_tmp)
+      {
+        my @line =  split(/s+/, $_);
+        push @installed_packages, "$line[1]t$line[2]n";
+      }
+  }
+
+if ($os_distro =~ m/debian/i)
+  {
+    my @installed_packages_tmp = `/usr/bin/dpkg -l`;
+    foreach (@installed_packages_tmp)
+      {
+        my @line =  split(/s+/, $_);
+        push @installed_packages, "$line[1]t$line[2]n";
+      }
+  }
+
+if ($os_distro =~ m/gentoo/i)
+  {
+    @installed_packages = `ls -d /var/db/pkg/*/*`;
+  }
+
+if ($os_distro =~ m/centos/i)
+  {
+    @installed_packages = `rpm -qa`;
+  }
+
+if ($os_distro =~ m/red hat/i)
+  {
+    @installed_packages = `rpm -qa`;
+  }
+
+
+print "Installed packages:n";
+foreach (@installed_packages)
+  {
+    if (m/(.*(ssh|ntp|httpd|apache|named|bind|avg|clam|portmap|sophos|sys|ssl|cups|sec|tripwire).*)/i)
+    {
+       print "t$1n";
+    } 
+  }
+
+
+if (-e $var_log_clamav_freshclam_log)
+    {
+      print "ClamAV Updates:n";
+      foreach (@clamav_freshclam[-30,-1])
+        {
+          print "t$_";
+        }
+    }
+
+print "File contents: login.defsn";
+foreach (@login_defs)
+  {
+    if (m/(^(MD5_CRYPT_ENAB|ENCRYPT_METHOD|LOGIN_RETRIES|LOGIN_TIMEOUT|LOG_OK_LOGINS|SYSLOG_SU_ENAB|PASS_MAX_DAYS).*)/i){print "t$1n";}
+  }
+
+
+print "Pam.d config:n";
+foreach (@pam_d_contents)
+  {
+    if ((!(m/^#/) &amp;&amp; ((m/(.*pam_unix.*)/i) || (m/(.*pam_tally.*)/i) || (m/(.*pam_crack.*)/i) || (m/(.*minlen.*)/i) || (m/(.*retry.*)/i)) ) )
+      {
+        print "t$1n";
+      }
+  }
+
+print "Cron Jobs:n";
+foreach my $file (@cron_directories)
+  {
+    foreach (&lt;$file/*&gt;)
+      {
+        print "t $_n";
+      }
+  }
+
+print "Log Files:n";
+foreach my $file (@log_directories)
+  {
+    foreach (&lt;$file/*&gt;)
+      {
+    if (!(m/.[0-9]/))
+          {
+            print "t $_n";
+          }
+      }
+  }
+
+
+#Sort unique processes 
+print "System Processes:n";
+my %seen;
+foreach ( sort( grep{ ! $seen{$_}++ } @ps_cmd))
+  {
+    print "t$_";
+  }
+
+
+
+
+#Argument filename, Returns array
+sub open_file
+  {
+    my $file_name = $_[0];
+    open FILE, ")
+      {
+        push(@file_contents, $_);
+      }
+    close FILE;
+    return @file_contents;
+  }
+
+#Read specific sysctl
+sub read_sysctl
+  {
+    my $search_oid=$_[0];
+    open SYSCTL, "$sysctl_cmd $search_oid |" || die "Can't run sysctl: $!n";
+    my $output;
+    while ()
+      {
+        $output = $_;
+      }
+    close SYSCTL;
+    return $output;
+  }
+</code></pre>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1677,88 +2096,6 @@ All the stuffs online tells you to use:</p>
 <p>setcookie(&#8216;yourcookie&#8217;, &#8220;, time() - 86400, &#8216;/&#8217;);</p>
 
 <p>The reason being is that I am setting my cookie initially from /auth/login. So this means my cookie will only live inside /auth path. But by setting &#8216;/&#8217; to reset it, it tells it to reset for all the sub folders in the site.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-14T17:08:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/01/14/ubuntu-10-04-apache2-php5-switching-mpm-prefork-to/">Ubuntu 10.04 Apache2 + Php5 - Switching Mpm-prefork to Mpm-worker How to Guide</a></h1>
-	<div class="entry-content">
-		<p>I am running an online service that gets about 500k hits/day. It&#8217;s a new service I started up beginning of december last year but growing at an incredible rate so I never had time to properly lay out a scalable infrastructure. Up until now, I was running it on a single dedicated server but noticed it was starting to take a toll on the server and didn&#8217;t want to affect the other sites on the server (load avg 1.5+) so I decided to move it to Rackspace cloud.</p>
-
-<p>So I set up the instances:<br/>
-- 1 haproxy load balancer (256 mb)<br/>
-- 1 memcache (256 mb)<br/>
-- 3 apache (1 gig)<br/>
-- 1 nginx (1 gig)<br/>
-- 1 mysql master (1 gig)<br/>
-- 1 mysql slave (1 gig)</p>
-
-<p>I&#8217;d have imagine this would be enough to handle this much traffic but my app servers kept swapping time to time. There was no way I was going to spin up even more apache servers as I know this will cost me more than double what I used to pay for the dedicated server which was holding up just fine.</p>
-
-<p>First thing I did was move over from apache to nginx using php5-fpm. It works fine as a single dedicated instance but when it is routed off of haproxy, it was giving me some strange errors. Since I didn&#8217;t have much time to tinker with it, I decided to try something I always heard about but never tried before, Apache MPM-WORKER.</p>
-
-<p>So after googling around, I found a really nifty tutorial (can&#8217;t remember where I got this from) which only took me like 2 minutes to go from apache mpm-prefork to mpm-worker. And as soon as I changed to it, I saw my load drop dramatically and I even went from 3 apache&#8217;s to just 1 apache and still holding up well. </p>
-
-<p>So I highly recommend those of you looking to go to nginx or trying to scale their apache, take a jab at trying out the apache mpm-worker w/ php5 fcgi. It works flawlessly. I&#8217;d say it works just as well as nginx + php5 fpm.</p>
-
-<hr />
-
-<p>When you install lamp on Ubuntu 10.04 , apache comes by default as mpm-prefork.<br/>
-But you will want to instead use mpm-worker, as it will use less memory and be more efficient. </p>
-
-<p>To use the “worker” MPM with PHP, do the following:</p>
-
-<p><strong>Step 1. </strong>Stop the apache2 daemon</p>
-
-<p><code>sudo /etc/init.d/apache2 stop</code></p>
-
-<p><strong>Step 2.  </strong>Uninstall <em>apache2-mpm-prefork</em></p>
-
-<p><code>sudo aptitude remove apache2-mpm-prefork</code></p>
-
-<p><strong>Step 3.</strong>  Install <em>apache2-mpm-worker</em> and <em>apache2-threaded-dev</em></p>
-
-<p><code>sudo aptitude install apache2-mpm-worker apache2-threaded-dev</code></p>
-
-<p><strong>Step 4.</strong> Enable <em>CGI</em> and <em>mod_actions</em> (may already be enabled)</p>
-
-<p><code>sudo a2enmod cgid``2``sudo a2enmod actions</code></p>
-
-<p><strong>Step 5.</strong>  Create a file in <em>/etc/apache2/conf.d</em> with the following content (I called mine php5-cgi.conf):</p>
-
-<p><code>&lt;IfModule mod_actions.c&gt;``2``        ``Action application/x-httpd-php /cgi-bin/php5``3``&lt;/IfModule&gt;</code></p>
-
-<p><strong>Step 6.</strong>  Start the apache2 daemon</p>
-
-<p><code>sudo /etc/init.d/apache2 start</code></p>
 
 		
 		
