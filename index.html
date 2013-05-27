@@ -7,8 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="***Navigation
-1. Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a &hellip;">
+	<meta name="description" content="Navigation Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -128,9 +127,13 @@
 	</div>
 	<h1 class="title"><a href="/blog/2013/05/26/emacs-power-ups/">Emacs Power Ups</a></h1>
 	<div class="entry-content">
-		<p>***Navigation
-1. Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
-To add something similar, add this to your ~/.emacs file:</p>
+		<h3>Navigation</h3>
+
+<ol>
+<li>Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half page scroll down / up.
+To add something similar, add this to your ~/.emacs file:</li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -146,8 +149,12 @@ To add something similar, add this to your ~/.emacs file:</p>
 </span><span class='line'>  '(lambda () (interactive) (next-line 5)))</span></code></pre></td></tr></table></div></figure>
 
 
-<p>***Coding
-1. Also to comment a block of code, just select it by marking (C-space) and to the end of the target, then press:</p>
+<h3>Coding</h3>
+
+<ol>
+<li>Also to comment a block of code, just select it by marking (C-space) and to the end of the target, then press:</li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>M-;</span></code></pre></td></tr></table></div></figure>
@@ -155,8 +162,12 @@ To add something similar, add this to your ~/.emacs file:</p>
 
 <p>To un-comment just re-run it from the same selection of code that&#8217;s been commented out.</p>
 
-<p>***Editing
-1. For the longest time to search/replace, I invoked it with M-x replace-string. It is a being long winded and I never managed to use:</p>
+<h3>Editing</h3>
+
+<ol>
+<li>For the longest time to search/replace, I invoked it with M-x replace-string. It is a being long winded and I never managed to use:</li>
+</ol>
+
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>M-%</span></code></pre></td></tr></table></div></figure>
