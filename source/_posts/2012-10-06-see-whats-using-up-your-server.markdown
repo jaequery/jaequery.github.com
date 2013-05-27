@@ -9,8 +9,12 @@ categories:
 - Technology
 ---
 
-##### see which connections are connected to you sorted by
+see which connections are connected to you sorted by:
+```
 netstat -pant | grep :80 | awk '{ print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+```
 
-##### see which process are eating up your server
+see which process are eating up your server:
+```
 ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10
+```
