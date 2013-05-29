@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac, | cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/blog/categories/mac-/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-05-29T11:06:37-07:00</updated>
+  <updated>2013-05-29T11:07:02-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -34,8 +34,9 @@ Show and hides iTerm2. Set from setting it on iTerm's general preference menu)</
 
 <h3>Cmd-key-happy</h3>
 
-<p>I installed cmd-key-happy to make my cmd to act as meta while I'm in terminal/iterm2. You can get it from here: <a href="https://github.com/aim-stuff/cmd-key-happy/blob/master/INSTALL">https://github.com/aim-stuff/cmd-key-happy/blob/master/INSTALL</a>
-Here is my .cmd-key-happy.lua file:</p>
+<p>I installed cmd-key-happy to make my cmd to act as meta while I'm in terminal/iterm2. You can get it from here: <a href="https://github.com/aim-stuff/cmd-key-happy/blob/master/INSTALL">https://github.com/aim-stuff/cmd-key-happy/blob/master/INSTALL</a></p>
+
+<p>Here is my .cmd-key-happy.lua file:</p>
 
 <p>```
 global_excludes = Set{ "shift-cmd-tab", "cmd-tab", "cmd-space", "shift-cmd-space", "shift-cmd-=", "shift-cmd-m"}
