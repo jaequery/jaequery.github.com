@@ -7,7 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="I am running an online service that gets about 500k hits/day. It&#8217;s a new service I started up beginning of december last year but growing at &hellip;">
+	<meta name="description" content="This one was a bit of a hair puller but finally found out why I could not reset a cookie.
+All the stuffs online tells you to use: setcookie(&#8216; &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +104,52 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-05T21:39:59-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/02/05/php-cookie-not-getting-deleted-solved/">PHP Cookie Not Getting Deleted [Solved]</a></h1>
+	<div class="entry-content">
+		<p>This one was a bit of a hair puller but finally found out why I could not reset a cookie.<br/>
+All the stuffs online tells you to use:</p>
+
+<p>setcookie(&#8216;yourcookie&#8217;, &#8220;, time() - 86400);</p>
+
+<p>Well apparently this fails for most web apps.</p>
+
+<p>What will work however is this:</p>
+
+<p>setcookie(&#8216;yourcookie&#8217;, &#8220;, time() - 86400, &#8216;/&#8217;);</p>
+
+<p>The reason being is that I am setting my cookie initially from /auth/login. So this means my cookie will only live inside /auth path. But by setting &#8216;/&#8217; to reset it, it tells it to reset for all the sub folders in the site.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1649,43 +1696,6 @@ Tumblr roughly has outgrown Wordpress and Blogger users combined! It&#8217;s a s
 <p>I&#8217;ve fiddled with the thought of running it on Wordpress but then again, 99% of bloggers are on Wordpress. I want to be more different than them.</p>
 
 <p>Currently, I&#8217;ve started re-vamping Stiqr.com. Don&#8217;t really have a lot of time to work on it but I&#8217;m chipping it away little by little.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-16T15:31:52-08:00" pubdate data-updated="true">Nov 16<span>th</span>, 2010</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2010/11/16/installing-geoip-for-php-on-ubuntu-10-10/">Installing Geoip for Php on Ubuntu 10.10</a></h1>
-	<div class="entry-content">
-		<p>sudo apt-get install libgeoip-dev</p>
-
-<p>sudo pecl install geoip</p>
 
 		
 		

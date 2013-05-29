@@ -7,7 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Navigation Emacs out of the box have text navigation down quite well. But there is still one thing I missed from VIM was C-d and C-u to do a half &hellip;">
+	<meta name="description" content="My keybindings to make things easier: cmd-shift-m
+Maximize/Zoom window: it was done by going to Sys Pref->Keyboard->Application Shortcuts, hit the &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +104,110 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T10:48:00-07:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/05/29/my-macosx-keybindings/">My MacOSX Keybindings</a></h1>
+	<div class="entry-content">
+		<h3>My keybindings to make things easier:</h3>
+
+<ol>
+<li><p>cmd-shift-m
+Maximize/Zoom window: it was done by going to Sys Pref->Keyboard->Application Shortcuts, hit the plus sign and add title as Zoom and bind to cmd-shift-m</p></li>
+<li><p>cmd-shift-_
+Maximize/Zoom window w/ Moom: launch Moom and then hit space to maximize</p></li>
+<li><p>cmd-shift-+
+Fantastical: adds new task</p></li>
+</ol>
+
+
+<h3>Cmd-key-happy</h3>
+
+<p>I installed cmd-key-happy to make my cmd to act as meta while I&#8217;m in terminal/iterm2. You can get it from here: https://github.com/aim-stuff/cmd-key-happy/blob/master/INSTALL
+Here is my .cmd-key-happy.lua file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>global_excludes = Set{ "shift-cmd-tab", "cmd-tab", "cmd-space", "shift-cmd-space", "shift-cmd-=", "shift-cmd-m"}
+</span><span class='line'>apps = {
+</span><span class='line'>   Terminal = { exclude = Set{ "shift-cmd-[",
+</span><span class='line'>                               "shift-cmd-]",
+</span><span class='line'>                               "shift-cmd--",
+</span><span class='line'>                               "cmd-c",
+</span><span class='line'>                               "cmd-w",
+</span><span class='line'>                               "cmd-1",
+</span><span class='line'>                               "cmd-2",
+</span><span class='line'>                               "cmd-3",
+</span><span class='line'>                               "cmd-t",
+</span><span class='line'>                               "cmd-n",
+</span><span class='line'>                               "cmd-`",
+</span><span class='line'>                         } },
+</span><span class='line'>   iTerm = { exclude = Set{ "shift-cmd-[",
+</span><span class='line'>                               "shift-cmd-]",
+</span><span class='line'>                               "shift-cmd--",
+</span><span class='line'>                               "cmd-c",
+</span><span class='line'>                               "cmd-w",
+</span><span class='line'>                               "cmd-1",
+</span><span class='line'>                               "cmd-2",
+</span><span class='line'>                               "cmd-3",
+</span><span class='line'>                               "cmd-t",
+</span><span class='line'>                               "cmd-n",
+</span><span class='line'>                               "cmd-`",
+</span><span class='line'>                         } },
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With this I can now easily hit my meta key (e.g; cmd+f or cmd+b to go between words) instead of hitting that awkwardly placed option key</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1532,41 +1637,6 @@ install dnsmasq on centos 5.8 is as easy as:</p>
 <p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
 
 <p>note) if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-13T13:24:31-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/13/change-master-host-on-mysql/">Change Master Host on Mysql</a></h1>
-	<div class="entry-content">
-		<p>CHANGE MASTER TO MASTER_HOST=&#8217;db0.local&#8217;, MASTER_USER=&#8217;xxx&#8217;, MASTER_PASSWORD=&#8217;xxx&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000003&#8217;, MASTER_LOG_POS=628;</p>
 
 		
 		
