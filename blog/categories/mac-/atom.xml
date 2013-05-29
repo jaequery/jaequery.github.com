@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac, | cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/blog/categories/mac-/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-05-29T11:07:02-07:00</updated>
+  <updated>2013-05-29T11:12:02-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -29,6 +29,8 @@ Maximize/Zoom window w/ Moom: launch Moom and then hit space to maximize</p></li
 Fantastical: adds new task</p></li>
 <li><p>ctrl-`
 Show and hides iTerm2. Set from setting it on iTerm's general preference menu)</p></li>
+<li><p>cmd-opt-space
+Launches finder</p></li>
 </ol>
 
 
