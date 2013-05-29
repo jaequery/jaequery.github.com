@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: emacs | cd ~/jaequery]]></title>
-  <link href="http://jaequery.github.com/blog/categories/emacs/atom.xml" rel="self"/>
+  <title><![CDATA[Category: mac, | cd ~/jaequery]]></title>
+  <link href="http://jaequery.github.com/blog/categories/mac-/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
   <updated>2013-05-29T11:03:47-07:00</updated>
   <id>http://jaequery.github.com/</id>
@@ -74,53 +74,6 @@ apps = {
 ```</p>
 
 <p>With this I can now easily hit my meta key (e.g; cmd+f or cmd+b to go between words) instead of hitting that awkwardly placed option key</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ultimate emacs elisp for web development]]></title>
-    <link href="http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development/"/>
-    <updated>2013-02-04T11:53:00-08:00</updated>
-    <id>http://jaequery.github.com/blog/2013/02/04/ultimate-emacs-elisp-for-web-development</id>
-    <content type="html"><![CDATA[<p>Emacs out of the box doesn’t have a great php/html/js editor. So here are what you need to get it good.</p>
-
-<ul>
-<li>First, let’s create the elisp folder that stores all your elisps:</li>
-</ul>
-
-
-<p><code>mkdir ~/elisp &amp;&amp; cd ~/elsip</code></p>
-
-<ul>
-<li>Now download “php-mode”</li>
-</ul>
-
-
-<p><code>wget http://php-mode.svn.sourceforge.net/svnroot/php-mode/tags/php-mode-1.5.0/php-mode.el</code></p>
-
-<ul>
-<li>Now download “multi-web-mode” for html/js/css</li>
-</ul>
-
-
-<p><code>wget https://raw.github.com/fgallina/multi-web-mode/master/multi-web-mode.el</code></p>
-
-<ul>
-<li>Now add/update this line to your ~/.emacs file</li>
-</ul>
-
-
-<p><code>
-(add-to-list ‘load-path “~/elisp”)
-(require ‘php-mode)
-(require ‘multi-web-mode)
-(setq mweb-default-major-mode ‘html-mode)
-(setq mweb-tags ‘((php-mode “&lt;\?php\|&lt;\? \|&lt;\?=” “\?&gt;”)
-(js-mode “”)
-(css-mode “”)))
-(setq mweb-filename-extensions ‘(“php” “htm” “html” “ctp” “phtml” “php4” “php5”))
-(multi-web-global-mode 1)
-</code></p>
 ]]></content>
   </entry>
   
