@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-05-30T16:24:06-07:00</updated>
+  <updated>2013-05-30T16:37:36-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -35,15 +35,7 @@
 <p>From master:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pt-table-checksum h=masterhost,u=dbuser,p=dbpassword --replicate percona.checksums</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Check integrity</h3>
-
-<p>From slave:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pt-table-checksum h=masterhost,u=dbuser,p=dbpassword --replicate percona.checksums --replicate-check</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pt-table-checksum -uuser -ppwd</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
