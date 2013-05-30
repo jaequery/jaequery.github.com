@@ -7,8 +7,11 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="My keybindings to make things easier: cmd-shift-m
-Maximize/Zoom window: it was done by going to Sys Pref->Keyboard->Application Shortcuts, hit the &hellip;">
+	<meta name="description" content="INSTALL First install Percona Toolkit if you haven&#8217;t already. 1
+2
+3
+wget percona.com/get/percona-toolkit.tar.gz
+wget percona.com/get/percona- &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +107,63 @@ Maximize/Zoom window: it was done by going to Sys Pref->Keyboard->Application Sh
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-30T16:18:00-07:00" pubdate data-updated="true">May 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/05/30/percona-toolkit-maatkit-check-integrity-of-the-master-slash-slave-replication/">Percona Toolkit (Maatkit) - Check Integrity of the Master/slave Replication</a></h1>
+	<div class="entry-content">
+		<h3>INSTALL</h3>
+
+<p>First install Percona Toolkit if you haven&#8217;t already.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget percona.com/get/percona-toolkit.tar.gz
+</span><span class='line'>wget percona.com/get/percona-toolkit.rpm
+</span><span class='line'>wget percona.com/get/percona-toolkit.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Start checksum</h3>
+
+<p>From master:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pt-table-checksum h=masterhost,u=dbuser,p=dbpassword --replicate percona.checksums</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Check integrity</h3>
+
+<p>From slave:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pt-table-checksum h=masterhost,u=dbuser,p=dbpassword --replicate percona.checksums --replicate-check</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1600,52 +1660,6 @@ service postfix reload
 		<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
 
 <p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-13T16:24:49-07:00" pubdate data-updated="true">Sep 13<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/13/dnsmasq-as-a-centralized-hosts-file/">Dnsmasq as a Centralized Hosts File</a></h1>
-	<div class="entry-content">
-		<p>if you are like me and like things where you can get setup in a quick pinch, you&#8217;ll like dnsmasq.
-have you ever had a time where you had multiple servers and have wondered why we can&#8217;t just easily have a central hosts file so they are all synchronized?
-well look no further. dnsmasq, is that, and more.
-install dnsmasq on centos 5.8 is as easy as:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>yum install dnsmasq -y</span></code></pre></td></tr></table></div></figure>
-
-
-<p>that&#8217;s it, you just now need to start it up: service dnsmasq start, and point your other server&#8217;s /etc/resolv.conf to your dnsmasq server.</p>
-
-<p>note) if you are on openvz, make sure you set user=root in /etc/dnsmasq.conf, otherwise it won&#8217;t let you start the service.</p>
 
 		
 		
