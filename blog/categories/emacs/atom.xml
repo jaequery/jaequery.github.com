@@ -4,7 +4,7 @@
   <title><![CDATA[Category: emacs | cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-05-30T16:37:36-07:00</updated>
+  <updated>2013-06-04T19:19:25-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -31,6 +31,8 @@ Fantastical: adds new task</p></li>
 Show and hides iTerm2. Set from setting it on iTerm's general preference menu)</p></li>
 <li><p>cmd-opt-space
 Launches finder</p></li>
+<li><p>cmd-shift-p and cmd-shift-n
+Switch buffers in emacs with a shortcut key to go to previous or next buffer</p></li>
 </ol>
 
 
