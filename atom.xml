@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-06-12T16:01:10-07:00</updated>
+  <updated>2013-06-12T16:04:45-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -98,7 +98,7 @@ I&#8217;ve never seen a case where this was enabled by default and this was the 
 
 <p>So solution was to just remove that file /usr/my.cnf and let /etc/my.cnf take over.</p>
 
-<p>It&#8217;s all good now but seriously, /usr/my.cnf? (shaking my head)</p>
+<p>It&#8217;s all good now but seriously, /usr/my.cnf? Is /usr/local/my.cnf next in line in the future? (shaking my head)</p>
 ]]></content>
   </entry>
   
