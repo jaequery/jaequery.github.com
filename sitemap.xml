@@ -419,16 +419,22 @@
         <lastmod>2013-05-30T16:37:30-07:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://jaequery.github.com/blog/2013/06/12/percona-sql-mode-causing-incorrect-integer-value-for-column-errors/
+        </loc>
+        <lastmod>2013-06-12T16:00:57-07:00</lastmod>
+    </url>
+    <url>
         <loc>http://jaequery.github.com/about/</loc>
         <lastmod>2013-02-06T11:14:13-08:00</lastmod>
     </url>
     <url>
         <loc>http://jaequery.github.com/blog/archives/</loc>
-        <lastmod>2013-06-04T19:19:18-07:00</lastmod>
+        <lastmod>2013-06-12T16:00:57-07:00</lastmod>
     </url>
     <url>
         <loc>http://jaequery.github.com/</loc>
-        <lastmod>2013-06-04T19:19:18-07:00</lastmod>
+        <lastmod>2013-06-12T16:00:57-07:00</lastmod>
     </url>
     <url>
         <loc>http://jaequery.github.com/projects/</loc>

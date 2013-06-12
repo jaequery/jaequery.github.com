@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-06-04T19:19:25-07:00</updated>
+  <updated>2013-06-12T16:01:10-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[percona sql-mode causing 'incorrect integer value for column' errors]]></title>
+    <link href="http://jaequery.github.com/blog/2013/06/12/percona-sql-mode-causing-incorrect-integer-value-for-column-errors/"/>
+    <updated>2013-06-12T15:51:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/06/12/percona-sql-mode-causing-incorrect-integer-value-for-column-errors</id>
+    <content type="html"><![CDATA[<p>When I switched one of my client&#8217;s db server to another newer environment, it caused theier site to fail.
+It was a strange problem because everything was the same environment from the other server, from versions/configs of apache, php, mysql (Percona), etc and they all checked out fine.</p>
+
+<p>The underlying problem was narrowed down to the fact there were some sql queries in the scripts that passed in empty strings on an integer column. This is due to the fact sql-mode had STRICT_TRANS_TABLES enabled.
+I&#8217;ve never seen a case where this was enabled by default and this was the first time it ever occurred to me.</p>
+
+<p>So to resolve it, I tried editing the my.cnf and explicitly setting to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sql-mode = ''</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But this didn&#8217;t seem to take any effect whatsoever. When I set it manually within the mysql console using, it worked:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SET @@global.sql_mode= '';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This made me realize that /etc/my.cnf is not being read! To my surprise, Percona actually installs /usr/my.cnf (a big major WTF moment!) in their recent 5.6 release which had this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># For advice on how to change settings please see
+</span><span class='line'># http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+</span><span class='line'>
+</span><span class='line'>[mysqld]
+</span><span class='line'>
+</span><span class='line'># Remove leading # and set to the amount of RAM for the most important data
+</span><span class='line'># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+</span><span class='line'># innodb_buffer_pool_size = 128M
+</span><span class='line'>
+</span><span class='line'># Remove leading # to turn on a very important data integrity option: logging
+</span><span class='line'># changes to the binary log between backups.
+</span><span class='line'># log_bin
+</span><span class='line'>
+</span><span class='line'># These are commonly set, remove the # and set as required.
+</span><span class='line'># basedir = .....
+</span><span class='line'># datadir = .....
+</span><span class='line'># port = .....
+</span><span class='line'># server_id = .....
+</span><span class='line'># socket = .....
+</span><span class='line'>
+</span><span class='line'># Remove leading # to set options mainly useful for reporting servers.
+</span><span class='line'># The server defaults are faster for transactions and fast SELECTs.
+</span><span class='line'># Adjust sizes as needed, experiment to find the optimal values.
+</span><span class='line'># join_buffer_size = 128M
+</span><span class='line'># sort_buffer_size = 2M
+</span><span class='line'># read_rnd_buffer_size = 2M
+</span><span class='line'>
+</span><span class='line'>sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So solution was to just remove that file /usr/my.cnf and let /etc/my.cnf take over.</p>
+
+<p>It&#8217;s all good now but seriously, /usr/my.cnf? (shaking my head)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Percona Toolkit (Maatkit) - Check integrity of the master/slave replication]]></title>
@@ -826,15 +915,6 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[check how many threads are currently running in mysql]]></title>
-    <link href="http://jaequery.github.com/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql/"/>
-    <updated>2012-10-06T00:05:36-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/10/06/check-how-many-threads-are-currently-running-in-mysql</id>
-    <content type="html"><![CDATA[<p>mysqladmin ext -i1 | grep Threads_running</p>
 ]]></content>
   </entry>
   

@@ -7,11 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="INSTALL First install Percona Toolkit if you haven&#8217;t already. 1
-2
-3
-wget percona.com/get/percona-toolkit.tar.gz
-wget percona.com/get/percona- &hellip;">
+	<meta name="description" content="When I switched one of my client&#8217;s db server to another newer environment, it caused theier site to fail.
+It was a strange problem because &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,6 +104,117 @@ wget percona.com/get/percona- &hellip;">
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-12T15:51:00-07:00" pubdate data-updated="true">Jun 12<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/06/12/percona-sql-mode-causing-incorrect-integer-value-for-column-errors/">Percona Sql-mode Causing &#8216;Incorrect Integer Value for Column&#8217; Errors</a></h1>
+	<div class="entry-content">
+		<p>When I switched one of my client&#8217;s db server to another newer environment, it caused theier site to fail.
+It was a strange problem because everything was the same environment from the other server, from versions/configs of apache, php, mysql (Percona), etc and they all checked out fine.</p>
+
+<p>The underlying problem was narrowed down to the fact there were some sql queries in the scripts that passed in empty strings on an integer column. This is due to the fact sql-mode had STRICT_TRANS_TABLES enabled.
+I&#8217;ve never seen a case where this was enabled by default and this was the first time it ever occurred to me.</p>
+
+<p>So to resolve it, I tried editing the my.cnf and explicitly setting to:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sql-mode = ''</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But this didn&#8217;t seem to take any effect whatsoever. When I set it manually within the mysql console using, it worked:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SET @@global.sql_mode= '';</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This made me realize that /etc/my.cnf is not being read! To my surprise, Percona actually installs /usr/my.cnf (a big major WTF moment!) in their recent 5.6 release which had this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># For advice on how to change settings please see
+</span><span class='line'># http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
+</span><span class='line'>
+</span><span class='line'>[mysqld]
+</span><span class='line'>
+</span><span class='line'># Remove leading # and set to the amount of RAM for the most important data
+</span><span class='line'># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+</span><span class='line'># innodb_buffer_pool_size = 128M
+</span><span class='line'>
+</span><span class='line'># Remove leading # to turn on a very important data integrity option: logging
+</span><span class='line'># changes to the binary log between backups.
+</span><span class='line'># log_bin
+</span><span class='line'>
+</span><span class='line'># These are commonly set, remove the # and set as required.
+</span><span class='line'># basedir = .....
+</span><span class='line'># datadir = .....
+</span><span class='line'># port = .....
+</span><span class='line'># server_id = .....
+</span><span class='line'># socket = .....
+</span><span class='line'>
+</span><span class='line'># Remove leading # to set options mainly useful for reporting servers.
+</span><span class='line'># The server defaults are faster for transactions and fast SELECTs.
+</span><span class='line'># Adjust sizes as needed, experiment to find the optimal values.
+</span><span class='line'># join_buffer_size = 128M
+</span><span class='line'># sort_buffer_size = 2M
+</span><span class='line'># read_rnd_buffer_size = 2M
+</span><span class='line'>
+</span><span class='line'>sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So solution was to just remove that file /usr/my.cnf and let /etc/my.cnf take over.</p>
+
+<p>It&#8217;s all good now but seriously, /usr/my.cnf? (shaking my head)</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1617,43 +1725,6 @@ echo "new: $newip"
 sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
 service postfix reload
 </code></pre>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-14T15:06:11-07:00" pubdate data-updated="true">Sep 14<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/14/tcpdump-get-ip-of-all-outgoing-https-connections/">Tcpdump Get IP of All Outgoing HTTPS Connections</a></h1>
-	<div class="entry-content">
-		<p>As you can see, tcpdump is very english friendly and you can structure it as however you like:</p>
-
-<p>tcpdump -nn -vv dst not 10.102.136.11 and port not 22 and dst not 10.102.136.100 and dst not 10.102.136.109 and dst not 10.102.136.95 and not udp and not arp</p>
 
 		
 		
