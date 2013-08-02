@@ -1566,7 +1566,7 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
 	<div class="entry-content">
 		<p>edit /etc/sysctl.conf</p>
 
-<pre><code> #net.ipv4.netfilter.ip_conntrack_max = 300000 # for centos 5  
+<pre><code> #net.ipv4.netfilter.ip_conntrack_max = 300000 # for centos 5
  net.netfilter.nf_conntrack_max = 300000 # for centos 6
  net.ipv4.tcp_max_syn_backlog = 10240
  net.core.netdev_max_backlog = 4000
@@ -1584,9 +1584,39 @@ CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!do
 <h5>also look into considering increasing ulimit</h5>
 
 <p>ulimit -n 30000
-ulimit -u 50000</p>
+ulimit -u 50000
+now save then type sysctl -p to reload changes</p>
 
-<p>now save then type sysctl -p to reload changes</p>
+<p><em>quick update</em>
+i found this to be effective</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># http://labs.creativecommons.org/2010/12/08/tuning-tcp-on-ccs-servers/
+</span><span class='line'>net.ipv4.tcp_fin_timeout = 3
+</span><span class='line'>net.core.netdev_max_backlog = 30000
+</span><span class='line'>net.ipv4.tcp_no_metrics_save = 1
+</span><span class='line'>net.ipv4.tcp_synack_retries = 2
+</span><span class='line'>net.ipv4.tcp_syn_retries = 2
+</span><span class='line'>net.ipv4.tcp_max_syn_backlog = 8192
+</span><span class='line'>net.core.rmem_max = 16777216
+</span><span class='line'>net.core.wmem_max = 16777216
+</span><span class='line'>net.ipv4.tcp_rmem = 4096 87380 16777216
+</span><span class='line'>net.ipv4.tcp_wmem = 4096 65536 16777216
+</span><span class='line'>net.core.somaxconn = 1024
+</span><span class='line'>vm.min_free_kbytes = 65536</span></code></pre></td></tr></table></div></figure>
+
 
 		
 		
