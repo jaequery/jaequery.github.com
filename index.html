@@ -7,8 +7,8 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="When I switched one of my client&#8217;s db server to another newer environment, it caused theier site to fail.
-It was a strange problem because &hellip;">
+	<meta name="description" content="Try the following commands to determine if you have a lot of connections coming from one address or if you are under a distributed attack. 1
+2 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +104,47 @@ It was a strange problem because &hellip;">
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-04T23:38:00-07:00" pubdate data-updated="true">Sep 4<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2013/09/04/nifty-netstat-commands/">Nifty Netstat Commands</a></h1>
+	<div class="entry-content">
+		<p>Try the following commands to determine if you have a lot of connections coming from one address or if you are under a distributed attack.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -nt | cut -c 40- | cut -d: -f1 | sort | uniq -c | sort -n
+</span><span class='line'>netstat -nt | cut -d: -f2 | sort | uniq -c | sort -n</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have high numbers from a few IP addresses it will be easier to limit the connections. You can then add deny rules or rate-limit rules to iptables to limit access from these addresses.</p>
+
+<p>If you are under attack you may want to get your ISP involved as they can limit connections before they reach you.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1697,64 +1738,6 @@ i found this to be effective</p>
 <p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
 
 <p>this keeps backup in sync, so make sure to apply this, always.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-27T20:45:00-07:00" pubdate data-updated="true">Sep 27<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/09/27/rotate-outgoing-ip-in-postfix/">Rotate Outgoing Ip in Postfix</a></h1>
-	<div class="entry-content">
-		<p>Here is a script I wrote for a friend who needed to update his outgoing IP on his postfix server and rotate them once every minute: /root/crons/rotate_postfix_ip.sh and add it to your cronjob to run every minute and you are set!</p>
-
-<pre><code>#!/bin/bash
-ips=("64.250.120.128" "64.250.121.241" "64.250.121.242")
-length=${#ips[@]}
-pos=`cat current.txt`
-oldip=${ips[$pos - 1]}
-if [ "$length" -eq "$pos" ] ; then
-    echo "limit reached"
-    pos=1
-else
-    echo "increment!"
-    (( pos++ ))
-fi
-
-echo "$pos" &gt; current.txt
-
-newip=${ips[$pos - 1]}
-echo "prev: $oldip"
-echo "new: $newip"
-
-sed -ie "s/smtp_bind_address=$oldip/smtp_bind_address=$newip/g" /etc/postfix/main.cf &gt; /dev/null
-service postfix reload
-</code></pre>
 
 		
 		

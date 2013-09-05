@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-08-01T19:12:00-07:00</updated>
+  <updated>2013-09-04T23:38:51-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[nifty netstat commands]]></title>
+    <link href="http://jaequery.github.com/blog/2013/09/04/nifty-netstat-commands/"/>
+    <updated>2013-09-04T23:38:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/09/04/nifty-netstat-commands</id>
+    <content type="html"><![CDATA[<p>Try the following commands to determine if you have a lot of connections coming from one address or if you are under a distributed attack.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -nt | cut -c 40- | cut -d: -f1 | sort | uniq -c | sort -n
+</span><span class='line'>netstat -nt | cut -d: -f2 | sort | uniq -c | sort -n</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you have high numbers from a few IP addresses it will be easier to limit the connections. You can then add deny rules or rate-limit rules to iptables to limit access from these addresses.</p>
+
+<p>If you are under attack you may want to get your ISP involved as they can limit connections before they reach you.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[percona sql-mode causing 'incorrect integer value for column' errors]]></title>
@@ -896,25 +915,6 @@ iptables -A LOGGING -j DROP                                            # Drop ev
 
 <p>SetEnvIf Request_Method &#8220;GET&#8221; dontlog<br/>
 CustomLog &#8220;/var/log/httpd/site.com.ssl.request.log&#8221; combined env=!dontlog </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[see whats using up your server]]></title>
-    <link href="http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server/"/>
-    <updated>2012-10-06T11:34:57-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/10/06/see-whats-using-up-your-server</id>
-    <content type="html"><![CDATA[<p>see which connections are connected to you sorted by:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -pant | grep :80 | awk '{ print $5}' | cut -d: -f1 | sort | uniq -c | sort -n</span></code></pre></td></tr></table></div></figure>
-
-
-<p>see which process are eating up your server:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ps -eo pmem,pcpu,pid,user,rss,vsize,args | { head -1 ; sort -k 1 -r -n ; } | head -10</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
