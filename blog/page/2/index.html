@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="Here is a script I wrote for a friend who needed to update his outgoing IP on his postfix server and rotate them once every minute: /root/crons/ &hellip;">
+	<meta name="description" content="to create a backup: innobackupex &#8211;user=root &#8211;password=xxx . this should create a folder in timestamp, i.e; 2012-09-01_11-11-11 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,49 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-01T14:32:05-07:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/10/01/percona-xtrabackup-how-to/">Percona Xtrabackup How To</a></h1>
+	<div class="entry-content">
+		<p>to create a backup:</p>
+
+<p>innobackupex &#8211;user=root &#8211;password=xxx .</p>
+
+<p>this should create a folder in timestamp, i.e; 2012-09-01_11-11-11</p>
+
+<p>innobackupex &#8211;apply-log 2012-09-01_11-11-11</p>
+
+<p>this keeps backup in sync, so make sure to apply this, always.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1982,136 +2025,6 @@ this should list two blocks of texts if everything is working correctly    <
 <p>        server procdb0 x.x.x.x:3306 check #db ip</p>
 
 <p>        server procdb1 x.x.x.y:3306 check #db ip2</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-10T16:40:38-07:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/05/10/the-real-mysql-5-5-master-slave-replication-how-to/">The REAL Mysql 5.5 Master Slave Replication How-to</a></h1>
-	<div class="entry-content">
-		<p>so i spent about half a day trying to get a simple mysql 5.5 master to slave replication going. mainly because 5.5 seems to have changed in how replication works, compared to the previous versions, so all the tutorials on google, didn&#8217;t work for me.</p>
-
-<p>after trying out literally 5 different tutorials with no luck, i went to the trusted mysql&#8217;s documentation (i should do that more often), and i was able to follow their directions and finish replication in under 3 mins. o_O</p>
-
-<p>so here&#8217;s the deal:</p>
-
-<p>first go here <a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html">[http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html](http://dev.mysql.com/doc/refman/5.5/en/replication-howto.html)</a> , follow exactly what they tell you to do step by step.</p>
-
-<p>but since you are here, i&#8217;ll go ahead and list out the steps below:</p>
-
-<h3>1) Setup the Master</h3>
-
-<p>1) edit my.cnf (from a default my.cnf) and make sure you have these</p>
-
-<p>[mysqld]<br/>
-log-bin=mysql-bin<br/>
-server-id=1</p>
-
-<p>and now restart mysql</p>
-
-<p>2) from mysql console</p>
-
-<ul>
-<li>add slave user:<br/>
-grant replication slave ON <em>.</em> TO &#8216;slave&#8217;@&#8217;%&#8217; IDENTIFIED BY &#8216;test&#8217;;</li>
-</ul>
-
-
-<p>flush privileges; (not sure if it&#8217;s needed anymore but do it anyway for good measures)</p>
-
-<ul>
-<li>lock writes</li>
-</ul>
-
-
-<p>flush tables with read lock ;</p>
-
-<ul>
-<li>get your log file and log position (save these since you&#8217;ll need it later for slave setup)</li>
-</ul>
-
-
-<p>show master status;</p>
-
-<h3>2) Setup the Slave</h3>
-
-<p>1) edit my.cnf</p>
-
-<p>[mysqld]<br/>
-server-id=2</p>
-
-<p>that&#8217;s all you need. restart mysql</p>
-
-<p>2) load master&#8217;s database dump (optional), apparently you need to use mysql cli to load data, you can&#8217;t do &#8220;load data from master&#8221; anymore as it&#8217;s deprecated.</p>
-
-<p>3) put in your master server and log details:</p>
-
-<p>CHANGE MASTER TO MASTER_HOST=&#8217;ServerIP/FQDN&#8217;, MASTER_USER=&#8217;slave&#8217;, MASTER_PASSWORD=&#8217;test&#8217;, MASTER_LOG_FILE=&#8217;mysql-bin.000001&#8217;, MASTER_LOG_POS=98;</p>
-
-<p>*Replace mysql-bin.0000001 and master_log_pos with what you got from &#8220;show master status&#8221; from Master server</p>
-
-<p>4) start slave;</p>
-
-<p>5) check if everything is cool by doing:</p>
-
-<p>show slave statusG;</p>
-
-<p>You should see stuffs like:</p>
-
-<p>mysql> show slave statusG;</p>
-
-<p><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em> 1. row </em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
-
-<p>               Slave_IO_State: Waiting for master to send event</p>
-
-<p>                  Master_Host: mysql1</p>
-
-<p>                  Master_User: slave_user</p>
-
-<p>                  Master_Port: 3306</p>
-
-<p>                Connect_Retry: 60</p>
-
-<p>              Master_Log_File: mysql-bin.000005</p>
-
-<p>          Read_Master_Log_Pos: 10383</p>
-
-<p>if not something went wrong</p>
-
-<h3>Almost done</h3>
-
-<p>1) go back to master server mysql console and unlock the tables</p>
-
-<p>unlock tables;</p>
-
-<h3>Done</h3>
 
 		
 		
