@@ -7,7 +7,7 @@
 	<meta name="author" content="jaequery">
 
 	
-	<meta name="description" content="to create a backup: innobackupex &#8211;user=root &#8211;password=xxx . this should create a folder in timestamp, i.e; 2012-09-01_11-11-11 &hellip;">
+	<meta name="description" content="since i keep forgetting which url i need to put in, here it is: [http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +103,43 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+
+
+    <article class="post">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-05T10:33:14-07:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/technology/'>Technology</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title"><a href="/blog/2012/10/05/centos-5-install-from-url-for-xenserver/">Centos 5 Install From Url for XenServer</a></h1>
+	<div class="entry-content">
+		<p>since i keep forgetting which url i need to put in, here it is:</p>
+
+<p><a href="http://mirror.centos.org/centos-5/5.8/os/x86_64/">[http://mirror.centos.org/centos-5/5.8/os/x86_64/](http://mirror.centos.org/centos-5/5.8/os/x86_64/)</a></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post">
@@ -1788,243 +1825,6 @@ service httpd restart</p>
 	<h1 class="title"><a href="/blog/2012/06/08/install-python-2-6-centos-5-8/">Install Python 2.6 Centos 5.8</a></h1>
 	<div class="entry-content">
 		<p><a href="http://agilesysadmin.net/recent-python-on-rhel-or-centos">[http://agilesysadmin.net/recent-python-on-rhel-or-centos](http://agilesysadmin.net/recent-python-on-rhel-or-centos)</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-15T16:23:00-07:00" pubdate data-updated="true">May 15<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/technology/'>Technology</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title"><a href="/blog/2012/05/15/running-tungsten-to-do-a-mysql-ha-multi-master-setup-w/">Running Tungsten to Do a Mysql HA Multi-master Setup W/ HAProxy</a></h1>
-	<div class="entry-content">
-		<h3>setup of tungsten on centos 5.8</h3>
-
-<p>1) copy private key of root to other mysql servers</p>
-
-<p>sudo su -</p>
-
-<p>ssh-keygen</p>
-
-<p>cd ~/.ssh</p>
-
-<p>ssh-copy-id -i id_rsa.pub root@procdb1<br/>
- </p>
-
-<p>2) install libraries</p>
-
-<p>yum install ruby ruby-libs <br/>
- </p>
-
-<p>3) install java</p>
-
-<p>download and install the rpm <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html">http://www.oracle.com/technetwork/java/javase/downloads/jre-7u4-download-1591157.html</a></p>
-
-<p>4) add this to my.cnf and restart mysql</p>
-
-<h3>tungsten ###</h3>
-
-<p>server-id                               =       1 #set to 2 on other<br/>
-log-bin                                 =       mysql-bin<br/>
-innodb_flush_log_at_trx_commit          =       2<br/>
-sync_binlog                             =       0<br/>
-max_allowed_packet                      =       48m</p>
-
-<h1>number of servers</h1>
-
-<p>auto_increment_increment                =       2</p>
-
-<h1>set this to 1, set to 2 on other</h1>
-
-<p>auto_increment_offset                   =       1<br/>
- </p>
-
-<p>5) create super account &#8216;tungsten&#8217; on all mysql servers</p>
-
-<p>grant all privileges on <em>.</em> to tungsten IDENTIFIED BY &#8216;xxx&#8217; with grant option;</p>
-
-<p>6) download tungsten replicator</p>
-
-<p>wget <a href="http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz">http://tungsten-replicator.googlecode.com/files/tungsten-replicator-2.0.5.tar.gz</a></p>
-
-<p>7) create setup-multimaster.sh and run it</p>
-
-<h1>! /bin/bash</h1>
-
-<p>TUNGSTEN_HOME=/opt/replication</p>
-
-<p>TUNGSTEN_TOOLS=tools</p>
-
-<p>MASTER_USER=tungsten</p>
-
-<p>MASTER_PW=xxxx</p>
-
-<p>MASTER1=procdb0 #change to the hostname of your db</p>
-
-<p>SERVICE1=$MASTER1</p>
-
-<p>MASTER2=procdb1 #change to the hostname of your db</p>
-
-<p>SERVICE2=$MASTER2</p>
-
-<p>echo &#8216;setting up installer for &#8216;$MASTER1</p>
-
-<p>./tools/tungsten-installer</p>
-
-<p>    &#8211;master-slave</p>
-
-<p>    &#8211;master-host=$MASTER1</p>
-
-<p>    &#8211;datasource-user=$MASTER_USER</p>
-
-<p>    &#8211;datasource-password=$MASTER_PW</p>
-
-<p>    &#8211;service-name=$SERVICE1</p>
-
-<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
-
-<p>    &#8211;cluster-hosts=$MASTER1</p>
-
-<p>    &#8211;start-and-report</p>
-
-<p>echo &#8216;setting up installer for &#8216;$MASTER2</p>
-
-<p>./tools/tungsten-installer</p>
-
-<p>    &#8211;master-slave</p>
-
-<p>    &#8211;master-host=$MASTER2</p>
-
-<p>    &#8211;datasource-user=$MASTER_USER</p>
-
-<p>    &#8211;datasource-password=$MASTER_PW</p>
-
-<p>    &#8211;service-name=$SERVICE2</p>
-
-<p>    &#8211;home-directory=$TUNGSTEN_HOME</p>
-
-<p>    &#8211;cluster-hosts=$MASTER2</p>
-
-<p>    &#8211;start-and-report</p>
-
-<p>8) create configure-multimaster.sh and run it</p>
-
-<h1>! /bin/bash</h1>
-
-<p>TUNGSTEN_HOME=/opt/replication</p>
-
-<p>TUNGSTEN_TOOLS=/opt/replication/tungsten/tools</p>
-
-<p>MASTER1=procdb0 #change to the hostname of your db</p>
-
-<p>SERVICE1=$MASTER1</p>
-
-<p>MASTER2=procdb1 #change to the hostname of your db</p>
-
-<p>SERVICE2=$MASTER2</p>
-
-<p>echo &#8216;configure services for &#8216;$MASTER1</p>
-
-<p>$TUNGSTEN_TOOLS/configure-service</p>
-
-<p>   &#8211;host $MASTER1</p>
-
-<p>   -C -q</p>
-
-<p>   &#8211;local-service-name=$SERVICE1</p>
-
-<p>   &#8211;role=slave</p>
-
-<p>   &#8211;service-type=remote</p>
-
-<p>   &#8211;datasource=$MASTER1</p>
-
-<p>   &#8211;master-thl-host=$MASTER2</p>
-
-<p>   &#8211;svc-start $SERVICE2</p>
-
-<p>echo &#8216;configure services for &#8216;$MASTER2</p>
-
-<p>$TUNGSTEN_TOOLS/configure-service</p>
-
-<p>  &#8211;host $MASTER2</p>
-
-<p>  -C -q</p>
-
-<p>  &#8211;local-service-name=$SERVICE2</p>
-
-<p>  &#8211;role=slave</p>
-
-<p>  &#8211;service-type=remote</p>
-
-<p>  &#8211;datasource=$MASTER2</p>
-
-<p>  &#8211;master-thl-host=$MASTER1</p>
-
-<p>  &#8211;svc-start $SERVICE1</p>
-
-<p>9) All done, check if they are running</p>
-
-<p>/opt/replication/tungsten/tungsten-replicator/bin/trepctl services<br/>
-this should list two blocks of texts if everything is working correctly    </p>
-
-<p>11) to stop or start replication, do:</p>
-
-<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator stop</p>
-
-<p>/opt/replication/tungsten/tungsten-replicator/bin/replicator start</p>
-
-<p>when server goes down or is rebooted, make sure to start the replicator as it&#8217;s not turned on automatically like mysql daemon. this to ensure you can just double check your data.</p>
-
-<h3>configure haproxy for mysql multi-master</h3>
-
-<p>12) setup haproxy</p>
-
-<p>have heartbeat installed and make sure you&#8217;ve got a virtual ip for your db servers.</p>
-
-<p>add these to the end of your /etc/haproxy/haproxy.cfg:</p>
-
-<p>listen mysql-cluster</p>
-
-<p>        bind x.x.y.y:3306 #virtual ip</p>
-
-<p>        mode tcp</p>
-
-<p>        balance roundrobin</p>
-
-<p>        option tcpka</p>
-
-<p>        option httpchk</p>
-
-<p>        option mysql-check user root</p>
-
-<p>        server procdb0 x.x.x.x:3306 check #db ip</p>
-
-<p>        server procdb1 x.x.x.y:3306 check #db ip2</p>
 
 		
 		

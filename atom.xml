@@ -4,7 +4,7 @@
   <title><![CDATA[cd ~/jaequery]]></title>
   <link href="http://jaequery.github.com/atom.xml" rel="self"/>
   <link href="http://jaequery.github.com/"/>
-  <updated>2013-09-13T16:27:40-07:00</updated>
+  <updated>2013-10-29T13:36:03-07:00</updated>
   <id>http://jaequery.github.com/</id>
   <author>
     <name><![CDATA[jaequery]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac OSX Mavericks update made things slow and the fans run nonstop]]></title>
+    <link href="http://jaequery.github.com/blog/2013/10/29/mac-osx-mavericks-update-made-things-slow-and-the-fans-run-nonstop/"/>
+    <updated>2013-10-29T12:40:00-07:00</updated>
+    <id>http://jaequery.github.com/blog/2013/10/29/mac-osx-mavericks-update-made-things-slow-and-the-fans-run-nonstop</id>
+    <content type="html"><![CDATA[<p>I just updated from Mac OSX 10.8 (ML) to 10.9 Mavericks and my CPU fans started to run non-stop.
+I did a bit of research and came across a post on apple&#8217;s forum (https://discussions.apple.com/message/23509155#23509155) which stated that people need to reset their SMC (fan control).</p>
+
+<p>This fix is for the following (Early 2009) and later, all models of MacBook Air, and MacBook (Late 2009).
+1. Shut down the computer.
+1. Plug in the MagSafe power adapter to a power source, connecting it to the Mac if its not already connected.
+1. On the built-in keyboard, press the (left side) Shift-Control-Option keys and the power button at the same time.
+1. Release all the keys and the power button at the same time.
+1. Press the power button to turn on the computer.</p>
+
+<p>Note: The LED on the MagSafe power adapter may change states or temporarily turn off when you reset the SMC.</p>
+
+<p>This fixed it for me, hope this finds it useful for others.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Must have mac apps]]></title>
@@ -910,22 +931,6 @@ iptables -A LOGGING -j DROP                                            # Drop ev
 
 <pre><code>yum --disableexcludes=main install git
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[emacs iswitch-mode makes switching between buffers easier]]></title>
-    <link href="http://jaequery.github.com/blog/2012/10/24/emacs-iswitch-mode-makes-switching-between-buffers/"/>
-    <updated>2012-10-24T15:21:48-07:00</updated>
-    <id>http://jaequery.github.com/blog/2012/10/24/emacs-iswitch-mode-makes-switching-between-buffers</id>
-    <content type="html"><![CDATA[<p>i somehow came across this <a href="http://emacswiki.org/emacs/IswitchBuffers">[http://emacswiki.org/emacs/IswitchBuffers](http://emacswiki.org/emacs/IswitchBuffers)</a> and i&#8217;m thinking to myself how i didn&#8217;t know about it this whole time.</p>
-
-<p>basically on your ~/.emacs, just put this line of code:<br/>
-(iswitchb-mode 1)</p>
-
-<p>and now create multiple buffers, either through multi-window (ctrl+x+2) or (ctrl+f … and type file name)</p>
-
-<p>now just hit ctrl+b, it&#8217;s like mac finder, awesome. </p>
 ]]></content>
   </entry>
   
